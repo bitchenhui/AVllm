@@ -1,0 +1,32 @@
+benchmarks/dev-v1/README.md
+  h_bc262c8ac47a2c 11-12
+benchmarks/dev-v1/compact-context-v1.json
+  h_bc262c8ac47a2c 1-208
+benchmarks/dev-v1/records/2026-11-11-context-budget-comparison.json
+  h_bc262c8ac47a2c 1-386
+docs/dev-baseline.md
+  h_bc262c8ac47a2c 98-128
+docs/next-steps.md
+  h_bc262c8ac47a2c 42
+scripts/build_dev_contexts.py
+  h_bc262c8ac47a2c 11-21,25,29-35,39-43,48-51,55,64
+scripts/diagnose_numeric.py
+  h_bc262c8ac47a2c 1-64
+scripts/summarize_dev_runs.py
+  h_bc262c8ac47a2c 1-107
+tests/test_dev_contexts.py
+  h_bc262c8ac47a2c 1-25
+tests/test_numeric_diagnostics.py
+  h_bc262c8ac47a2c 1-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "379362516b955c5b3bf4b5106feab4baaa5f600b",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
