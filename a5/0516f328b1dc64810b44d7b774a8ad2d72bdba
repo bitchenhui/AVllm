@@ -1,0 +1,26 @@
+configs/mlx-domain-smoke-m4pro.json
+  h_bc262c8ac47a2c 1-20
+datasets/pilot-v1/m4pro-local-review.json
+  h_bc262c8ac47a2c 1-96
+docs/mac-training.md
+  h_bc262c8ac47a2c 3,38-59
+docs/next-steps.md
+  h_bc262c8ac47a2c 3,44
+docs/records/2026-11-11-phase1-domain-m4pro.json
+  h_bc262c8ac47a2c 1-316
+scripts/materialize_phase1_local_review.py
+  h_bc262c8ac47a2c 1-56
+scripts/run_mlx_domain_smoke.py
+  h_bc262c8ac47a2c 1-140
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a50516f328b1dc64810b44d7b774a8ad2d72bdba",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
