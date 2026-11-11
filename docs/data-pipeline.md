@@ -37,6 +37,16 @@ python3 scripts/validate_samples.py data/candidates/batch-001.jsonl
 
 用 `prompts/review.md` 进行第二轮审核；审核 AI 要看到原证据。由领域审核者检查关键题和抽样，确认后填写 `verification.reviewer`、`reviewed_at`、检查结果与对应证据。每个 check 的 artifact 必须指向仓库内真实、非空的审核报告或验证结果文件（推荐放在 work/ 或 runs/）。使用条件也已核对时再将 eligibility 改为 approved。不得为了通过脚本把所有状态批量改成 passed。
 
+本地可为第一期的 16 条训练候选和 8 条验证候选生成逐题复核材料：
+
+```bash
+python3 scripts/build_phase1_review.py --output work/phase1-review-v1
+```
+
+打开生成的 `review.md`，按候选 ID 查看题面、答案、原件页码或源码行号、已有核验记录。使用 `queue.jsonl` 核对候选哈希、计算输入及复算输出；`manifest.json` 绑定候选版本、资料锁和生成结果。现有批次可重建 23 处去重的证据片段，并提供 12 道计算题的复算结果。输出目录应为 `work/` 下的新目录；含原文片段的材料留在本地。
+
+按技术正确性、适用条件和拟定使用范围逐题填写复核结果。确认通过后，在审核副本中记录审核人、日期和对应记录，再按下一节导出。如果需要修改题面或答案，先重做受影响的证据和数值核验。生成复核材料本身不会更改候选状态，也不生成训练文件。
+
 ## 4. 分组拆分与导出
 
 ```bash
