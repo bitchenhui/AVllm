@@ -7,27 +7,22 @@ from pathlib import Path
 from avllm_data import ROOT, read_jsonl, sha, validate
 
 REVIEW = ROOT / "datasets/pilot-v1/m4pro-local-review.json"
+BOUNDARY_REVIEW = ROOT / "datasets/boundary-v1/m4pro-local-review.json"
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    output = args.output.resolve()
-    if ROOT / "data/approved" not in output.parents or output.exists():
-        parser.error("Use a new file under data/approved/")
-    review = json.loads(REVIEW.read_text())
+def materialize(review_path, batches):
+    review = json.loads(review_path.read_text())
     if review["scope"] != "local_m4pro_domain_smoke" or review["reviewer_kind"] != "AI":
-        parser.error("Review does not grant this local smoke scope")
+        raise ValueError("Review does not grant this local smoke scope")
     rows = {}
-    for batch in ("pilot-v1", "validation-v1"):
+    for batch in batches:
         path = ROOT / "datasets" / batch / "candidates.jsonl"
         if sha(path.read_bytes()) != review["candidate_batch_sha256"][batch]:
-            parser.error(f"Candidate batch changed: {batch}")
+            raise ValueError(f"Candidate batch changed: {batch}")
         rows.update({row["id"]: row for row in read_jsonl(path)})
     expected = {ident for ident, row in rows.items() if row["task_type"] in {"calculation", "source_code"}}
     if {entry["id"] for entry in review["items"]} != expected or len(review["items"]) != len(expected):
-        parser.error("Review IDs do not match the calculation and source-code candidates")
+        raise ValueError("Review IDs do not match the calculation and source-code candidates")
     result = []
     for item in review["items"]:
         if item["decision"] != "pass_local_smoke":
@@ -38,10 +33,27 @@ def main():
         kinds = ["evidence", "conditions", "calculation" if row["task_type"] == "calculation" else "code"]
         row["verification"] = {
             "status": "passed", "reviewer": review["reviewer"], "reviewed_at": review["reviewed_at"],
-            "checks": [{"kind": kind, "result": "passed", "artifact": str(REVIEW.relative_to(ROOT))} for kind in kinds],
+            "checks": [{"kind": kind, "result": "passed", "artifact": str(review_path.relative_to(ROOT))} for kind in kinds],
         }
         row["eligibility"] = {"status": "approved", "note": review["use_scope_note"]}
         result.append(row)
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--include-boundary", action="store_true", help="Include the reviewed boundary-v1 training items")
+    args = parser.parse_args()
+    output = args.output.resolve()
+    if ROOT / "data/approved" not in output.parents or output.exists():
+        parser.error("Use a new file under data/approved/")
+    try:
+        result = materialize(REVIEW, ("pilot-v1", "validation-v1"))
+        if args.include_boundary:
+            result.extend(materialize(BOUNDARY_REVIEW, ("boundary-v1",)))
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        parser.error(str(exc))
     errors = validate(result, require_approved=True)
     if errors:
         parser.error("\n".join(errors))

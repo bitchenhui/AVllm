@@ -1,0 +1,351 @@
+{
+  "status": "completed",
+  "scope": "local_m4pro_domain_smoke",
+  "model": {
+    "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "weight_sha256": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+    "weight_bytes": 2263022417
+  },
+  "platform": "macOS-26.0-arm64-arm-64bit",
+  "chip": "Apple M4 Pro",
+  "mlx_lm_version": "0.32.2",
+  "mlx_version": "0.32.4",
+  "config": {
+    "model": "models/qwen3-4b-mlx-4bit",
+    "data": "data/splits/phase1-m4pro-boundary-v1",
+    "train": true,
+    "fine_tune_type": "lora",
+    "seed": 42,
+    "num_layers": 8,
+    "batch_size": 1,
+    "iters": 24,
+    "learning_rate": 1e-05,
+    "max_seq_length": 512,
+    "grad_checkpoint": true,
+    "grad_accumulation_steps": 1,
+    "mask_prompt": true,
+    "val_batches": -1,
+    "steps_per_report": 6,
+    "steps_per_eval": 12,
+    "save_every": 12,
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 16.0
+    }
+  },
+  "config_sha256": "b9677c7a08fe300008709c3bef273387d85f3d3809fd31c395345f6b39fcfc22",
+  "dataset": {
+    "schema_version": 1,
+    "source_dataset_sha256": "659ba1ada5472284e0942b77935153733cba25c74589a6ae5b1b3396665633a2",
+    "source_lock_sha256": "1f7294091abc3ae3ebee5f91afea9568622fc53b0c105e42902e64918bd34b36",
+    "holdout_registry_sha256": "584a6a6ab99c01467a4f6865da06e8a5e72eda544c667040bc3ca78746835412",
+    "splits": {
+      "train": {
+        "samples": 24,
+        "groups": 8,
+        "sha256": "811d5e1f12a91585f721edcc10838033c8bf4e7efe0a4f00be8e39a82cf3a144",
+        "codec_counts": {
+          "h264": 6,
+          "h265": 6,
+          "h266": 6,
+          "av1": 6
+        }
+      },
+      "valid": {
+        "samples": 4,
+        "groups": 4,
+        "sha256": "6b23cbbd1f6e1b6dccfdae4dc4b66f749dd7c066a41f4b033a44da223e439d11",
+        "codec_counts": {
+          "h264": 1,
+          "h265": 1,
+          "h266": 1,
+          "av1": 1
+        }
+      },
+      "test": {
+        "samples": 0,
+        "groups": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "codec_counts": {}
+      }
+    },
+    "dev_benchmarks_sha256": {
+      "benchmarks/dev-v1/questions.jsonl": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2"
+    },
+    "verification_artifact_sha256": {
+      "datasets/boundary-v1/m4pro-local-review.json": "b4164a9dfc23f754aa079e8e12226d2e1636ed0c798136f0de480a4293d2b0fe",
+      "datasets/pilot-v1/m4pro-local-review.json": "796da7853b12dda2e24c2c029c7ba4a5cf0376ca25ba54cd8ac589a015dfe578"
+    },
+    "provenance_sha256": "94a61e527c35f6429973a1ec11c6c51813793fd2221b102b41f0be1d50788ffa"
+  },
+  "lengths": {
+    "train": {
+      "samples": 24,
+      "max_sequence_tokens": 238
+    },
+    "valid": {
+      "samples": 4,
+      "max_sequence_tokens": 208
+    }
+  },
+  "train_seconds_includes_inline_validation": 15.4301,
+  "mlx_training_peak_bytes": 3242864356,
+  "adapter_sha256": "afeba2beb95ef25dff0be3324cc407eefe381ca7397fcc8ce36f5f45f2b665e6",
+  "adapter_tensors": 112,
+  "nonzero_lora_b_matrices": 56,
+  "base_validation": {
+    "loss": 3.3669752774173265,
+    "answer_tokens": 365,
+    "items": [
+      {
+        "id": "validation-v1-h264-02",
+        "loss": 2.8878509998321533,
+        "answer_tokens": 102
+      },
+      {
+        "id": "validation-v1-h265-02",
+        "loss": 2.7722959518432617,
+        "answer_tokens": 101
+      },
+      {
+        "id": "validation-v1-h266-02",
+        "loss": 3.601515054702759,
+        "answer_tokens": 94
+      },
+      {
+        "id": "validation-v1-av1-02",
+        "loss": 4.644718647003174,
+        "answer_tokens": 68
+      }
+    ]
+  },
+  "reloaded_adapter_validation": {
+    "loss": 2.30116749430356,
+    "answer_tokens": 365,
+    "items": [
+      {
+        "id": "validation-v1-h264-02",
+        "loss": 2.2683026790618896,
+        "answer_tokens": 102
+      },
+      {
+        "id": "validation-v1-h265-02",
+        "loss": 1.8189510107040405,
+        "answer_tokens": 101
+      },
+      {
+        "id": "validation-v1-h266-02",
+        "loss": 2.4951438903808594,
+        "answer_tokens": 94
+      },
+      {
+        "id": "validation-v1-av1-02",
+        "loss": 2.7985541820526123,
+        "answer_tokens": 68
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 0,
+      "val_loss": 3.5608294010162354,
+      "val_time": 1.256160750053823
+    },
+    {
+      "kind": "train",
+      "iteration": 6,
+      "train_loss": 3.787646929423014,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 2.175864654301857,
+      "tokens_per_second": 167.1789342721927,
+      "trained_tokens": 461,
+      "peak_memory": 3.076123356
+    },
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 11,
+      "val_loss": 2.5989646911621094,
+      "val_time": 1.2283286657184362
+    },
+    {
+      "kind": "train",
+      "iteration": 12,
+      "train_loss": 2.686664581298828,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 1.9565798524406486,
+      "tokens_per_second": 167.61367402574888,
+      "trained_tokens": 975,
+      "peak_memory": 3.242864356
+    },
+    {
+      "kind": "train",
+      "iteration": 18,
+      "train_loss": 2.4406655629475913,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 2.1529563028855163,
+      "tokens_per_second": 163.26585296881834,
+      "trained_tokens": 1430,
+      "peak_memory": 3.242864356
+    },
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 23,
+      "val_loss": 2.290691375732422,
+      "val_time": 1.272418166976422
+    },
+    {
+      "kind": "train",
+      "iteration": 24,
+      "train_loss": 2.3840630849202475,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 2.0119525349897436,
+      "tokens_per_second": 175.71052138910426,
+      "trained_tokens": 1954,
+      "peak_memory": 3.242864356
+    }
+  ],
+  "limits": "Fixed steps, not equal epochs or tokens. Local AI review is not independent human approval. Four validation and four numeric dev items; no final test or overall accuracy measured.",
+  "date_local": "2026-11-11",
+  "local_run_directory": "runs/phase1-domain-m4pro-boundary-v1",
+  "paired_training_comparison": {
+    "prior_record": "docs/records/2026-11-11-phase1-domain-m4pro.json",
+    "changed_config_fields": [
+      "data"
+    ],
+    "steps_each": 24,
+    "prior_train_samples": 12,
+    "expanded_train_samples": 24,
+    "prior_full_passes": 2,
+    "expanded_full_passes": 1,
+    "prior_framework_trained_tokens": 2036,
+    "expanded_framework_trained_tokens": 1954,
+    "unchanged_valid_sha256": "6b23cbbd1f6e1b6dccfdae4dc4b66f749dd7c066a41f4b033a44da223e439d11",
+    "prior_reload_valid_loss": 2.2800315729559286,
+    "expanded_reload_valid_loss": 2.30116749430356
+  },
+  "dev_comparison": {
+    "benchmark": "dev-v1",
+    "question_count": 20,
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70",
+    "max_tokens": 384,
+    "prompt_sha256": "db3e02e906135ed1aa568448e02379c2aeb13dc307a4141cfd42469eb37c05ae",
+    "non_numeric_status": "independent review pending",
+    "runs": [
+      {
+        "label": "base",
+        "run": "runs/dev-v1-qwen3-base-m4pro-concise",
+        "manifest_sha256": "a5344bc14e43dcc14172c13a3eae5a4c895fcdc3f7a255d4f0f4cf82689077ea",
+        "scores_sha256": "2ff9ff36d3834adf070980894fc3ae769dfe10e502f3316bbca295bb7313e62d",
+        "predictions_sha256": "4e4508e82e21ee30096fb009b4df6845e4f485b354e5c4deb0a046a99773d833",
+        "numeric_items": [
+          {
+            "id": "h264-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h265-02",
+            "strict": "correct",
+            "content": "correct"
+          },
+          {
+            "id": "h266-02",
+            "strict": "unparseable",
+            "content": "incorrect"
+          },
+          {
+            "id": "av1-02",
+            "strict": "correct",
+            "content": "correct"
+          }
+        ],
+        "numeric_strict_correct": 2,
+        "numeric_content_correct": 2,
+        "truncated_ids": [
+          "h264-01",
+          "h265-04",
+          "h266-01",
+          "h266-03",
+          "av1-01",
+          "av1-05"
+        ],
+        "generation_tokens_total": 4282,
+        "seconds_sum_excludes_load": 91.1974
+      },
+      {
+        "label": "pilot_12",
+        "run": "runs/dev-v1-qwen3-phase1-domain-m4pro",
+        "manifest_sha256": "a1ba1dfbc8f1a69af919b09b5ecb99942f35c517084cdc3c120f3da42f1b4d59",
+        "scores_sha256": "078a774537255a139eb8d566e46c607cde99c4f98c8f07f0f22bcfa3de493f22",
+        "predictions_sha256": "2315c4e0fd6da1bf94adec85eefebb0a165c971de0f339391a17f48be7a08ca8",
+        "numeric_items": [
+          {
+            "id": "h264-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h265-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h266-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "av1-02",
+            "strict": "correct",
+            "content": "correct"
+          }
+        ],
+        "numeric_strict_correct": 1,
+        "numeric_content_correct": 1,
+        "truncated_ids": [],
+        "generation_tokens_total": 2490,
+        "seconds_sum_excludes_load": 47.6432
+      },
+      {
+        "label": "expanded_24",
+        "run": "runs/dev-v1-qwen3-phase1-domain-m4pro-boundary",
+        "manifest_sha256": "1e006db2ba8b3f46e0bd5daa5833b1629f7fd0b87712a4115cf96129b0860e31",
+        "scores_sha256": "42430aa2a36b836efc9429151352bea0c5eec59dfc15cbb9368d1bff32331df9",
+        "predictions_sha256": "fef3624e787ead24b078e3de7deb8456a7c4221bd036c4c3cd7b63dbdb072308",
+        "numeric_items": [
+          {
+            "id": "h264-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h265-02",
+            "strict": "correct",
+            "content": "correct"
+          },
+          {
+            "id": "h266-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "av1-02",
+            "strict": "correct",
+            "content": "correct"
+          }
+        ],
+        "numeric_strict_correct": 2,
+        "numeric_content_correct": 2,
+        "truncated_ids": [
+          "h266-01"
+        ],
+        "generation_tokens_total": 2780,
+        "seconds_sum_excludes_load": 51.4219
+      }
+    ]
+  }
+}

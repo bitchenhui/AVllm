@@ -57,6 +57,26 @@ python3 scripts/prepare_training.py data/approved/phase1-m4pro-v1.jsonl --output
 
 开发集对照复用[基线命令](dev-baseline.md#运行过程)，加上 `--adapter-path runs/phase1-domain-m4pro-replay/adapter`，并换一个输出目录。分片、原始逐题输出和适配器留在本地。
 
+## 扩充边界题后的固定步数对照
+
+新增的四标准 12 道边界题经[逐题本地 AI 复核](../datasets/boundary-v1/m4pro-local-review.json)纳入训练副本。原 12 条训练样本保留，原 4 条验证样本逐字节相同。两轮均从同一个未微调基座开始，使用相同随机种子、配置和 24 步训练。扩充组把训练数据从 12 条增为 24 条，所以固定步数下约从两遍变为一遍；MLX 框架记录的训练 token 分别为 2036 和 1954。这是固定预算下的比较，不能分开估计数据覆盖和样本重复次数的影响。
+
+[扩充组运行记录](records/2026-11-11-phase1-domain-m4pro-boundary.json)保存了训练、重载验证和三组开发题结果：
+
+- 同一 4 道验证题和 365 个答案 token 上，基座 loss 为 3.367；原 12 条训练组为 2.280，扩充 24 条组为 **2.301**。扩充组训练及过程验证耗时 15.4 秒，MLX 分配峰值约 3.24 GB。
+- 在同一套 20 道开发题上，严格格式的计算正确数从基座 **2/4** 到原训练组 **1/4**，扩充组回到 **2/4**。HEVC 位深偏移题恢复到基座的正确结果；AVC 初始 QP 和 VVC QP 回绕仍错误。三组截断数分别为 **6、0、1**。非数值题仍待独立复核，没有整体正确率或最终测试结果。
+
+扩充组修复了上一轮的计算回退，尚未超过基座。优先增加分属独立机制的数值评测题并复核非数值题，再判断是否扩大训练量或调整训练预算。
+
+```bash
+python3 scripts/materialize_phase1_local_review.py --include-boundary \
+  --output data/approved/phase1-m4pro-boundary-v1.jsonl
+python3 scripts/prepare_training.py data/approved/phase1-m4pro-boundary-v1.jsonl \
+  --output data/splits/phase1-m4pro-boundary-v1
+.venv-train/bin/python scripts/run_mlx_domain_smoke.py \
+  --config configs/mlx-domain-smoke-m4pro-boundary.json --output runs/phase1-domain-m4pro-boundary-replay
+```
+
 ## 先检查数据，再小跑
 
 按数据流水线生成 `data/splits/pilot`，必须有审核后训练集和独立 valid。使用同一个 tokenizer 统计完整 chat template 的长度，先保证样本不超 2048 token；不能只统计字符数，也不依赖框架静默截断。

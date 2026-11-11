@@ -1,0 +1,74 @@
+{
+  "scope": "local_m4pro_domain_smoke",
+  "reviewer": "Codex gpt-6.1-sol (AI review, not human certification)",
+  "reviewer_kind": "AI",
+  "independent_human_review": false,
+  "reviewed_at": "2026-11-11",
+  "candidate_batch_sha256": {
+    "boundary-v1": "e035d5c60f6b0585a74c9190e49f29675f63f369ceac8db60ce0bb7190233576"
+  },
+  "use_scope_note": "User-authorized local M4 Pro smoke only. Original project questions, numerical examples and paraphrases, with no third-party text or code in exported chat messages. No redistribution or public model release approval.",
+  "checks_method": "Rechecked each branch and result against the existing locked source clauses, reran the separate numeric oracle and reserved-test isolation checks. This AI review is not independent of candidate authorship.",
+  "items": [
+    {
+      "id": "boundary-v1-h264-01",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical page 106, (7-21)–(7-24): 4:2:0 and frame-only give units (2,2); bottom removes 8 rows. Inclusive end 1088−8−1=1079; height 1080."
+    },
+    {
+      "id": "boundary-v1-h264-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical page 106, frame coordinates with frame_mbs_only_flag=0: units (2,4). The inclusive intervals [4,717] and [4,567] contain 714 and 564 samples."
+    },
+    {
+      "id": "boundary-v1-h264-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical page 106: when disabled, offsets infer zero; ChromaArrayType=0 uses (1,2) in case B. Subtract 4 and 6 from the original width and height."
+    },
+    {
+      "id": "boundary-v1-h265-01",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical pages 97 and 144, (7-25)/(8-12): bit depth 8, valid maximum PCM code 255, expand by two zero low bits. Output is 1020 rather than full-range 1023."
+    },
+    {
+      "id": "boundary-v1-h265-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "Same PCM reconstruction formula with zero depth difference. Both samples fit 10 bits; left shift by zero leaves 511 and 1023."
+    },
+    {
+      "id": "boundary-v1-h265-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "PcmBitDepthY must be at most BitDepthY. Coded 9 yields 10 and passes the stated constraint, coded 10 yields 11 and fails before any reconstruction shift."
+    },
+    {
+      "id": "boundary-v1-h266-01",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical pages 76, 171–172: B uses both lists and reads override. Its zero value selects defaults clipped to each list size; min(5,2)=2, min(2,4)=2."
+    },
+    {
+      "id": "boundary-v1-h266-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "For P, list 1 does not cause syntax presence. With one entry in list 0, the override flag is absent and inferred 1; the list-0 minus-one field infers zero. Active counts (1,0)."
+    },
+    {
+      "id": "boundary-v1-h266-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "For B, the four-entry list 1 makes override present. With override 1, only its minus-one value is read; the one-entry list 0 infers zero. Active counts (1,3)."
+    },
+    {
+      "id": "boundary-v1-av1-01",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical page 55, 5.9.3: using the normative masks m=4, (-6 & 3)−(-6 & 4)=2−0=2. This checks the modular verifier by a different expression."
+    },
+    {
+      "id": "boundary-v1-av1-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "For m=8, both +8 and −8 have low three bits zero and bit 3 set; the mask formula returns −8 in both directions."
+    },
+    {
+      "id": "boundary-v1-av1-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "Physical pages 43 and 55: OrderHintBits=0 when disabled. The guard returns before evaluating the shift expression; no negative shift is attempted."
+    }
+  ]
+}
