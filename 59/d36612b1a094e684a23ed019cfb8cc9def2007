@@ -1,0 +1,24 @@
+configs/mlx-domain-smoke-m4pro-boundary.json
+  h_bc262c8ac47a2c 1-24
+datasets/boundary-v1/m4pro-local-review.json
+  h_bc262c8ac47a2c 1-74
+docs/mac-training.md
+  h_bc262c8ac47a2c 60-79
+docs/next-steps.md
+  h_bc262c8ac47a2c 43-44
+docs/records/2026-11-11-phase1-domain-m4pro-boundary.json
+  h_bc262c8ac47a2c 1-351
+scripts/materialize_phase1_local_review.py
+  h_bc262c8ac47a2c 10,13-14,16,18,21,25,36,40-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "59d36612b1a094e684a23ed019cfb8cc9def2007",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
