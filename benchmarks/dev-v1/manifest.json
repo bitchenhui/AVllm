@@ -1,0 +1,17 @@
+{
+  "version": "dev-v1",
+  "purpose": "development-only",
+  "created_date": "2026-11-11",
+  "question_count": 20,
+  "codec_counts": {
+    "h264": 5,
+    "h265": 5,
+    "h266": 5,
+    "av1": 5
+  },
+  "numeric_count": 4,
+  "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+  "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70",
+  "review_status": "sources_checked_and_numeric_examples_verified; independent_domain_review_pending",
+  "note": "Not a held-out publication benchmark; never export into training."
+}

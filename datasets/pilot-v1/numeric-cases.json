@@ -1,0 +1,146 @@
+{
+  "batch": "pilot-v1",
+  "cases": {
+    "pilot-v1-h264-02": {
+      "operation": "avc_dc",
+      "inputs": {
+        "bit_depth_y": 8,
+        "top": [
+          10,
+          20,
+          30,
+          40
+        ],
+        "left": [
+          50,
+          60,
+          70,
+          84
+        ]
+      },
+      "expected": {
+        "dc": 46
+      },
+      "prompt_sha256": "c1b959e14703c93234c5db02b418ac6b15731eed7227384dd44f596f59aea110"
+    },
+    "pilot-v1-h264-03": {
+      "operation": "avc_dc_pair",
+      "inputs": {
+        "a": {
+          "bit_depth_y": 10,
+          "top": [
+            17,
+            null,
+            18,
+            null
+          ],
+          "left": [
+            19,
+            20,
+            20,
+            23
+          ]
+        },
+        "b": {
+          "bit_depth_y": 10,
+          "top": [
+            17,
+            null,
+            18,
+            null
+          ],
+          "left": [
+            19,
+            20,
+            20,
+            null
+          ]
+        }
+      },
+      "expected": {
+        "dc_a": 21,
+        "dc_b": 512
+      },
+      "prompt_sha256": "9c7753dda1a2aad1a99c59162c223495105b4b0e4a0ccc18fe1e590808a366bc"
+    },
+    "pilot-v1-h265-02": {
+      "operation": "hevc_merge",
+      "inputs": {
+        "five_minus_max_num_merge_cand": 2
+      },
+      "expected": {
+        "max_num_merge_cand": 3,
+        "max_merge_idx": 2,
+        "merge_idx_present": 1
+      },
+      "prompt_sha256": "cce2bc83cfac9794bf52f9c3eea50aca1d5ff7b18b269e2480fae7f047110529"
+    },
+    "pilot-v1-h265-03": {
+      "operation": "hevc_merge",
+      "inputs": {
+        "five_minus_max_num_merge_cand": 4
+      },
+      "expected": {
+        "max_num_merge_cand": 1,
+        "max_merge_idx": 0,
+        "merge_idx_present": 0
+      },
+      "prompt_sha256": "57f7d1ed891d4d00c68a132f93695b471ad43493b80a8ed0242ab5a201e3d5dd"
+    },
+    "pilot-v1-h266-02": {
+      "operation": "vvc_history_poc",
+      "inputs": {
+        "max_lsb": 256,
+        "prev_msb": 512,
+        "prev_lsb": 240,
+        "current_lsb": 8
+      },
+      "expected": {
+        "poc_msb": 768,
+        "poc": 776
+      },
+      "prompt_sha256": "3b01fb3ff4cf0fef189d10cf3a5727642bacb8cdc50849c2b0e56c53463e2dbb"
+    },
+    "pilot-v1-h266-03": {
+      "operation": "vvc_explicit_poc",
+      "inputs": {
+        "max_lsb": 256,
+        "cycle_value": 3,
+        "current_lsb": 19
+      },
+      "expected": {
+        "poc_msb": 768,
+        "poc": 787
+      },
+      "prompt_sha256": "47f08943889ea7fd0581e348706b4072fd95bee4ddacc4737c30a8b93fea6075"
+    },
+    "pilot-v1-av1-02": {
+      "operation": "av1_superres",
+      "inputs": {
+        "coded_denom": 3,
+        "width": 1920,
+        "height": 1080
+      },
+      "expected": {
+        "superres_denom": 12,
+        "frame_width": 1280,
+        "frame_height": 1080
+      },
+      "prompt_sha256": "3f8e52733e3de3eefdf8884911086d77b01bc4f30da9f4e6c9498157287974b3"
+    },
+    "pilot-v1-av1-03": {
+      "operation": "av1_superres",
+      "inputs": {
+        "coded_denom": 0,
+        "width": 1921,
+        "height": 1080
+      },
+      "expected": {
+        "superres_denom": 9,
+        "frame_width": 1708,
+        "frame_height": 1080
+      },
+      "prompt_sha256": "608390472e4a49707250d5ab9b488a58eddf4a85d4b0d17bfb4a7690e64e3ead"
+    }
+  }
+}

@@ -10,13 +10,13 @@ python3 scripts/make_packet.py --source h264-spec --page 1 --group avc-cover-for
 
 代码证据可指定相对文件和行号，范围必须真实存在。证据包内保存 source 的文件哈希/提交号、定位信息、抽取片段及片段 SHA-256。`make_packet.py` 输出来源包含 `evidence` 项，可直接用于候选样本。定位页号以 PDF 物理页为准，与纸面章节页码分别记录。
 
-先为机制/函数/实验家族确定 `split_group`，再生成变体；同组所有候选使用一致拆分。已决定用于冻结测试的机制家族写入 `configs/holdout-groups.json`，禁止进入训练。
+先为机制/函数/实验家族确定 `split_group`，再生成变体；同组所有候选使用一致拆分。已决定用于冻结测试的机制家族写入 `configs/holdout-groups.json` 的 `groups`，禁止进入训练。和开发集机制组或锁定证据重合的包会标为 `dev`；选用其他机制或证据制作训练样本。
 
 ## 2. AI 生成候选
 
 将证据包、`prompts/generate.md`、样本格式一起交给教师模型。输出 JSONL，每条样本包含 `id, codecs, topic, task_type, split_group, messages, evidence, generation, verification, eligibility`。生成样本的 `verification.status` 必须为 pending，`eligibility.status` 必须为 pending；生成器不能为自己的答案签发通过状态。
 
-教师只看本单元资料；不提供冻结评测答案。每批先生成少量，避免批量复制同一种错误。设计原理、边界、反例、计算、代码解释、跨标准比较等不同任务。`insufficient_evidence` 可以生成一个解释缺失条件的样本，禁止编造条款号或函数名补齐答案。
+教师只看本单元资料；不提供开发题或冻结评测答案来生成训练样本。每批先生成少量，避免批量复制同一种错误。设计原理、边界、反例、计算、代码解释、跨标准比较等不同任务。证据不足时使用 `insufficient_information`，解释缺失条件，禁止编造条款号或函数名补齐答案。
 
 `generation` 记录教师名、实际版本、提示词版本和时间；无法获取的版本填 unknown，不能编造。教师只是内容生成器，MLX/PyTorch 执行梯度训练。AI 辅助编写脚本不意味着聊天本身会更新模型权重。
 
@@ -43,7 +43,7 @@ python3 scripts/validate_samples.py data/candidates/batch-001.jsonl
 python3 scripts/prepare_training.py data/approved/pilot.jsonl --output data/splits/pilot
 ```
 
-工具先运行严格验证，再按 split_group 稳定分配 80/10/10；冻结 holdout 组总是 test。输出 MLX `train.jsonl`、`valid.jsonl`、`test.jsonl`，并保留 `provenance.jsonl` 和统计哈希 `manifest.json`。源样本 metadata 不丢失。
+工具先运行严格验证，拒绝开发题 ID、组、题面或锁定证据有重合的样本，再按 split_group 稳定分配 80/10/10；冻结 holdout 组总是 test。输出 MLX `train.jsonl`、`valid.jsonl`、`test.jsonl`，并保留 `provenance.jsonl` 和统计哈希 `manifest.json`。源样本 metadata 不丢失。
 
 同题精确重复会被拒绝，语义重复与隐蔽的家族关联需要另行人工或检索检查。哈希随机划分不是覆盖保证，查看每标准/模块的分布；小数据集可能出现空 split，准备工具会拒绝空训练或验证集。
 
@@ -51,4 +51,4 @@ python3 scripts/prepare_training.py data/approved/pilot.jsonl --output data/spli
 
 ## 5. 具体的首批工作
 
-四标准各做 5 道人工核验题，共 20 道：条件明确的解释题、一个可算的小例子、一个基于真实代码片段的问题和一个错误前提问题。先验证证据、生成和审查流程，再扩大到冻结评测与约 2,000 条训练候选。此顺序让数据错误在小批次暴露。
+已有[四标准各 5 道开发题](../benchmarks/dev-v1/README.md)和[四标准各 4 条训练候选](../datasets/pilot-v1/README.md)，两者分离。先独立复核已核验的候选，按需要补充不同机制的验证样本，完成一次小批导出后再扩大到冻结测试与约 2,000 条候选。

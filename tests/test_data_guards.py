@@ -131,6 +131,30 @@ class DataGuards(unittest.TestCase):
         self.assertEqual({x["sample"]["id"] for x in provenance}, {x["id"] for x in rows})
         self.assertEqual(manifest["verification_artifact_sha256"]["work/review.md"], sha((self.root / "work/review.md").read_bytes()))
 
+    def test_export_blocks_development_evidence_even_with_changed_question_and_group(self):
+        benchmark = self.root / "benchmarks"
+        benchmark.mkdir()
+        dev = {"id": "dev-fixture", "split_group": "dev-mechanism",
+               "prompt": "Independent dev prompt.", "evidence": self.row["evidence"]}
+        (benchmark / "questions.jsonl").write_text(json.dumps(dev) + "\n")
+        (benchmark / "manifest.json").write_text(json.dumps(
+            {"questions_sha256": sha((benchmark / "questions.jsonl").read_bytes())}))
+        (self.root / "configs").mkdir()
+        (self.root / "configs/holdout-groups.json").write_text(json.dumps(
+            {"groups": [], "dev_benchmarks": ["benchmarks/questions.jsonl"]}))
+        self.approve(self.row)
+        dataset = self.root / "work/approved.jsonl"
+        dataset.write_text(json.dumps(self.row) + "\n")
+        output = self.root / "work/should-not-exist"
+        err = io.StringIO()
+        with mock.patch.object(prepare_training, "ROOT", self.root), mock.patch.object(
+            sys, "argv", ["prepare_training", str(dataset), "--output", str(output)]
+        ), contextlib.redirect_stderr(err), self.assertRaises(SystemExit) as failure:
+            prepare_training.main()
+        self.assertEqual(failure.exception.code, 1)
+        self.assertIn("development benchmark overlap (locked evidence)", err.getvalue())
+        self.assertFalse(output.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

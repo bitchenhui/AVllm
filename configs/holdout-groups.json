@@ -1,5 +1,6 @@
 {
   "version":"phase1-v1",
   "groups":[],
-  "note":"Register real mechanism/experiment families before generating evaluation questions. Empty means no frozen evaluation exists yet; do not report a completed benchmark."
+  "dev_benchmarks":["benchmarks/dev-v1/questions.jsonl"],
+  "note":"Development items are blocked from training exports by id, group, prompt and evidence. groups is reserved for future frozen test families; empty means no final benchmark exists yet."
 }

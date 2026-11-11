@@ -1,0 +1,60 @@
+{
+  "batch": "pilot-v1",
+  "status": "candidate_checks_passed_pending_domain_approval",
+  "candidates_sha256": "3b5e4aaf46c8e89f1f10c313a562d1e2aa3508a0af3a29fe17fe0728fadae625",
+  "numeric_cases_sha256": "d97e165660a91c24e78789d034de46178ccc326afe67efb7624e8e29e0bb5d7c",
+  "samples": 16,
+  "codec_counts": {
+    "h264": 4,
+    "h265": 4,
+    "h266": 4,
+    "av1": 4
+  },
+  "locked_locators_checked": 15,
+  "groups": [
+    "av1-superres-width-family",
+    "avc-intra4x4-dc-family",
+    "hevc-merge-list-family",
+    "vvc-poc-msb-family"
+  ],
+  "numeric_answers": {
+    "pilot-v1-h264-02": {
+      "dc": 46
+    },
+    "pilot-v1-h264-03": {
+      "dc_a": 21,
+      "dc_b": 512
+    },
+    "pilot-v1-h265-02": {
+      "max_num_merge_cand": 3,
+      "max_merge_idx": 2,
+      "merge_idx_present": 1
+    },
+    "pilot-v1-h265-03": {
+      "max_num_merge_cand": 1,
+      "max_merge_idx": 0,
+      "merge_idx_present": 0
+    },
+    "pilot-v1-h266-02": {
+      "poc_msb": 768,
+      "poc": 776
+    },
+    "pilot-v1-h266-03": {
+      "poc_msb": 768,
+      "poc": 787
+    },
+    "pilot-v1-av1-02": {
+      "superres_denom": 12,
+      "frame_width": 1280,
+      "frame_height": 1080
+    },
+    "pilot-v1-av1-03": {
+      "superres_denom": 9,
+      "frame_width": 1708,
+      "frame_height": 1080
+    }
+  },
+  "source_code_reviews": 4,
+  "development_overlaps": 0,
+  "training_approved": 0
+}

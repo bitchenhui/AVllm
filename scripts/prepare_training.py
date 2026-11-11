@@ -5,7 +5,7 @@ from collections import Counter
 import json
 from pathlib import Path
 import sys
-from avllm_data import ROOT, read_jsonl, sha, split_for, validate
+from avllm_data import ROOT, dev_overlap, load_dev_exclusions, read_jsonl, sha, split_for, validate
 
 
 def main():
@@ -13,16 +13,27 @@ def main():
     parser.add_argument("path")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
-    rows = read_jsonl(args.path)
-    errors = validate(rows, require_approved=True, root=ROOT)
+    holdout_path = ROOT / "configs/holdout-groups.json"
+    try:
+        rows = read_jsonl(args.path)
+        registry = json.loads(holdout_path.read_text())
+        exclusions = load_dev_exclusions(registry, root=ROOT)
+        errors = validate(rows, require_approved=True, root=ROOT)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        parser.exit(1, f"{exc}\n")
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    holdout_path = ROOT / "configs/holdout-groups.json"
-    holds = json.loads(holdout_path.read_text())["groups"]
     splits = {k: [] for k in ["train", "valid", "test"]}
     for row in rows:
-        splits[split_for(row["split_group"], holds)].append(row)
+        user_messages = [m["content"] for m in row["messages"] if m["role"] == "user"]
+        overlap = dev_overlap(exclusions, sample_id=row["id"], group=row["split_group"],
+                              evidence=row["evidence"])
+        overlap = overlap or next((hit for msg in user_messages
+                                   if (hit := dev_overlap(exclusions, prompt=msg))), None)
+        if overlap:
+            parser.exit(1, f"{row['id']}: development benchmark overlap ({overlap}); exclude from all training exports\n")
+        splits[split_for(row["split_group"], registry["groups"])].append(row)
     if not splits["train"] or not splits["valid"]:
         parser.error("Train and valid must both be nonempty; collect more independent groups, do not move paraphrases across groups")
     output = Path(args.output)
@@ -32,6 +43,9 @@ def main():
     metadata = {"schema_version": 1, "source_dataset_sha256": sha(Path(args.path).read_bytes()),
                 "source_lock_sha256": sha((ROOT / "materials/sources.lock.json").read_bytes()),
                 "holdout_registry_sha256": sha(holdout_path.read_bytes()), "splits": {}}
+    metadata["dev_benchmarks_sha256"] = {
+        p: sha((ROOT / p).read_bytes()) for p in registry.get("dev_benchmarks", [])
+    }
     artifacts = {check["artifact"] for row in rows for check in row["verification"]["checks"]}
     metadata["verification_artifact_sha256"] = {p: sha((ROOT / p).read_bytes()) for p in sorted(artifacts)}
     provenance = []
@@ -46,7 +60,7 @@ def main():
     metadata["provenance_sha256"] = sha((output / "provenance.jsonl").read_bytes())
     (output / "manifest.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(metadata, ensure_ascii=False, indent=2))
-    if not holds:
+    if not registry["groups"]:
         print("Note: no registered frozen holdout groups yet; deterministic test split is not a completed independent benchmark.")
     return 0
 

@@ -8,6 +8,6 @@
 
 messages可以包含system，必须包含user问题和最后assistant答案；不要输出隐藏思维链。需要推导时提供可审查的简洁计算与结论，注明舍入规则。代码任务把相关片段放进user上下文，禁止假装模型能访问未提供的整个仓库。只有实验设计时不能编造已测得收益。
 
-evidence逐项原样复制证据包中的定位与哈希，不自行“修正”或猜测。split_group原样复制，所有改写归同组。assigned_split=test的证据包只能用于独立评测候选，不能生成训练样本；如果本轮要求生成训练样本则返回用途冲突。generation真实记录教师model/revision/prompt_version/created_at，未知revision填unknown。verification.status=pending，checks=[]，reviewer=null，reviewed_at=null。eligibility.status=pending，note说明需要检查的条件。生成器不得给自己标为passed/approved。
+evidence逐项原样复制证据包中的定位与哈希，不自行“修正”或猜测。split_group原样复制，所有改写归同组。assigned_split=dev 或 test 的证据包只能用于对应的评测候选，不能生成训练样本；如果本轮要求生成训练样本则返回用途冲突。generation真实记录教师model/revision/prompt_version/created_at，未知revision填unknown。verification.status=pending，checks=[]，reviewer=null，reviewed_at=null。eligibility.status=pending，note说明需要检查的条件。生成器不得给自己标为passed/approved。
 
 避免只问名词定义；优先让样本覆盖条件、边界、失败案例和不同机制。输出之间不得只有措辞差异。测试集、评分rubric或保留答案如被提供，停止生成训练样本并报告数据分离问题。

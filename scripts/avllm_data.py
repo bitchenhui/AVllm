@@ -52,6 +52,38 @@ def bounded_path(base, relative):
     return target
 
 
+def evidence_fingerprint(record):
+    return record["source_id"], record["source_revision"], record["snippet_sha256"]
+
+
+def load_dev_exclusions(registry, root=ROOT):
+    """Index development items separately from the eventual frozen test split."""
+    result = {"ids": set(), "groups": set(), "prompts": set(), "evidence": set()}
+    for path in registry.get("dev_benchmarks", []):
+        question_file = bounded_path(root, path)
+        manifest = json.loads(question_file.with_name("manifest.json").read_text())
+        if sha(question_file.read_bytes()) != manifest["questions_sha256"]:
+            raise ValueError(f"Development questions differ from locked manifest: {path}")
+        for row in read_jsonl(question_file):
+            result["ids"].add(row["id"])
+            result["groups"].add(row["split_group"])
+            result["prompts"].add(normalized(row["prompt"]))
+            result["evidence"].update(evidence_fingerprint(ev) for ev in row["evidence"])
+    return result
+
+
+def dev_overlap(exclusions, *, sample_id=None, group=None, prompt=None, evidence=()):
+    if sample_id in exclusions["ids"]:
+        return "question id"
+    if group in exclusions["groups"]:
+        return "mechanism group"
+    if prompt is not None and normalized(prompt) in exclusions["prompts"]:
+        return "question text"
+    if any(evidence_fingerprint(ev) in exclusions["evidence"] for ev in evidence):
+        return "locked evidence"
+    return None
+
+
 def selected_lines(text, locator):
     start, end = locator.get("start"), locator.get("end")
     if type(start) is not int or type(end) is not int or not 1 <= start <= end:
@@ -170,7 +202,7 @@ def validate(rows, require_approved=False, root=ROOT):
                     evidence_cache[cache_key] = sha(text.encode()) if text.strip() else None
                 if ev["snippet_sha256"] != evidence_cache[cache_key] or evidence_cache[cache_key] is None:
                     raise ValueError("Evidence snippet hash differs or evidence is empty")
-                fingerprint = (ev["source_id"], ev["source_revision"], ev["snippet_sha256"])
+                fingerprint = evidence_fingerprint(ev)
                 if fingerprint in evidence_groups and evidence_groups[fingerprint] != row["split_group"]:
                     raise ValueError("Identical evidence is assigned to different split groups; merge the mechanism families before splitting")
                 evidence_groups[fingerprint] = row["split_group"]
