@@ -1,0 +1,32 @@
+datasets/boundary-v1/candidates.jsonl
+  h_bc262c8ac47a2c 1-12
+datasets/boundary-v1/numeric-cases.json
+  h_bc262c8ac47a2c 1-262
+datasets/boundary-v1/token-length-report.json
+  h_bc262c8ac47a2c 1-84
+datasets/boundary-v1/verification-report.json
+  h_bc262c8ac47a2c 1-86
+docs/data-pipeline.md
+  h_bc262c8ac47a2c 65-75
+docs/next-steps.md
+  h_bc262c8ac47a2c 43
+scripts/build_phase1_review.py
+  h_bc262c8ac47a2c 13,25,34-37,96-97
+scripts/verify_boundary_batch.py
+  h_bc262c8ac47a2c 1-159
+scripts/verify_holdout_draft.py
+  h_bc262c8ac47a2c 48-49
+tests/test_boundary_references.py
+  h_bc262c8ac47a2c 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c494a7a100d1f2c0f4981d6af9eb8ce0bdacecec",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
