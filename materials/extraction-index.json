@@ -1,0 +1,310 @@
+{
+  "sources": [
+    {
+      "source_id": "av1-overview",
+      "source_sha256": "57f5654f9528fd57bba50aeb0e0f4d7ccbaf15ed6cec6c2a7adfed268cf27c45",
+      "version": "arXiv:2008.06091",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 25,
+      "pdf_metadata": {
+        "/Author": "",
+        "/CreationDate": "D:20210210024258Z",
+        "/Creator": "LaTeX with hyperref",
+        "/Keywords": "",
+        "/ModDate": "D:20210210024258Z",
+        "/PTEX.Fullbanner": "This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) kpathsea version 6.3.2",
+        "/Producer": "pdfTeX-1.40.21",
+        "/Subject": "",
+        "/Title": "",
+        "/Trapped": "/False"
+      },
+      "text_bytes": 116889
+    },
+    {
+      "source_id": "av1-spec-pdf",
+      "source_sha256": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+      "version": "v1.0.0-errata1",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 681,
+      "pdf_metadata": {
+        "/Producer": "Prince 11.3 (www.princexml.com)",
+        "/Title": "AV1 Bitstream & Decoding Process Specification"
+      },
+      "text_bytes": 1816201
+    },
+    {
+      "source_id": "ffmpeg-codecs",
+      "source_sha256": "19716983c5b85fb88483fdf20fcb59b231f3523e5919eccda60aa7b00f5d305e",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 202346
+    },
+    {
+      "source_id": "ffmpeg-filters",
+      "source_sha256": "54ea5435e2af63a914ffcdfe04c9f74919145a5b58b6879a3a10e516ac89652f",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 924026
+    },
+    {
+      "source_id": "ffprobe-doc",
+      "source_sha256": "8c1723ff8319440618100863aaf016e75d6cd306809fd85890097f32b41fefd3",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 34683
+    },
+    {
+      "source_id": "h264-spec",
+      "source_sha256": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+      "version": "2026-06",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 854,
+      "pdf_metadata": {
+        "/Author": "ITU-T",
+        "/CreationDate": "D:20260728151245+02'00'",
+        "/Creator": "Microsoft® Word for Microsoft 365",
+        "/Keywords": "H.264,H,264",
+        "/ModDate": "D:20260728151845+02'00'",
+        "/Producer": "Microsoft® Word for Microsoft 365",
+        "/Subject": "SERIES H: AUDIOVISUAL AND MULTIMEDIA SYSTEMS - Infrastructure of audiovisual services – Coding of moving video",
+        "/Title": "Recommendation ITU-T H.264 (06/2026) Advanced video coding for generic audiovisual services"
+      },
+      "text_bytes": 3132971
+    },
+    {
+      "source_id": "h265-spec",
+      "source_sha256": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+      "version": "2026-01",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 734,
+      "pdf_metadata": {
+        "/Author": "ITU-T ",
+        "/CreationDate": "D:20260318132932+01'00'",
+        "/Creator": "Microsoft® Word for Microsoft 365",
+        "/Keywords": "Compression coding, digital video, image coding, supplemental enhancement information, video coding, video compression, visual coding.",
+        "/ModDate": "D:20260318133239+01'00'",
+        "/Producer": "Microsoft® Word for Microsoft 365",
+        "/Subject": "SERIES H: Audiovisual and multimedia systems - Infrastructure of audiovisual services – Coding of moving video",
+        "/Title": "Recommendation ITU-T H.265 (V11) (01/2026) High efficiency video coding"
+      },
+      "text_bytes": 2610921
+    },
+    {
+      "source_id": "h266-spec",
+      "source_sha256": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+      "version": "2026-01",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 544,
+      "pdf_metadata": {
+        "/Author": "ITU-T ",
+        "/CreationDate": "D:20260319071240+01'00'",
+        "/Creator": "Microsoft® Word for Microsoft 365",
+        "/Keywords": "Compression, digital video, high dynamic range (HDR), immersive video, ultra high definition video, versatile video coding.",
+        "/ModDate": "D:20260319071957+01'00'",
+        "/Producer": "Microsoft® Word for Microsoft 365",
+        "/Subject": "SERIES H: Audiovisual and multimedia systems - Infrastructure of audiovisual services – Coding of moving video",
+        "/Title": "Recommendation ITU-T H.266 (V4) (01/2026) Versatile video coding"
+      },
+      "text_bytes": 1829041
+    },
+    {
+      "source_id": "imitation-paper",
+      "source_sha256": "d407a2c435f7d2fc84e10f4393ea6ce7955350740f564bad949bd00ae18246b4",
+      "version": "arXiv:2305.15717",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 15,
+      "pdf_metadata": {
+        "/Author": "",
+        "/CreationDate": "D:20230526010443Z",
+        "/Creator": "LaTeX with hyperref",
+        "/Keywords": "",
+        "/ModDate": "D:20230526010443Z",
+        "/PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) kpathsea version 6.3.5",
+        "/Producer": "pdfTeX-1.40.25",
+        "/Subject": "",
+        "/Title": "",
+        "/Trapped": "/False"
+      },
+      "text_bytes": 53267
+    },
+    {
+      "source_id": "jm-home",
+      "source_sha256": "f66513354eb805bbf79ca59cb0fce809251178bafdd6123fd0964ab5cb0f89d2",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 2381
+    },
+    {
+      "source_id": "llamafactory-qwen-config",
+      "source_sha256": "b6af2febde2a8df7a4070b602f52f52ae6996475731a1da86bbcbf2540e291a9",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 983
+    },
+    {
+      "source_id": "mlx-lora-code",
+      "source_sha256": "f56395229140031cdaeea0b6c547640127081fa61627d1870f6d9e56359393cc",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 11965
+    },
+    {
+      "source_id": "mlx-lora-doc",
+      "source_sha256": "305fec69ccbde4c5b8f2c752ab889258bfa7192f2ec7e2b767ad641c57021852",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 13741
+    },
+    {
+      "source_id": "mlx-model-card",
+      "source_sha256": "7b17ce562d7ea121c86d2ffdf660eed3726ac5b52cacfa9f1de11a65969f5657",
+      "version": "Qwen3-4B-Instruct-2507-4bit",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 969
+    },
+    {
+      "source_id": "mlx-trainer-code",
+      "source_sha256": "0b6027fdb11803e951ceee52c83a81f82daa922ea8c6b7ca6888953461064e8e",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 12560
+    },
+    {
+      "source_id": "qlora-paper",
+      "source_sha256": "33a4e757c19d6ea8d3cca8958fce8fe405e290272e135c99ee66065c775d5bd1",
+      "version": "arXiv:2305.14314",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 26,
+      "pdf_metadata": {
+        "/Author": "",
+        "/CreationDate": "D:20230524004717Z",
+        "/Creator": "LaTeX with hyperref",
+        "/Keywords": "",
+        "/ModDate": "D:20230524004717Z",
+        "/PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) kpathsea version 6.3.5",
+        "/Producer": "pdfTeX-1.40.25",
+        "/Subject": "",
+        "/Title": "",
+        "/Trapped": "/False"
+      },
+      "text_bytes": 88808
+    },
+    {
+      "source_id": "qwen-model-card",
+      "source_sha256": "8e3dd0c3b5b11897cc71092ccfe517bb7a9783479baa3665aad73c8d1a2041cd",
+      "version": "Qwen3-4B-Instruct-2507",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 8168
+    },
+    {
+      "source_id": "self-instruct-paper",
+      "source_sha256": "1f14747af9bb8faee2221965449d7685174da18f3421efd4f38ef9bc57d6944e",
+      "version": "arXiv:2212.10560",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 23,
+      "pdf_metadata": {
+        "/Author": "",
+        "/CreationDate": "D:20230529001244Z",
+        "/Creator": "LaTeX with hyperref",
+        "/Keywords": "",
+        "/ModDate": "D:20230529001244Z",
+        "/PTEX.Fullbanner": "This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) kpathsea version 6.3.5",
+        "/Producer": "pdfTeX-1.40.25",
+        "/Subject": "",
+        "/Title": "",
+        "/Trapped": "/False"
+      },
+      "text_bytes": 88704
+    },
+    {
+      "source_id": "synthetic-data-paper",
+      "source_sha256": "2c5c7c94c3c1e44692aa7d080e5ee9e38b521eb8e1db0b5e2d6337508239b1ec",
+      "version": "arXiv:2404.07503",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 25,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 10.01.2",
+        "/CreationDate": "D:20240812203134-04'00'",
+        "/ModDate": "D:20240812203134-04'00'",
+        "/Creator": "LaTeX with hyperref",
+        "/Title": "",
+        "/Subject": "",
+        "/Author": "",
+        "/Keywords": ""
+      },
+      "text_bytes": 100615
+    },
+    {
+      "source_id": "uvg-dataset",
+      "source_sha256": "e5048b6c4507148390dbf519df300469ed3b7b0ff7281bfeb59dda5c9f203264",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 10461
+    },
+    {
+      "source_id": "vmaf-doc",
+      "source_sha256": "8715aef04da031857bee5f7d395c970131abf8750542918ea40d55707d6bd649",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 6595
+    },
+    {
+      "source_id": "vvc-review",
+      "source_sha256": "fbd981650d207ba2b5af4d9d5ea865f97e541c678cc90f82320f2930d761239e",
+      "version": "arXiv:2106.14245",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "pdf_pages": 10,
+      "pdf_metadata": {
+        "/Author": "",
+        "/CreationDate": "D:20211109024442Z",
+        "/Creator": "LaTeX with hyperref",
+        "/Keywords": "",
+        "/ModDate": "D:20211109024442Z",
+        "/PTEX.Fullbanner": "This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) kpathsea version 6.3.2",
+        "/Producer": "pdfTeX-1.40.21",
+        "/Subject": "",
+        "/Title": "",
+        "/Trapped": "/False"
+      },
+      "text_bytes": 56048
+    },
+    {
+      "source_id": "x265-cli",
+      "source_sha256": "9d35442a62d19fef51ff8b5220859deeaf1bb7e49d55dfa2a3a0e57717acab73",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 116805
+    },
+    {
+      "source_id": "xiph-testmedia",
+      "source_sha256": "8889f0ed6d35c8d13cb45a37cdb8ce05e1bbb5f8ecb4077446f9127569addc9b",
+      "version": "snapshot",
+      "extraction_verified": false,
+      "warning": "PDF formulas, tables and diagrams require visual/manual verification before training.",
+      "text_bytes": 20474
+    }
+  ]
+}

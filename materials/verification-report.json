@@ -1,0 +1,218 @@
+{
+  "date": "2026-11-11",
+  "source_count": 35,
+  "all_sources_collected": true,
+  "integrity_checks": [
+    {
+      "source_id": "h264-spec",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "h265-spec",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "h266-spec",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "av1-spec-pdf",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "av1-spec-source",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "jm-home",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "jm-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "hm-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "vtm-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "x264-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "x265-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "vvenc-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "vvdec-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "libaom-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "svtav1-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "dav1d-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "x265-cli",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "ffmpeg-codecs",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "ffmpeg-filters",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "ffprobe-doc",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "av1-overview",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "vvc-review",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "qlora-paper",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "self-instruct-paper",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "synthetic-data-paper",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "imitation-paper",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "mlx-lora-doc",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "mlx-lora-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "mlx-trainer-code",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "qwen-model-card",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "mlx-model-card",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "llamafactory-qwen-config",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "uvg-dataset",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "xiph-testmedia",
+      "status": "collected",
+      "integrity_passed": true
+    },
+    {
+      "source_id": "vmaf-doc",
+      "status": "collected",
+      "integrity_passed": true
+    }
+  ],
+  "standard_pdf_pages": 2813,
+  "standard_metadata": [
+    {
+      "source_id": "av1-spec-pdf",
+      "pages": 681,
+      "source_sha256": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9"
+    },
+    {
+      "source_id": "h264-spec",
+      "pages": 854,
+      "source_sha256": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79"
+    },
+    {
+      "source_id": "h265-spec",
+      "pages": 734,
+      "source_sha256": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2"
+    },
+    {
+      "source_id": "h266-spec",
+      "pages": 544,
+      "source_sha256": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25"
+    }
+  ],
+  "cover_visual_review": "Four standard cover pages rendered and inspected; versions match source manifest. Algorithm formulas/tables are not yet fully reviewed.",
+  "data_guard_tests": {
+    "passed": 11,
+    "note": "Tooling tests only; no domain-model benchmark or training run."
+  },
+  "model_weights_downloaded": false,
+  "training_executed": false,
+  "primary_training_host": {
+    "chip": "M2 Max",
+    "unified_memory_gb": 32,
+    "ssd_tb": 1,
+    "provenance": "user_reported_not_remotely_measured"
+  }
+}

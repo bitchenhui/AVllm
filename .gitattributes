@@ -1,0 +1,2 @@
+# Preserve upstream notices byte-for-byte, including their line endings.
+materials/licenses/** -text -whitespace

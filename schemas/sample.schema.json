@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"AVllm provenance-preserving domain sample v1",
+  "type":"object",
+  "required":["id","codecs","topic","task_type","split_group","messages","evidence","generation","verification","eligibility"],
+  "additionalProperties":false,
+  "properties":{
+    "id":{"type":"string","minLength":1},
+    "codecs":{"type":"array","minItems":1,"uniqueItems":true,"items":{"enum":["h264","h265","h266","av1"]}},
+    "topic":{"type":"string","minLength":1},
+    "task_type":{"enum":["explanation","comparison","calculation","source_code","experiment_design","experiment_analysis","misconception","insufficient_information"]},
+    "split_group":{"type":"string","minLength":1},
+    "messages":{"type":"array","minItems":2,"items":{"type":"object","additionalProperties":false,"required":["role","content"],"properties":{"role":{"enum":["system","user","assistant"]},"content":{"type":"string","minLength":1}}}},
+    "evidence":{"type":"array","minItems":1,"items":{"type":"object","required":["source_id","source_revision","locator","snippet_sha256"],"additionalProperties":false,"properties":{"source_id":{"type":"string","minLength":1},"source_revision":{"type":"string","minLength":1},"locator":{"type":"object","required":["type"],"properties":{"type":{"enum":["pdf_page","file_lines","document_lines","archive_lines"]},"page":{"type":"integer","minimum":1},"path":{"type":"string","minLength":1},"start":{"type":"integer","minimum":1},"end":{"type":"integer","minimum":1}},"additionalProperties":false},"snippet_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}}}},
+    "generation":{"type":"object","required":["model","revision","prompt_version","created_at"],"additionalProperties":false,"properties":{"model":{"type":"string","minLength":1},"revision":{"type":"string","minLength":1},"prompt_version":{"type":"string","minLength":1},"created_at":{"type":"string","minLength":1}}},
+    "verification":{"type":"object","required":["status","checks","reviewer","reviewed_at"],"additionalProperties":false,"properties":{"status":{"enum":["pending","passed","failed"]},"checks":{"type":"array","items":{"type":"object","required":["kind","result","artifact"],"additionalProperties":false,"properties":{"kind":{"enum":["evidence","conditions","calculation","code","experiment"]},"result":{"enum":["passed","failed","pending"]},"artifact":{"type":"string","minLength":1}}}},"reviewer":{"type":["string","null"]},"reviewed_at":{"type":["string","null"]}}},
+    "eligibility":{"type":"object","required":["status","note"],"additionalProperties":false,"properties":{"status":{"enum":["pending","approved","rejected"]},"note":{"type":"string","minLength":1}}}
+  }
+}

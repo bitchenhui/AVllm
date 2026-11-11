@@ -1,0 +1,23 @@
+# Candidate config; requires installed MLX-LM and reviewed data, not yet training-tested.
+model: models/qwen3-4b-mlx-4bit
+train: true
+fine_tune_type: lora
+data: data/splits/pilot
+seed: 42
+num_layers: 8
+batch_size: 1
+iters: 100
+learning_rate: 1.0e-5
+max_seq_length: 2048
+grad_checkpoint: true
+grad_accumulation_steps: 1
+mask_prompt: true
+val_batches: 10
+steps_per_report: 10
+steps_per_eval: 50
+save_every: 50
+adapter_path: adapters/phase1-smoke
+lora_parameters:
+  rank: 8
+  dropout: 0.0
+  scale: 16.0

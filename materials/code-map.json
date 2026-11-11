@@ -1,0 +1,134 @@
+{
+  "entries": [
+    {
+      "source_id": "jm-code",
+      "revision": "5a87ec1b112423748897fb771f249ac6b7cc8a50c3b56350275857346eed9e1f",
+      "directory": "materials/code/JM",
+      "files": [
+        "lencod/src/quant4x4.c",
+        "lencod/src/quant8x8.c",
+        "lencod/src/transform8x8.c",
+        "lencod/src/ratectl.c",
+        "lencod/src/loopFilter.c"
+      ]
+    },
+    {
+      "source_id": "x264-code",
+      "revision": "0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee",
+      "directory": "materials/code/x264",
+      "files": [
+        "common/dct.c",
+        "common/quant.c",
+        "common/deblock.c",
+        "encoder/analyse.c",
+        "encoder/me.c",
+        "encoder/rdo.c",
+        "encoder/ratecontrol.c"
+      ]
+    },
+    {
+      "source_id": "hm-code",
+      "revision": "92d95ddd2995d0ae3149d3dac1e573e96460b821",
+      "directory": "materials/code/HM",
+      "files": [
+        "source/Lib/TLibCommon/TComTrQuant.cpp",
+        "source/Lib/TLibCommon/TComPrediction.cpp",
+        "source/Lib/TLibEncoder/TEncSearch.cpp",
+        "source/Lib/TLibEncoder/TEncCu.cpp"
+      ]
+    },
+    {
+      "source_id": "x265-code",
+      "revision": "9bb47b765b438f136364848fd4592fc692a8cf77",
+      "directory": "materials/code/x265",
+      "files": [
+        "source/common/quant.cpp",
+        "source/common/deblock.cpp",
+        "source/encoder/analysis.cpp",
+        "source/encoder/motion.cpp",
+        "source/encoder/ratecontrol.cpp"
+      ]
+    },
+    {
+      "source_id": "vtm-code",
+      "revision": "010584cf75dd0b61bd6295d7eacf20975094aac4",
+      "directory": "materials/code/VTM",
+      "files": [
+        "source/Lib/CommonLib/TrQuant.cpp",
+        "source/Lib/CommonLib/QuantRDOQ.cpp",
+        "source/Lib/CommonLib/DepQuant.cpp",
+        "source/Lib/CommonLib/IntraPrediction.cpp",
+        "source/Lib/CommonLib/InterPrediction.cpp",
+        "source/Lib/EncoderLib/EncCu.cpp"
+      ]
+    },
+    {
+      "source_id": "vvenc-code",
+      "revision": "a455d51e335c97b40eeea7bb90e3ad52b84c6e83",
+      "directory": "materials/code/vvenc",
+      "files": [
+        "source/Lib/CommonLib/TrQuant.cpp",
+        "source/Lib/CommonLib/DepQuant.cpp",
+        "source/Lib/CommonLib/IntraPrediction.cpp",
+        "source/Lib/EncoderLib/EncCu.cpp"
+      ]
+    },
+    {
+      "source_id": "vvdec-code",
+      "revision": "d2614690cf13ceee1631dd6d30141755b8a689de",
+      "directory": "materials/code/vvdec",
+      "files": [
+        "source/Lib/CommonLib/TrQuant.cpp",
+        "source/Lib/CommonLib/IntraPrediction.cpp",
+        "source/Lib/CommonLib/InterPrediction.cpp"
+      ]
+    },
+    {
+      "source_id": "libaom-code",
+      "revision": "8a1038536cde81c548341145f40d6dfddc3077d6",
+      "directory": "materials/code/libaom",
+      "files": [
+        "av1/encoder/rdopt.c",
+        "av1/encoder/encodeframe.c",
+        "av1/encoder/av1_quantize.c",
+        "av1/common/cdef.c",
+        "av1/common/restoration.c"
+      ]
+    },
+    {
+      "source_id": "svtav1-code",
+      "revision": "e3d63405f9ba8219913a7276c2c47d10e5d022fe",
+      "directory": "materials/code/SVT-AV1",
+      "files": [
+        "Docs/svt-av1-encoder-design.md",
+        "Source/Lib/Codec/transforms.c",
+        "Source/Lib/Codec/motion_estimation.c",
+        "Source/Lib/Codec/coding_loop.c",
+        "Source/Lib/Codec/cdef.c",
+        "Source/Lib/Codec/restoration.c"
+      ]
+    },
+    {
+      "source_id": "dav1d-code",
+      "revision": "662868772f73be8c055a6aa7e30f222be13a5f65",
+      "directory": "materials/code/dav1d",
+      "files": [
+        "src/decode.c",
+        "src/dequant_tables.c",
+        "src/cdef_tmpl.c",
+        "src/looprestoration_tmpl.c"
+      ]
+    },
+    {
+      "source_id": "av1-spec-source",
+      "revision": "4f2ff41559ab4ac241d1957a17e1f1c2814e26d2",
+      "directory": "materials/code/av1-spec",
+      "files": [
+        "06.bitstream.syntax.md",
+        "07.bitstream.semantics.md",
+        "08.decoding.process.md",
+        "09.parsing.process.md"
+      ]
+    }
+  ]
+}

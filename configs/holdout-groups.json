@@ -1,0 +1,5 @@
+{
+  "version":"phase1-v1",
+  "groups":[],
+  "note":"Register real mechanism/experiment families before generating evaluation questions. Empty means no frozen evaluation exists yet; do not report a completed benchmark."
+}

@@ -1,0 +1,15 @@
+{
+  "version": "phase1-v1",
+  "codecs": ["h264", "h265", "h266", "av1"],
+  "common_topics": ["sampling-and-bit-depth", "prediction", "motion-compensation", "transform-quantization", "entropy-coding", "in-loop-filters", "reference-management", "rate-distortion", "rate-control", "complexity-and-simd", "experimental-method"],
+  "codec_specific_topics": {
+    "h264": ["intra-modes-and-availability", "fractional-pel-interpolation", "integer-transform", "cavlc-cabac", "deblocking", "dpb-and-poc"],
+    "h265": ["ctu-cu-pu-tu", "intra-and-angular-prediction", "merge-amvp", "transform-and-rdoq", "sao-and-deblocking", "wpp-and-tiles"],
+    "h266": ["qt-mtt", "mip-isp", "affine-and-refinement-tools", "mts-lfnst", "dependent-quantization", "alf-ccalf-lmcs", "subpictures"],
+    "av1": ["partitioning-and-superblocks", "intra-and-cfl", "compound-and-warped-motion", "transform-and-quantization", "entropy-cdf", "cdef-restoration", "film-grain", "reference-and-order-hints"]
+  },
+  "task_types": ["explanation", "comparison", "calculation", "source_code", "experiment_design", "experiment_analysis", "misconception", "insufficient_information"],
+  "pilot_candidate_targets": {"h264":400,"h265":400,"h266":400,"av1":400,"cross_codec":200,"shared":200},
+  "frozen_test_targets": {"h264":80,"h265":80,"h266":80,"av1":80,"cross_or_shared":80},
+  "notes": "Targets are planning choices, not collected/approved sample counts. Standard conditions must be checked for every tool. All four codecs participate from the first training round."
+}

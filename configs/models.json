@@ -1,0 +1,20 @@
+{
+  "recorded_date": "2026-11-11",
+  "models": [
+    {
+      "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "library_name": "transformers",
+      "license": "apache-2.0",
+      "weights_downloaded": false
+    },
+    {
+      "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+      "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+      "library_name": "mlx",
+      "license": "apache-2.0",
+      "weights_downloaded": false
+    }
+  ],
+  "note": "Model metadata only; revisions must be rechecked when actually preparing a run."
+}

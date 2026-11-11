@@ -1,0 +1,18 @@
+.DS_Store
+.venv*/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+# 原文、第三方源码和衍生语料保存在本地；索引、锁文件和自有脚本纳入版本管理。
+materials/raw/
+materials/code/
+materials/extracted/
+data/candidates/
+data/approved/
+data/splits/
+models/
+adapters/
+runs/
+work/

@@ -1,0 +1,11 @@
+{
+  "version":"phase1-seeds-v1",
+  "status":"entry_pages_found_not_domain_reviewed",
+  "note":"These are real entry pages located in the downloaded PDFs, not complete gold evidence units. Read the full clause, dependencies and corresponding code before generating algorithm answers.",
+  "units":[
+    {"source_id":"h264-spec","codec":"h264","pdf_page":203,"section":"8.5.1","topic":"transform-quantization","split_group":"avc-transform-decoding-family"},
+    {"source_id":"h265-spec","codec":"h265","pdf_page":194,"section":"8.6.2","topic":"transform-quantization","split_group":"hevc-scaling-transform-family"},
+    {"source_id":"h266-spec","codec":"h266","pdf_page":342,"section":"8.7.2","topic":"transform-quantization","split_group":"vvc-scaling-transform-family"},
+    {"source_id":"av1-spec-pdf","codec":"av1","pdf_page":308,"section":"7.13","topic":"transform-quantization","split_group":"av1-inverse-transform-family"}
+  ]
+}
