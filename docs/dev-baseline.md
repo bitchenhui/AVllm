@@ -95,3 +95,34 @@ HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv-train/bin/python scripts/dev_bench
   --output runs/dev-v1-qwen3-source-assisted-replay
 python3 scripts/dev_benchmark.py score --run-dir runs/dev-v1-qwen3-source-assisted-replay
 ```
+
+## 精简来源与输出预算对照
+
+[六组对照记录](../benchmarks/dev-v1/records/2026-11-11-context-budget-comparison.json)覆盖无资料、整页资料和精简片段，各跑 384 与 768 token 两种输出上限。六组共用权重、20 道题、简洁提示、采样设置和机器。精简版按[固定行段](../benchmarks/dev-v1/compact-context-v1.json)从题目的 27 处来源定位中截取，保留父文本和摘录哈希，源码定位完整保留。行段由开发题选择，仍是已知来源对照；删减改变了上下文内容和长度，不能单独归因于长度。
+
+- 同为 384 token，精简片段将 20 题的总输入从 33,550 降到 15,899 token（约少 53%），截断从 9 道降至 7 道；无资料组截断 6 道。逐题推理耗时之和为整页 144.6 秒、精简 91.2 秒，这是一轮本地运行，未重复测时。
+- 上限提高到 768 后，无资料、整页、精简分别截断 1、5、2 道。三组中，原先正常结束的回答都逐字不变；原先截断的回答都仍是对应长回答的前缀。四道计算题均在 384 预算内结束，因此提高上限没有改变它们。
+- 严格格式下，无资料、整页、精简分别答对 2、0、1 道计算题。将多行 JSON 的内容单独诊断后，分别是 2、1、2 道数值正确。精简组纠正了 AVC 的数值，但 AV1 从正确变为错误；VVC 的 QP 回绕在三种上下文下都算错。
+- 精简版没有保住整页版的所有局部收益。例如 HEVC 变换跳过题的精简版同时陈述相反的缩放判断，768 预算下最终仍答错。不能据此选定某种资料策略有更高整体准确率；16 道非数值题没有完成跨条件的独立复核。
+
+计算诊断只接受完整 JSON 对象或终末 JSON 代码围栏，允许换行。它不求值表达式、不从解释文字猜数值，且不修改原始严格分数。后续精简材料时，需把必要条件和例外一起保留，重点复核变换分支、字段语义和整数运算；开发题结果只用于诊断。
+
+复跑精简对照（使用未创建的运行目录）：
+
+```bash
+python3 scripts/build_dev_contexts.py --selection benchmarks/dev-v1/compact-context-v1.json \
+  --output runs/dev-v1-compact-contexts-replay
+for budget in 384 768; do
+  HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv-train/bin/python scripts/dev_benchmark.py run \
+    --model-dir models/qwen3-4b-mlx-4bit \
+    --model-id mlx-community/Qwen3-4B-Instruct-2507-4bit \
+    --revision 50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b \
+    --system-prompt-file prompts/dev-concise-system.txt --max-tokens "$budget" --seed 42 \
+    --contexts runs/dev-v1-compact-contexts-replay/contexts.jsonl \
+    --output "runs/dev-v1-qwen3-compact-replay-$budget" || break
+done
+python3 scripts/summarize_dev_runs.py \
+  --runs runs/dev-v1-qwen3-compact-replay-384 runs/dev-v1-qwen3-compact-replay-768 \
+  --context-manifest runs/dev-v1-compact-contexts-replay/manifest.json \
+  --output runs/dev-v1-compact-replay-summary.json
+```

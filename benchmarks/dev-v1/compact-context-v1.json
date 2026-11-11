@@ -1,0 +1,208 @@
+{
+  "version": "compact-context-v1",
+  "method": "manually_selected_source_lines",
+  "limitations": "Question-specific oracle excerpts. Selection uses known development questions, not a general retriever. Existing parent evidence scope is retained; these fragments are not a complete standards implementation.",
+  "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+  "items": {
+    "h264-01": [
+      {
+        "parent_sha256": "ece124214bcb3648c8fd5d87d5cde85513a8321fb543e04fed8d1ec1ff4b3b9d",
+        "start": 20,
+        "end": 42
+      }
+    ],
+    "h264-02": [
+      {
+        "parent_sha256": "1efcf07efb03ee6238176479f5c5f95a23b0caec58432439e35c92fdb6dc3feb",
+        "start": 9,
+        "end": 12
+      }
+    ],
+    "h264-03": [
+      {
+        "parent_sha256": "d9e925dc311e1039380682889eda7e38be20fbf156b092d8874916f896237dd6",
+        "start": 1,
+        "end": 26
+      }
+    ],
+    "h264-04": [
+      {
+        "parent_sha256": "7fca8cae9a9d6f524de438a01b9a8324f937adb3af32b0f29ae8d39bdbd64696",
+        "start": 8,
+        "end": 13
+      }
+    ],
+    "h264-05": [
+      {
+        "parent_sha256": "ece124214bcb3648c8fd5d87d5cde85513a8321fb543e04fed8d1ec1ff4b3b9d",
+        "start": 10,
+        "end": 53
+      },
+      {
+        "parent_sha256": "090fd254c03b1dd7689682fe0b70f723b3bc38cee755faf2ee44efca0824d693",
+        "start": 3,
+        "end": 33
+      }
+    ],
+    "h265-01": [
+      {
+        "parent_sha256": "eaa2a3a35d863a8ec0bc782b33218af39ae93eb9dabc5574f9b83d3128137e53",
+        "start": 38,
+        "end": 41
+      },
+      {
+        "parent_sha256": "0c2ec2e3c0a8530d1dc0ffd8487323aa93deabbeb2845b367eb17a294be7590c",
+        "start": 3,
+        "end": 40
+      }
+    ],
+    "h265-02": [
+      {
+        "parent_sha256": "66e9f0f571f95ab5ceaa715057d9f49ca8096faf99e7a5e3f1a689f1ade0aa39",
+        "start": 41,
+        "end": 45
+      },
+      {
+        "parent_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778",
+        "start": 3,
+        "end": 4
+      }
+    ],
+    "h265-03": [
+      {
+        "parent_sha256": "eec175af173730d45f6916899d8986f6eae25c03642e3299c889b8961e36f58d",
+        "start": 1,
+        "end": 13
+      }
+    ],
+    "h265-04": [
+      {
+        "parent_sha256": "5fd774eb4ae906255d806de3ce36162b3ddafc0935eadae0cf71b1fe5a9f2919",
+        "start": 27,
+        "end": 37
+      },
+      {
+        "parent_sha256": "42c04432b61126cff731636f917ded22e07ea0b0d18acfe030ccde31757a2b97",
+        "start": 24,
+        "end": 44
+      }
+    ],
+    "h265-05": [
+      {
+        "parent_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778",
+        "start": 3,
+        "end": 8
+      },
+      {
+        "parent_sha256": "5e09b2d5ee94ec006a68fcfa0a11e1bce1f5e84dc914d6ed28e60a6c3598c597",
+        "start": 8,
+        "end": 27
+      },
+      {
+        "parent_sha256": "eaa2a3a35d863a8ec0bc782b33218af39ae93eb9dabc5574f9b83d3128137e53",
+        "start": 11,
+        "end": 36
+      }
+    ],
+    "h266-01": [
+      {
+        "parent_sha256": "c7dac3161c2183951a1bd930615855130f931d60f3363374cd1827b6a1c2f4f9",
+        "start": 11,
+        "end": 23
+      },
+      {
+        "parent_sha256": "0c4d53fc55670a66b15499f2f04593da04f215956b29726e423504251364bccd",
+        "start": 3,
+        "end": 10
+      }
+    ],
+    "h266-02": [
+      {
+        "parent_sha256": "6adc559a48397665d83170652d856b73278115aa6a3b896287eb8acc072349ad",
+        "start": 23,
+        "end": 26
+      }
+    ],
+    "h266-03": [
+      {
+        "parent_sha256": "d4629e0bfc8ee8075d5575504ad305ec7d2779f3dfd9d65381bb2fac83323671",
+        "start": 1,
+        "end": 28
+      }
+    ],
+    "h266-04": [
+      {
+        "parent_sha256": "8807cba5b069c6496d007cc7e3cd7581dcda8929cf6bcafd78aea05e04094553",
+        "start": 8,
+        "end": 11
+      }
+    ],
+    "h266-05": [
+      {
+        "parent_sha256": "376b59656e780997518b8bd883c2c2d52d66180c31e7c72e3afb6aa74ded5bed",
+        "start": 9,
+        "end": 10
+      },
+      {
+        "parent_sha256": "0f8cdaad469beb18609c043065fdcd123d118b68d0b76b642c27fc62f06ec862",
+        "start": 18,
+        "end": 20
+      }
+    ],
+    "av1-01": [
+      {
+        "parent_sha256": "6090aa4ad7f7aa0e85a61ed06af9dddd1a4591e338377c5158ac39d3c6068a73",
+        "start": 12,
+        "end": 31
+      },
+      {
+        "parent_sha256": "358bce5ac138bbad54b8b428292fc3d61b80f1438a88a4ed604e23d824226a44",
+        "start": 1,
+        "end": 27
+      }
+    ],
+    "av1-02": [
+      {
+        "parent_sha256": "3fe9bfc1d84b0682253d07a7480c98ebe0fdb4b5c32e1f2eb54756016d35ec5d",
+        "start": 22,
+        "end": 46
+      }
+    ],
+    "av1-03": [
+      {
+        "parent_sha256": "59783f6561fe3db2ce30206141270835d642f5004738bc54bd9966cc7ce8336b",
+        "start": 1,
+        "end": 10
+      },
+      {
+        "parent_sha256": "e83d67ccf8aee5e4409ff7f50fecef6f589a9f84ef41cd09c3b1acc9ed82170e",
+        "start": 1,
+        "end": 5
+      }
+    ],
+    "av1-04": [
+      {
+        "parent_sha256": "f6d4a1f5bd651fc0b2bfaa88cd36d135a9fc6c401099fbf5df8eb503f8a066d7",
+        "start": 19,
+        "end": 29
+      },
+      {
+        "parent_sha256": "0a473b5b2796af2598b1fc6ff822817e2e021b1699a26a38f9b98461dc5a9862",
+        "start": 6,
+        "end": 18
+      }
+    ],
+    "av1-05": [
+      {
+        "parent_sha256": "358bce5ac138bbad54b8b428292fc3d61b80f1438a88a4ed604e23d824226a44",
+        "start": 1,
+        "end": 27
+      },
+      {
+        "parent_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778",
+        "start": 3,
+        "end": 8
+      }
+    ]
+  }
+}
