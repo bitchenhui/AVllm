@@ -1,0 +1,96 @@
+{
+  "scope": "local_m4pro_domain_smoke",
+  "reviewer": "Codex gpt-6.1-sol (AI review, not human certification)",
+  "reviewer_kind": "AI",
+  "reviewed_at": "2026-11-11",
+  "candidate_batch_sha256": {
+    "pilot-v1": "3b5e4aaf46c8e89f1f10c313a562d1e2aa3508a0af3a29fe17fe0728fadae625",
+    "validation-v1": "d95329e3e1ee03b9d98bf1b6de9f06ae7932c2ad315daedc719b00f46a672c06"
+  },
+  "use_scope_note": "User-authorized local M4 Pro smoke only. Original project questions, numerical examples and code behavior paraphrases; no source passages, source code, or third-party fixtures in exported chat messages. This does not approve source redistribution or public model release.",
+  "checks_method": "Reviewed locked normative passages and fixed-commit implementations, rederived numerical branches, and reran separate checked-in reference programs. Source-code decisions are static, not compiled codec conformance tests.",
+  "items": [
+    {
+      "id": "pilot-v1-h264-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "8.3.1.2.3 (8-48): both sides fully available; sum 364, add 4 and shift by 3 gives 46."
+    },
+    {
+      "id": "pilot-v1-h264-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "8.3.1.2.3 (8-49)/(8-51): left-only sum 82 gives 21; neither side complete gives 2^9=512. Availability is supplied as process input."
+    },
+    {
+      "id": "pilot-v1-h264-04",
+      "decision": "pass_local_smoke",
+      "technical_note": "predict.c scalar fallback writes four packed rows; common.h high-bit-depth splat uses four 16-bit lanes. (1 << 9)=512 per lane; only 8-bit gives 128."
+    },
+    {
+      "id": "pilot-v1-h265-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "(7-53) derives 5-2=3; 7.3 prediction-unit syntax signals merge_idx in the specified merge branch when count >1, with indices 0..2."
+    },
+    {
+      "id": "pilot-v1-h265-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "(7-53) gives 5-4=1; merge branch does not read the index, and its absence infers zero (physical page 126)."
+    },
+    {
+      "id": "pilot-v1-h265-04",
+      "decision": "pass_local_smoke",
+      "technical_note": "HM parseMergeIndex initializes the output index via uiUnaryIdx=0. At indices 0/1/2 the paths are context/bypass/bypass. The zero at index 2 breaks the loop; the Void function assigns ruiMergeIndex, not a C++ return value.",
+      "answer_revision": "输出参数 ruiMergeIndex 被赋值为 2，函数本身没有返回值。前两个 1 让索引从 0 增到 1、再增到 2，第三个 0 使循环在 2 停止。第一个 bin 用上下文模型，第二、第三个用 bypass。这里说的是解出的 bin 序列，不是直接从码流读取的三个裸比特。"
+    },
+    {
+      "id": "pilot-v1-h266-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "8.3.1 (205)-(206): previous anchor is given; LSB falls by 232 >= 128, MSB=768, POC=776. Difference from anchor 752 is 24."
+    },
+    {
+      "id": "pilot-v1-h266-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "8.3.1 explicitly present cycle takes precedence. 3*256=768; 768+19=787. No history wrap test in this branch."
+    },
+    {
+      "id": "pilot-v1-h266-04",
+      "decision": "pass_local_smoke",
+      "technical_note": "VTM non-IDR, no cycle branch: 522 & 255=10; MSB=512; 250-10=240>128; subtract 256 from MSB then add 250, yielding 506."
+    },
+    {
+      "id": "pilot-v1-av1-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "5.9.8: denominator 9+3=12, saved width 1920, (15360+6)//12=1280, height untouched."
+    },
+    {
+      "id": "pilot-v1-av1-03",
+      "decision": "pass_local_smoke",
+      "technical_note": "5.9.8: denominator 9, numerator 15368, truncation without bias yields 1707; adding 4 yields 1708. FrameHeight remains 1080."
+    },
+    {
+      "id": "pilot-v1-av1-04",
+      "decision": "pass_local_smoke",
+      "technical_note": "libaom resize.c invokes helper for both dimensions in ordinary scaling, only width in superres (height explicitly unused). Helper also clamps small dimensions; sharing it does not imply equivalent call scope."
+    },
+    {
+      "id": "validation-v1-h264-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "(8-241), (8-243), (8-250): 9900, rounded intermediate 309, clipped b=255, then (240+255+1)//2=248."
+    },
+    {
+      "id": "validation-v1-h265-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "6.5.1 CTB address derivation: RS 10 lies at (0,2) in lower-left tile; 5 CTBs above plus 2 within tile yields TS 7. TS 11 in lower-right tile maps to (4,1), RS 9."
+    },
+    {
+      "id": "validation-v1-h266-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "SPS with independent subpictures omits both per-subpicture flags. Semantics infer 1/0, with treated-as-picture specifically excluding in-loop filtering; the separate cross-filter flag controls filtering.",
+      "answer_revision": "独立子图的分支不显式读取这两个逐子图标志。treated-as-picture 缺省推断为 1，即在解码过程中把子图视为图片，但此语义不含环路滤波。跨子图环路滤波标志单独推断为 0，因此不跨子图边界滤波。\n{\"treated_as_pic\":1,\"cross_loop_filter\":0}"
+    },
+    {
+      "id": "validation-v1-av1-02",
+      "decision": "pass_local_smoke",
+      "technical_note": "5.9.30 valid INTER_FRAME grain reuse path saves new seed before load_grain_params, restores it and returns. 321 is preserved instead of the reference value 900."
+    }
+  ]
+}

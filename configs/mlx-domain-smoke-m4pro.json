@@ -1,0 +1,20 @@
+{
+  "model": "models/qwen3-4b-mlx-4bit",
+  "data": "data/splits/phase1-m4pro-v1",
+  "train": true,
+  "fine_tune_type": "lora",
+  "seed": 42,
+  "num_layers": 8,
+  "batch_size": 1,
+  "iters": 24,
+  "learning_rate": 0.00001,
+  "max_seq_length": 512,
+  "grad_checkpoint": true,
+  "grad_accumulation_steps": 1,
+  "mask_prompt": true,
+  "val_batches": -1,
+  "steps_per_report": 6,
+  "steps_per_eval": 12,
+  "save_every": 12,
+  "lora_parameters": {"rank": 8, "dropout": 0.0, "scale": 16.0}
+}

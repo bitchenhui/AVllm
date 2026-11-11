@@ -1,6 +1,6 @@
 # Mac MLX 训练指南
 
-主训练设备：用户已有 M2 Max / 32GB / 1TB SSD。1TB 是存储空间；模型权重、激活、优化器与系统占用统一内存。当前 M4 Pro / 24GB 已用合成样本验证两步 LoRA 的保存和重载。没有在 M2 Max 上实际跑过训练，以下为起始配置。
+主训练设备：用户已有 M2 Max / 32GB / 1TB SSD。1TB 是存储空间；模型权重、激活、优化器与系统占用统一内存。当前 M4 Pro / 24GB 已用合成样本验证两步 LoRA 的保存和重载，并完成 24 步小批领域训练。M2 Max 还未实测。
 
 ## 环境与模型
 
@@ -34,6 +34,28 @@ uv pip freeze --python .venv-train/bin/python
 ```
 
 M4 Pro 的[实测记录](records/2026-11-11-mlx-fixture-smoke-m4pro.json)保存了配置、输入和产物哈希。两步训练及验证 loss 均有限，14 个适配器张量可重载，7 个 LoRA B 矩阵均从零更新，重载后能生成文本。它只验证训练流程，不能用来评估领域效果、长序列内存或正式训练吞吐。
+
+## M4 Pro 小批领域实测
+
+四个标准的 12 道计算题（训练 8、验证 4）和 4 道源码题（训练）已完成[本机冒烟范围内的 AI 复核](../datasets/pilot-v1/m4pro-local-review.json)。逐条回看规范、固定提交和复算结果。导出副本修正两处表述：HM 通过输出参数写入索引；VVC 的 treated-as-picture 语义不含环路滤波。原候选文件未修改，其余 8 条解释候选仍待复核。该审查仅用于用户授权的本地小跑，未声称独立人工签发或公开发布许可。
+
+[运行记录](records/2026-11-11-phase1-domain-m4pro.json)保留训练配置、分片和适配器哈希、逐阶段 loss、每道验证题的 loss 及开发集配对结果。12 条 train 和 4 条 valid 的最长模板长度分别为 219 和 208。用相同 Qwen3-4B 权重、末端 8 层、rank 8、batch 1、学习率 1e-5 跑 24 步，约两遍训练样本。训练及过程中验证共用时 16.6 秒，不含模型首次加载和重载。MLX 分配峰值约 3.13 GB（十进制），不代表整机内存占用；56 个 LoRA B 矩阵非零，适配器成功重载。
+
+- 在相同的 4 道验证题、365 个未补齐的答案 token 上，基座 loss **3.367**，重载适配器 loss **2.280**。该比较与训练期间框架报告的批次 loss 分开记录。
+- 在相同简洁提示、384 token 上限的 20 道开发题上，截断从 **6 道降到 0 道**；严格格式的计算题从 **2/4 降到 1/4**。HEVC 位深偏移题从正确变为错值，VVC 回绕仍错。16 道非数值题没有完成独立评分，不报告总体正确率。
+
+这次验证了从复核、导出到领域 LoRA 和重载的流程。四题的验证 loss 下降不等于泛化提升；下一轮先扩展独立机制和计算反例，保留这份配置作为小批对照。
+
+在已下载并记录模型哈希的 M4 Pro 本地目录，按以下命令复现。若审核副本和分片已经存在并通过哈希核对，可直接从训练命令开始；运行输出使用新目录。模型目录的 `avllm-model-revision.json` 为本地权重收据，字段和值见运行记录的 `model` 项，脚本会重新校验权重。
+
+```bash
+python3 scripts/materialize_phase1_local_review.py --output data/approved/phase1-m4pro-v1.jsonl
+python3 scripts/prepare_training.py data/approved/phase1-m4pro-v1.jsonl --output data/splits/phase1-m4pro-v1
+.venv-train/bin/python scripts/run_mlx_domain_smoke.py \
+  --config configs/mlx-domain-smoke-m4pro.json --output runs/phase1-domain-m4pro-replay
+```
+
+开发集对照复用[基线命令](dev-baseline.md#运行过程)，加上 `--adapter-path runs/phase1-domain-m4pro-replay/adapter`，并换一个输出目录。分片、原始逐题输出和适配器留在本地。
 
 ## 先检查数据，再小跑
 

@@ -1,0 +1,316 @@
+{
+  "status": "completed",
+  "scope": "local_m4pro_domain_smoke",
+  "model": {
+    "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "weight_sha256": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+    "weight_bytes": 2263022417
+  },
+  "platform": "macOS-26.0-arm64-arm-64bit",
+  "chip": "Apple M4 Pro",
+  "mlx_lm_version": "0.32.2",
+  "mlx_version": "0.32.4",
+  "config": {
+    "model": "models/qwen3-4b-mlx-4bit",
+    "data": "data/splits/phase1-m4pro-v1",
+    "train": true,
+    "fine_tune_type": "lora",
+    "seed": 42,
+    "num_layers": 8,
+    "batch_size": 1,
+    "iters": 24,
+    "learning_rate": 1e-05,
+    "max_seq_length": 512,
+    "grad_checkpoint": true,
+    "grad_accumulation_steps": 1,
+    "mask_prompt": true,
+    "val_batches": -1,
+    "steps_per_report": 6,
+    "steps_per_eval": 12,
+    "save_every": 12,
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 16.0
+    }
+  },
+  "config_sha256": "f672b002e2668981ac9bc3594795f84efe3f53d0856ae807f457d2ddf1994647",
+  "dataset": {
+    "schema_version": 1,
+    "source_dataset_sha256": "98f16570e99d6e6edb7a681d5d368cd80652b74aca607345d331ca7d356ecced",
+    "source_lock_sha256": "1f7294091abc3ae3ebee5f91afea9568622fc53b0c105e42902e64918bd34b36",
+    "holdout_registry_sha256": "584a6a6ab99c01467a4f6865da06e8a5e72eda544c667040bc3ca78746835412",
+    "splits": {
+      "train": {
+        "samples": 12,
+        "groups": 4,
+        "sha256": "508bcf2b6c2b61b7c8466509d3c36ead41818c208b693bfdd8c6483f7da05adc",
+        "codec_counts": {
+          "h264": 3,
+          "h265": 3,
+          "h266": 3,
+          "av1": 3
+        }
+      },
+      "valid": {
+        "samples": 4,
+        "groups": 4,
+        "sha256": "6b23cbbd1f6e1b6dccfdae4dc4b66f749dd7c066a41f4b033a44da223e439d11",
+        "codec_counts": {
+          "h264": 1,
+          "h265": 1,
+          "h266": 1,
+          "av1": 1
+        }
+      },
+      "test": {
+        "samples": 0,
+        "groups": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "codec_counts": {}
+      }
+    },
+    "dev_benchmarks_sha256": {
+      "benchmarks/dev-v1/questions.jsonl": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2"
+    },
+    "verification_artifact_sha256": {
+      "datasets/pilot-v1/m4pro-local-review.json": "796da7853b12dda2e24c2c029c7ba4a5cf0376ca25ba54cd8ac589a015dfe578"
+    },
+    "provenance_sha256": "b48d9b10d1c35dc8d43083f4fab25ab61af6ce7674fe6b5b186e7d795e03b76c"
+  },
+  "lengths": {
+    "train": {
+      "samples": 12,
+      "max_sequence_tokens": 219
+    },
+    "valid": {
+      "samples": 4,
+      "max_sequence_tokens": 208
+    }
+  },
+  "train_seconds_includes_inline_validation": 16.5721,
+  "mlx_training_peak_bytes": 3131420772,
+  "adapter_sha256": "b772c2da29d4c3a220bb5a039f64fe79e4cd68b06f1cb090e80411e5c1110c21",
+  "adapter_tensors": 112,
+  "nonzero_lora_b_matrices": 56,
+  "base_validation": {
+    "loss": 3.3669752774173265,
+    "answer_tokens": 365,
+    "items": [
+      {
+        "id": "validation-v1-h264-02",
+        "loss": 2.8878509998321533,
+        "answer_tokens": 102
+      },
+      {
+        "id": "validation-v1-h265-02",
+        "loss": 2.7722959518432617,
+        "answer_tokens": 101
+      },
+      {
+        "id": "validation-v1-h266-02",
+        "loss": 3.601515054702759,
+        "answer_tokens": 94
+      },
+      {
+        "id": "validation-v1-av1-02",
+        "loss": 4.644718647003174,
+        "answer_tokens": 68
+      }
+    ]
+  },
+  "reloaded_adapter_validation": {
+    "loss": 2.2800315729559286,
+    "answer_tokens": 365,
+    "items": [
+      {
+        "id": "validation-v1-h264-02",
+        "loss": 2.2011756896972656,
+        "answer_tokens": 102
+      },
+      {
+        "id": "validation-v1-h265-02",
+        "loss": 1.8295880556106567,
+        "answer_tokens": 101
+      },
+      {
+        "id": "validation-v1-h266-02",
+        "loss": 2.5150363445281982,
+        "answer_tokens": 94
+      },
+      {
+        "id": "validation-v1-av1-02",
+        "loss": 2.742496967315674,
+        "answer_tokens": 68
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 0,
+      "val_loss": 3.5608294010162354,
+      "val_time": 1.3220116668380797
+    },
+    {
+      "kind": "train",
+      "iteration": 6,
+      "train_loss": 3.4667975107828775,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 1.7588265952189326,
+      "tokens_per_second": 159.76008239905306,
+      "trained_tokens": 545,
+      "peak_memory": 3.116895524
+    },
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 11,
+      "val_loss": 2.573474884033203,
+      "val_time": 1.320123708806932
+    },
+    {
+      "kind": "train",
+      "iteration": 12,
+      "train_loss": 3.111225128173828,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 2.0023168208128173,
+      "tokens_per_second": 157.84930937407708,
+      "trained_tokens": 1018,
+      "peak_memory": 3.116895524
+    },
+    {
+      "kind": "train",
+      "iteration": 18,
+      "train_loss": 2.4050609270731607,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 1.8648156058517167,
+      "tokens_per_second": 170.94143053640735,
+      "trained_tokens": 1568,
+      "peak_memory": 3.131279652
+    },
+    {
+      "kind": "valid_before_iteration",
+      "iteration": 23,
+      "val_loss": 2.26960825920105,
+      "val_time": 1.3373002912849188
+    },
+    {
+      "kind": "train",
+      "iteration": 24,
+      "train_loss": 2.4611603418986,
+      "learning_rate": 9.999999747378752e-06,
+      "iterations_per_second": 2.0738783157818554,
+      "tokens_per_second": 161.76250863098474,
+      "trained_tokens": 2036,
+      "peak_memory": 3.131420772
+    }
+  ],
+  "limits": "Four validation items; teacher-forced masked answer loss only, no final benchmark used.",
+  "date_local": "2026-11-11",
+  "local_run_directory": "runs/phase1-domain-m4pro-v1",
+  "review_scope": "AI reviewed for the user-authorized local smoke; no independent human sign-off or release approval.",
+  "dev_comparison": {
+    "benchmark": "dev-v1",
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70",
+    "max_tokens": 384,
+    "seed": 42,
+    "temperature": 0,
+    "prompt_sha256": "db3e02e906135ed1aa568448e02379c2aeb13dc307a4141cfd42469eb37c05ae",
+    "changed_conditions": [
+      "adapter"
+    ],
+    "runs": [
+      {
+        "local_run_directory": "runs/dev-v1-qwen3-base-m4pro-concise",
+        "condition": "A",
+        "predictions_sha256": "4e4508e82e21ee30096fb009b4df6845e4f485b354e5c4deb0a046a99773d833",
+        "manifest_sha256": "a5344bc14e43dcc14172c13a3eae5a4c895fcdc3f7a255d4f0f4cf82689077ea",
+        "scores_sha256": "2ff9ff36d3834adf070980894fc3ae769dfe10e502f3316bbca295bb7313e62d",
+        "truncated_ids": [
+          "h264-01",
+          "h265-04",
+          "h266-01",
+          "h266-03",
+          "av1-01",
+          "av1-05"
+        ],
+        "numeric_items": [
+          {
+            "id": "h264-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h265-02",
+            "strict": "correct",
+            "content": "correct"
+          },
+          {
+            "id": "h266-02",
+            "strict": "unparseable",
+            "content": "incorrect"
+          },
+          {
+            "id": "av1-02",
+            "strict": "correct",
+            "content": "correct"
+          }
+        ],
+        "scores": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 48,
+          "hit_generation_limit": 6,
+          "numeric_incorrect": 1,
+          "numeric_correct": 2,
+          "numeric_unparseable": 1
+        },
+        "generation_tokens_total": 4282,
+        "inference_seconds_excludes_load": 91.1974
+      },
+      {
+        "local_run_directory": "runs/dev-v1-qwen3-phase1-domain-m4pro",
+        "condition": "C",
+        "predictions_sha256": "2315c4e0fd6da1bf94adec85eefebb0a165c971de0f339391a17f48be7a08ca8",
+        "manifest_sha256": "a1ba1dfbc8f1a69af919b09b5ecb99942f35c517084cdc3c120f3da42f1b4d59",
+        "scores_sha256": "078a774537255a139eb8d566e46c607cde99c4f98c8f07f0f22bcfa3de493f22",
+        "truncated_ids": [],
+        "numeric_items": [
+          {
+            "id": "h264-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h265-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "h266-02",
+            "strict": "incorrect",
+            "content": "incorrect"
+          },
+          {
+            "id": "av1-02",
+            "strict": "correct",
+            "content": "correct"
+          }
+        ],
+        "scores": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 48,
+          "numeric_incorrect": 3,
+          "numeric_correct": 1
+        },
+        "generation_tokens_total": 2490,
+        "inference_seconds_excludes_load": 47.6432
+      }
+    ],
+    "non_numeric_status": "independent review pending"
+  },
+  "validation_note": "Comparison on the identical 365 unpadded answer targets. Inline MLX val is reported separately at the start of the specified iterations with its default batching."
+}
