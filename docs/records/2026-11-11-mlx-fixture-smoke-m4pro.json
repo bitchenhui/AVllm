@@ -1,0 +1,57 @@
+{
+  "purpose": "synthetic_fixture_only; no domain data or benchmark items",
+  "status": "train_save_reload_passed",
+  "platform": "macOS-26.0-arm64-arm-64bit",
+  "machine": "Apple M4 Pro",
+  "mlx_lm_version": "0.32.2",
+  "train_seconds_includes_load": 2.981,
+  "train_examples": 2,
+  "valid_examples": 2,
+  "iterations": 2,
+  "layers": 1,
+  "max_seq_length": 128,
+  "mask_prompt": true,
+  "base_weights_sha256": {
+    "model.safetensors": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f"
+  },
+  "artifact_sha256": {
+    "config.json": "00a2c4a74a0e1c03cd72627f72735c65fe0209c0aa351d30ef66514bf3450d03",
+    "train.log": "518c05c16e36878a3bd39e4b56bc41af9eda3d1189e0641196d1fed0ff70b8c3",
+    "data/train.jsonl": "991e39a26f72f168a5b40972292d82086f5f783ff0b38cadea111310ee04db0f",
+    "data/valid.jsonl": "630d14a7896101d17ca0f205a82d3a62f1917926587897a92ac0af6b4c3e8d53",
+    "adapter/adapters.safetensors": "a35fb6d89b3d0ff315da85e1b0dda7159349aa0bcfdec3fe30bf20740073dd46",
+    "adapter/adapter_config.json": "2542675660e15180d70e4ebd8c433f4362cd5c6f077989d3d7cb85af6e9650f2"
+  },
+  "adapter_tensors": 14,
+  "lora_b_matrices": 7,
+  "nonzero_lora_b_matrices": 7,
+  "reload_generated_nonempty_text": true,
+  "date_local": "2026-11-11",
+  "local_run_directory": "runs/mlx-fixture-smoke-m4pro-verified",
+  "train_loss_by_step": [
+    12.604,
+    14.221
+  ],
+  "validation_loss_by_step": [
+    12.838,
+    12.777
+  ],
+  "config": {
+    "fine_tune_type": "lora",
+    "seed": 42,
+    "num_layers": 1,
+    "batch_size": 1,
+    "iters": 2,
+    "learning_rate": 1e-05,
+    "max_seq_length": 128,
+    "grad_checkpoint": true,
+    "grad_accumulation_steps": 1,
+    "mask_prompt": true,
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 16.0
+    }
+  },
+  "limitations": "Synthetic fixture only. No domain improvement, formal data approval, peak memory, or M2 Max performance is measured."
+}

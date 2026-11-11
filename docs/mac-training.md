@@ -1,6 +1,6 @@
 # Mac MLX 训练指南
 
-主训练设备：用户已有 M2 Max / 32GB / 1TB SSD。1TB 是存储空间；模型权重、激活、优化器与系统占用统一内存。当前 M4 Pro / 24GB 可先用于资料和流程开发。没有在 M2 Max 上实际跑过训练，以下为起始配置。
+主训练设备：用户已有 M2 Max / 32GB / 1TB SSD。1TB 是存储空间；模型权重、激活、优化器与系统占用统一内存。当前 M4 Pro / 24GB 已用合成样本验证两步 LoRA 的保存和重载。没有在 M2 Max 上实际跑过训练，以下为起始配置。
 
 ## 环境与模型
 
@@ -22,6 +22,18 @@ uv pip freeze --python .venv-train/bin/python
 ```
 
 模型结构、tokenizer、chat template 和原始文件哈希随 run 保留。模型权重由每台机器单独准备，Git 不包含权重。
+
+## 用合成样本验证训练环境
+
+模型下载完成后，可以用四条自造加法样本先跑通训练工具。它不读取领域候选、开发题或最终测试；只对最后一层做两步 LoRA，启用提示 masking，保存并重载适配器。运行目录需不存在。
+
+```bash
+.venv-train/bin/python scripts/smoke_mlx_fixture.py \
+  --model-dir models/qwen3-4b-mlx-4bit \
+  --output runs/mlx-fixture-smoke
+```
+
+M4 Pro 的[实测记录](records/2026-11-11-mlx-fixture-smoke-m4pro.json)保存了配置、输入和产物哈希。两步训练及验证 loss 均有限，14 个适配器张量可重载，7 个 LoRA B 矩阵均从零更新，重载后能生成文本。它只验证训练流程，不能用来评估领域效果、长序列内存或正式训练吞吐。
 
 ## 先检查数据，再小跑
 
