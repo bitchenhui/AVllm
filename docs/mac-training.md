@@ -15,13 +15,13 @@ uv pip freeze --python .venv-train/bin/python
 
 首个成功环境的 freeze 保存进 run 目录并固化；这里没有捏造已经验证的训练包版本。先检查 `mlx_lm.lora --help`，核对快照指南 `materials/raw/training/mlx-lora.md` 与安装版本。
 
-本轮已通过 Hugging Face API 将候选的真实 revision 记录在 `configs/models.json`，尚未下载权重。训练前核对该记录，保存模型卡和配置，然后下载到 `models/qwen3-4b-mlx-4bit`。下面使用本轮查得的 revision：
+候选 revision 记录在 `configs/models.json`。M4 Pro 开发机已下载并校验权重，[实际推理记录](dev-baseline.md)可复查；M2 Max 训练机仍需恢复本地模型。训练前核对 revision，保存模型卡和配置，然后下载到 `models/qwen3-4b-mlx-4bit`：
 
 ```bash
 .venv-train/bin/hf download mlx-community/Qwen3-4B-Instruct-2507-4bit --revision 50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b --local-dir models/qwen3-4b-mlx-4bit
 ```
 
-本轮资料整理不下载这些模型权重。模型结构、tokenizer、chat template 和原始文件哈希随 run 保留。
+模型结构、tokenizer、chat template 和原始文件哈希随 run 保留。模型权重由每台机器单独准备，Git 不包含权重。
 
 ## 先检查数据，再小跑
 

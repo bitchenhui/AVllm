@@ -7,7 +7,7 @@ from pathlib import Path
 
 from avllm_data import (
     ROOT, bounded_path, dev_overlap, evidence_fingerprint, load_dev_exclusions,
-    read_jsonl, sha, split_for, validate,
+    read_jsonl, read_split_registry, registered_split, sha, validate,
 )
 from dev_benchmark import numeric_result
 
@@ -92,7 +92,7 @@ def verify():
     failures = validate(rows)
     if failures:
         raise ValueError("\n".join(failures))
-    registry = json.loads((ROOT / "configs/holdout-groups.json").read_text())
+    registry = read_split_registry()
     exclusions = load_dev_exclusions(registry)
     cases = json.loads(fixture.read_text())["cases"]
     expected_ids = {r["id"] for r in rows if r["task_type"] == "calculation"}
@@ -106,7 +106,7 @@ def verify():
         prompt, answer = [m["content"] for m in row["messages"]]
         overlap = dev_overlap(exclusions, sample_id=qid, group=row["split_group"],
                               prompt=prompt, evidence=row["evidence"])
-        if overlap or split_for(row["split_group"], registry["groups"]) != "train":
+        if overlap or registered_split(row["split_group"], registry) != "train":
             raise ValueError(f"{qid}: evidence or group is reserved for evaluation ({overlap or 'split'})")
         if row["verification"]["status"] != "pending" or row["eligibility"]["status"] != "pending":
             raise ValueError(f"{qid}: this report is for pre-approval candidates only")

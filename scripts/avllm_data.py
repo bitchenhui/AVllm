@@ -27,6 +27,25 @@ def split_for(group, holdouts=()):
     return "train" if bucket < 80 else "valid" if bucket < 90 else "test"
 
 
+def read_split_registry(root=ROOT):
+    registry = json.loads((root / "configs/holdout-groups.json").read_text())
+    for key in ("groups", "validation_groups"):
+        groups = registry.setdefault(key, [])
+        if not isinstance(groups, list) or any(not isinstance(g, str) or not g.strip() for g in groups):
+            raise ValueError(f"{key} must be a list of nonempty group IDs")
+        if len(groups) != len(set(groups)):
+            raise ValueError(f"{key} contains duplicate group IDs")
+    if set(registry["groups"]).intersection(registry["validation_groups"]):
+        raise ValueError("A mechanism group cannot be assigned to both validation and frozen test")
+    return registry
+
+
+def registered_split(group, registry):
+    if group in registry["validation_groups"]:
+        return "valid"
+    return split_for(group, registry["groups"])
+
+
 def read_jsonl(path):
     rows = []
     with Path(path).open() as f:

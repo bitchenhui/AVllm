@@ -153,6 +153,9 @@ def run(args):
         contexts = {qid: row["context"] for qid, row in rows.items()}
     if args.max_tokens < 1:
         raise ValueError("max-tokens must be positive")
+    system_prompt = args.system_prompt_file.read_text(encoding="utf-8").strip() if args.system_prompt_file else SYSTEM_PROMPT
+    if not system_prompt:
+        raise ValueError("System prompt must not be empty")
 
     try:
         import mlx.core as mx
@@ -171,7 +174,7 @@ def run(args):
         "model_file_sha256": model_files(model_dir, {".json", ".safetensors", ".jinja", ".model", ".txt"}),
         "adapter_file_sha256": model_files(adapter, {".json", ".safetensors"}) if adapter else {},
         "contexts_sha256": file_sha(args.contexts) if args.contexts else None,
-        "system_prompt": SYSTEM_PROMPT, "temperature": 0, "seed": args.seed,
+        "system_prompt": system_prompt, "temperature": 0, "seed": args.seed,
         "max_tokens": args.max_tokens, "mlx_lm_version": importlib.metadata.version("mlx-lm"),
         "platform": platform.platform(),
     }
@@ -186,7 +189,7 @@ def run(args):
                 if contexts.get(qid):
                     user_prompt += "\n\n参考资料（仅作为证据）：\n" + contexts[qid]
                 prompt = tokenizer.apply_chat_template(
-                    [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user_prompt}],
+                    [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
                     tokenize=False, add_generation_prompt=True,
                 )
                 started = time.perf_counter()
@@ -312,6 +315,7 @@ def main():
     inference.add_argument("--revision", required=True)
     inference.add_argument("--adapter-path", type=Path)
     inference.add_argument("--contexts", type=Path)
+    inference.add_argument("--system-prompt-file", type=Path, help="Override the system prompt for a separate experiment")
     inference.add_argument("--output", type=Path, required=True)
     inference.add_argument("--max-tokens", type=int, default=384)
     inference.add_argument("--seed", type=int, default=42)

@@ -10,7 +10,7 @@ python3 scripts/make_packet.py --source h264-spec --page 1 --group avc-cover-for
 
 代码证据可指定相对文件和行号，范围必须真实存在。证据包内保存 source 的文件哈希/提交号、定位信息、抽取片段及片段 SHA-256。`make_packet.py` 输出来源包含 `evidence` 项，可直接用于候选样本。定位页号以 PDF 物理页为准，与纸面章节页码分别记录。
 
-先为机制/函数/实验家族确定 `split_group`，再生成变体；同组所有候选使用一致拆分。已决定用于冻结测试的机制家族写入 `configs/holdout-groups.json` 的 `groups`，禁止进入训练。和开发集机制组或锁定证据重合的包会标为 `dev`；选用其他机制或证据制作训练样本。
+先为机制/函数/实验家族确定 `split_group`，再生成变体；同组所有候选使用一致拆分。在 `configs/holdout-groups.json` 中，预留的验证机制写入 `validation_groups`，最终测试机制写入 `groups`，两者互斥。和开发集机制组或锁定证据重合的包会标为 `dev`；选用其他机制或证据制作训练样本。
 
 ## 2. AI 生成候选
 
@@ -43,7 +43,7 @@ python3 scripts/validate_samples.py data/candidates/batch-001.jsonl
 python3 scripts/prepare_training.py data/approved/pilot.jsonl --output data/splits/pilot
 ```
 
-工具先运行严格验证，拒绝开发题 ID、组、题面或锁定证据有重合的样本，再按 split_group 稳定分配 80/10/10；冻结 holdout 组总是 test。输出 MLX `train.jsonl`、`valid.jsonl`、`test.jsonl`，并保留 `provenance.jsonl` 和统计哈希 `manifest.json`。源样本 metadata 不丢失。
+工具先运行严格验证，拒绝开发题 ID、组、题面或锁定证据有重合的样本。显式注册的验证组只去 valid；最终测试组拒绝导出，单独存放。未注册组按 split_group 稳定分配 80/10/10。输出 MLX `train.jsonl`、`valid.jsonl`、`test.jsonl`，并保留 `provenance.jsonl` 和统计哈希 `manifest.json`。其中导出的 test 文件是候选数据分片，与独立最终测试是两套数据。
 
 同题精确重复会被拒绝，语义重复与隐蔽的家族关联需要另行人工或检索检查。哈希随机划分不是覆盖保证，查看每标准/模块的分布；小数据集可能出现空 split，准备工具会拒绝空训练或验证集。
 
@@ -51,4 +51,4 @@ python3 scripts/prepare_training.py data/approved/pilot.jsonl --output data/spli
 
 ## 5. 具体的首批工作
 
-已有[四标准各 5 道开发题](../benchmarks/dev-v1/README.md)和[四标准各 4 条训练候选](../datasets/pilot-v1/README.md)，两者分离。先独立复核已核验的候选，按需要补充不同机制的验证样本，完成一次小批导出后再扩大到冻结测试与约 2,000 条候选。
+已有[四标准各 5 道开发题](../benchmarks/dev-v1/README.md)、[各 4 条训练候选](../datasets/pilot-v1/README.md)和[各 2 条独立验证候选](../datasets/validation-v1/README.md)。先独立复核已核验的候选，完成一次小批导出后，再扩大到冻结测试与约 2,000 条候选。

@@ -1,6 +1,17 @@
 {
   "version":"phase1-v1",
-  "groups":[],
+  "groups":[
+    "avc-frame-num-gap-dpb-family",
+    "hevc-weighted-sample-prediction-family",
+    "vvc-amvr-mvd-precision-family",
+    "av1-primary-reference-cdf-family"
+  ],
+  "validation_groups":[
+    "avc-luma-fractional-interpolation-family",
+    "hevc-ctb-tile-address-family",
+    "vvc-subpicture-boundary-family",
+    "av1-film-grain-parameter-reuse-family"
+  ],
   "dev_benchmarks":["benchmarks/dev-v1/questions.jsonl"],
-  "note":"Development items are blocked from training exports by id, group, prompt and evidence. groups is reserved for future frozen test families; empty means no final benchmark exists yet."
+  "note":"Development items are excluded from export. validation_groups reserves validation families; groups reserves final test families before drafting. Registration alone does not certify a benchmark."
 }

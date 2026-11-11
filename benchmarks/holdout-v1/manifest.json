@@ -1,0 +1,21 @@
+{
+  "version": "holdout-v1-draft",
+  "status": "hash_pinned_pending_independent_review",
+  "question_count": 8,
+  "codec_counts": {
+    "h264": 2,
+    "h265": 2,
+    "h266": 2,
+    "av1": 2
+  },
+  "numeric_count": 4,
+  "source_locators_verified": 9,
+  "groups": [
+    "av1-primary-reference-cdf-family",
+    "avc-frame-num-gap-dpb-family",
+    "hevc-weighted-sample-prediction-family",
+    "vvc-amvr-mvd-precision-family"
+  ],
+  "questions_sha256": "ee0cfbabc1cfb56d74bd483cc4a409a1ea774c7e4914ddc04855099a578fcebb",
+  "answer_key_sha256": "5d3a0ff2562ed92c15afbf5be43f4e2eba36dcaf82ea999450f208ac239bb451"
+}

@@ -1,0 +1,66 @@
+{
+  "batch": "validation-v1",
+  "cases": {
+    "validation-v1-h264-02": {
+      "operation": "avc_horizontal_luma",
+      "inputs": {
+        "bit_depth_y": 8,
+        "samples": [
+          0,
+          0,
+          240,
+          255,
+          0,
+          0
+        ]
+      },
+      "expected": {
+        "half_b": 255,
+        "quarter_a": 248
+      },
+      "prompt_sha256": "a950cfed7d31904ac0ffe32a75ee555f3fed207047f85ac0469d1581433d99f2"
+    },
+    "validation-v1-h265-02": {
+      "operation": "hevc_tile_order",
+      "inputs": {
+        "col_widths": [
+          2,
+          3
+        ],
+        "row_heights": [
+          1,
+          2
+        ],
+        "rs": 10,
+        "ts": 11
+      },
+      "expected": {
+        "ts_for_rs": 7,
+        "rs_for_ts": 9
+      },
+      "prompt_sha256": "12ab7890c05a9ef7b5a4001676b1ba7bd834cfafb995d16a31033f4610c799b4"
+    },
+    "validation-v1-h266-02": {
+      "operation": "vvc_independent_subpic",
+      "inputs": {
+        "independent": 1
+      },
+      "expected": {
+        "treated_as_pic": 1,
+        "cross_loop_filter": 0
+      },
+      "prompt_sha256": "f79b1c1fcaced0b53ea988a593c2ddb3f8973dbbb43aeeff3e4bb83f4274aaa8"
+    },
+    "validation-v1-av1-02": {
+      "operation": "av1_grain_reuse",
+      "inputs": {
+        "current_seed": 321,
+        "reference_seed": 900
+      },
+      "expected": {
+        "grain_seed": 321
+      },
+      "prompt_sha256": "445ece9a6648095a929df0444777d1a1fb6bba7374b4b8ced7a75c9258d89f9e"
+    }
+  }
+}

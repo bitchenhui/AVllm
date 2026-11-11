@@ -12,6 +12,7 @@ materials/extracted/
 data/candidates/
 data/approved/
 data/splits/
+data/holdout/
 models/
 adapters/
 runs/

@@ -110,16 +110,19 @@ class DataGuards(unittest.TestCase):
         lock["sources"][0]["sha256"] = revision
         lock_path.write_text(json.dumps(lock))
         (self.root / "configs").mkdir()
-        (self.root / "configs/holdout-groups.json").write_text(json.dumps({"groups":[]}))
         rows = []
         for i, wanted in enumerate(["train", "valid", "test"]):
-            group = next(f"family-{n}" for n in range(10000) if split_for(f"family-{n}") == wanted)
+            # Explicitly reserve a family that would otherwise hash to train.
+            group = next(f"{wanted}-{n}" for n in range(10000)
+                         if split_for(f"{wanted}-{n}") == ("train" if wanted == "valid" else wanted))
             row = copy.deepcopy(self.row)
             row.update(id=f"fixture-{i}", split_group=group)
             row["messages"][0]["content"] = f"Independent fixture question {i}?"
             row["evidence"][0].update(source_revision=revision, locator={"type":"document_lines","start":i+1,"end":i+1}, snippet_sha256=sha(texts[i].encode()))
             self.approve(row)
             rows.append(row)
+        (self.root / "configs/holdout-groups.json").write_text(json.dumps(
+            {"groups":[], "validation_groups":[rows[1]["split_group"]]}))
         dataset = self.root / "work/fixtures.jsonl"
         dataset.write_text("".join(json.dumps(x) + "\n" for x in rows))
         out = self.root / "work/export"
@@ -129,7 +132,20 @@ class DataGuards(unittest.TestCase):
         self.assertEqual([manifest["splits"][s]["samples"] for s in ["train","valid","test"]],[1,1,1])
         provenance = [json.loads(line) for line in (out / "provenance.jsonl").read_text().splitlines()]
         self.assertEqual({x["sample"]["id"] for x in provenance}, {x["id"] for x in rows})
+        self.assertEqual({x["sample"]["id"]: x["split"] for x in provenance}["fixture-1"], "valid")
         self.assertEqual(manifest["verification_artifact_sha256"]["work/review.md"], sha((self.root / "work/review.md").read_bytes()))
+
+        (self.root / "configs/holdout-groups.json").write_text(json.dumps(
+            {"groups": [rows[2]["split_group"]], "validation_groups": [rows[1]["split_group"]]}))
+        rejected = self.root / "work/rejected"
+        err = io.StringIO()
+        with mock.patch.object(prepare_training, "ROOT", self.root), mock.patch.object(
+            sys, "argv", ["prepare_training", str(dataset), "--output", str(rejected)]
+        ), contextlib.redirect_stderr(err), self.assertRaises(SystemExit) as failure:
+            prepare_training.main()
+        self.assertEqual(failure.exception.code, 1)
+        self.assertIn("reserved final benchmark family", err.getvalue())
+        self.assertFalse(rejected.exists())
 
     def test_export_blocks_development_evidence_even_with_changed_question_and_group(self):
         benchmark = self.root / "benchmarks"

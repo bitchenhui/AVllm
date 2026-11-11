@@ -5,7 +5,7 @@ from collections import Counter
 import json
 from pathlib import Path
 import sys
-from avllm_data import ROOT, dev_overlap, load_dev_exclusions, read_jsonl, sha, split_for, validate
+from avllm_data import ROOT, dev_overlap, load_dev_exclusions, read_jsonl, read_split_registry, registered_split, sha, validate
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
     holdout_path = ROOT / "configs/holdout-groups.json"
     try:
         rows = read_jsonl(args.path)
-        registry = json.loads(holdout_path.read_text())
+        registry = read_split_registry(ROOT)
         exclusions = load_dev_exclusions(registry, root=ROOT)
         errors = validate(rows, require_approved=True, root=ROOT)
     except (OSError, ValueError, KeyError, TypeError) as exc:
@@ -26,6 +26,8 @@ def main():
         return 1
     splits = {k: [] for k in ["train", "valid", "test"]}
     for row in rows:
+        if row["split_group"] in registry["groups"]:
+            parser.exit(1, f"{row['id']}: reserved final benchmark family; keep it outside training exports\n")
         user_messages = [m["content"] for m in row["messages"] if m["role"] == "user"]
         overlap = dev_overlap(exclusions, sample_id=row["id"], group=row["split_group"],
                               evidence=row["evidence"])
@@ -33,7 +35,7 @@ def main():
                                    if (hit := dev_overlap(exclusions, prompt=msg))), None)
         if overlap:
             parser.exit(1, f"{row['id']}: development benchmark overlap ({overlap}); exclude from all training exports\n")
-        splits[split_for(row["split_group"], registry["groups"])].append(row)
+        splits[registered_split(row["split_group"], registry)].append(row)
     if not splits["train"] or not splits["valid"]:
         parser.error("Train and valid must both be nonempty; collect more independent groups, do not move paraphrases across groups")
     output = Path(args.output)
@@ -60,8 +62,7 @@ def main():
     metadata["provenance_sha256"] = sha((output / "provenance.jsonl").read_bytes())
     (output / "manifest.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(metadata, ensure_ascii=False, indent=2))
-    if not registry["groups"]:
-        print("Note: no registered frozen holdout groups yet; deterministic test split is not a completed independent benchmark.")
+    print("Note: the exported test split is a candidate split; the final benchmark is managed separately.")
     return 0
 
 

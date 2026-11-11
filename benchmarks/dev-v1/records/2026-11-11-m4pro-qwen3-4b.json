@@ -1,0 +1,191 @@
+{
+  "record_version": 1,
+  "date_local": "2026-11-11",
+  "status": "completed_pending_non_numeric_review",
+  "experiment": "base_model_system_prompt_comparison",
+  "hardware": {
+    "chip": "Apple M4 Pro",
+    "unified_memory_bytes": 25769803776
+  },
+  "environment": {
+    "platform": "macOS-26.0-arm64-arm-64bit",
+    "python": "3.12.14",
+    "dependency_snapshot": "benchmarks/dev-v1/records/2026-11-11-m4pro-qwen3-4b-requirements.txt",
+    "dependency_snapshot_sha256": "cd13a6f4931e555eda2ef50a9e89c4c673d70d1f317b5cba501f80601aa97db8"
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "weight_sha256": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+    "weight_bytes": 2263022417,
+    "file_sha256": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "avllm-model-revision.json": "7299a2736d758ac95a58ebb5db6d489c596993a948bc16b1cbab4d0a5c13a7c7",
+      "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+      "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+      "generation_config.json": "835fffe355c9438e7a25be099b3fccaa98350b83451f9fd2d99512e74f1ade48",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+      "model.safetensors.index.json": "388d811b8b7c2608dd04cce1bcb04a8bf715d19b42790894e6d3427ff429a777",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "4397cc477eb6d79715ccd2000accd6b3531928f30029665832fa1b255f24d2b9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "benchmark": {
+    "version": "dev-v1",
+    "question_count": 20,
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70"
+  },
+  "fixed_conditions": {
+    "condition": "A",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 384,
+    "mlx_lm_version": "0.32.2",
+    "adapter_file_sha256": {},
+    "contexts_sha256": null
+  },
+  "runs": [
+    {
+      "variant": "default",
+      "local_run_directory": "runs/dev-v1-qwen3-base-m4pro",
+      "system_prompt": "你是视频编解码算法助手。按题设回答，区分标准语义与源码实现；证据不足时指出缺少的条件。",
+      "input_run_manifest_sha256": "0bdd5668aaada4d0400a08f88c90bb0450ed2bf0c419932367fbf5a89ce09e2e",
+      "predictions_sha256": "6e7f0770070925ab60badf5f14e466c8831c16bab6d54dd097845cf73db84896",
+      "initial_scores_sha256": "886a669453358c2e04d383a4c1885bc09c8969c6b48b645253810383afc6a636",
+      "question_count": 20,
+      "generation_tokens_total": 6240,
+      "generation_tokens_median": 384.0,
+      "seconds_sum_of_questions_excludes_model_load": 100.908,
+      "overall": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 48,
+        "hit_generation_limit": 16,
+        "numeric_unparseable": 4
+      },
+      "by_codec": {
+        "h264": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 4,
+          "numeric_unparseable": 1
+        },
+        "h265": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 4,
+          "numeric_unparseable": 1
+        },
+        "h266": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 4,
+          "numeric_unparseable": 1
+        },
+        "av1": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 4,
+          "numeric_unparseable": 1
+        }
+      },
+      "numeric_results": {
+        "h264-02": "unparseable",
+        "h265-02": "unparseable",
+        "h266-02": "unparseable",
+        "av1-02": "unparseable"
+      },
+      "length_stop_question_ids": [
+        "h264-01",
+        "h264-03",
+        "h264-04",
+        "h264-05",
+        "h265-01",
+        "h265-03",
+        "h265-04",
+        "h265-05",
+        "h266-01",
+        "h266-03",
+        "h266-04",
+        "h266-05",
+        "av1-01",
+        "av1-03",
+        "av1-04",
+        "av1-05"
+      ]
+    },
+    {
+      "variant": "concise",
+      "local_run_directory": "runs/dev-v1-qwen3-base-m4pro-concise",
+      "system_prompt": "你是视频编解码算法助手。按题设回答，区分标准语义与源码实现；证据不足时指出缺少的条件。先给结论，再简要说明关键依据，不复述题面。严格遵守题面要求的输出格式；若要求整数 JSON，填写求值后的整数。",
+      "input_run_manifest_sha256": "a5344bc14e43dcc14172c13a3eae5a4c895fcdc3f7a255d4f0f4cf82689077ea",
+      "predictions_sha256": "4e4508e82e21ee30096fb009b4df6845e4f485b354e5c4deb0a046a99773d833",
+      "initial_scores_sha256": "2ff9ff36d3834adf070980894fc3ae769dfe10e502f3316bbca295bb7313e62d",
+      "question_count": 20,
+      "generation_tokens_total": 4282,
+      "generation_tokens_median": 252.0,
+      "seconds_sum_of_questions_excludes_model_load": 91.1974,
+      "overall": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 48,
+        "hit_generation_limit": 6,
+        "numeric_incorrect": 1,
+        "numeric_correct": 2,
+        "numeric_unparseable": 1
+      },
+      "by_codec": {
+        "h264": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 1,
+          "numeric_incorrect": 1
+        },
+        "h265": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "numeric_correct": 1,
+          "hit_generation_limit": 1
+        },
+        "h266": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 2,
+          "numeric_unparseable": 1
+        },
+        "av1": {
+          "manual_points": 0,
+          "manual_points_graded": 0,
+          "manual_points_possible": 12,
+          "hit_generation_limit": 2,
+          "numeric_correct": 1
+        }
+      },
+      "numeric_results": {
+        "h264-02": "incorrect",
+        "h265-02": "correct",
+        "h266-02": "unparseable",
+        "av1-02": "correct"
+      },
+      "length_stop_question_ids": [
+        "h264-01",
+        "h265-04",
+        "h266-01",
+        "h266-03",
+        "av1-01",
+        "av1-05"
+      ]
+    }
+  ]
+}

@@ -37,9 +37,12 @@ class DevBenchmark(unittest.TestCase):
             (model / "model.safetensors").write_bytes(b"fixture, not real model weights")
             manifest, questions = bench.load_questions()
             rendered = []
+            system_prompt = path / "system.txt"
+            system_prompt.write_text("Keep the answer concise.\n")
 
             def chat_template(messages, **kwargs):
                 self.assertEqual([m["role"] for m in messages], ["system", "user"])
+                self.assertEqual(messages[0]["content"], "Keep the answer concise.")
                 rendered.append(messages[1]["content"])
                 return messages[1]["content"]
 
@@ -52,7 +55,8 @@ class DevBenchmark(unittest.TestCase):
                 SimpleNamespace(text="fixture answer", prompt_tokens=7, generation_tokens=2, finish_reason="stop")])
             utils.make_sampler = mock.Mock(return_value=object())
             args = SimpleNamespace(model_dir=model, adapter_path=None, contexts=None, max_tokens=384,
-                                   output=path / "run", model_id="fixture", revision="fixture", seed=42)
+                                   output=path / "run", model_id="fixture", revision="fixture", seed=42,
+                                   system_prompt_file=system_prompt)
             with mock.patch.dict(sys.modules, {"mlx": mlx, "mlx.core": core, "mlx_lm": lm,
                                                "mlx_lm.sample_utils": utils}), mock.patch.object(
                 bench.importlib.metadata, "version", return_value="fixture"
@@ -63,6 +67,7 @@ class DevBenchmark(unittest.TestCase):
             saved = json.loads((args.output / "manifest.json").read_text())
             self.assertEqual(saved["status"], "completed")
             self.assertEqual(saved["questions_sha256"], manifest["questions_sha256"])
+            self.assertEqual(saved["system_prompt"], "Keep the answer concise.")
 
     def test_scoring_review_round_trip_and_prediction_integrity(self):
         with tempfile.TemporaryDirectory() as temp:

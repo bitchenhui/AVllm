@@ -1,0 +1,39 @@
+{
+  "batch": "validation-v1",
+  "status": "checked_pending_domain_approval",
+  "candidates_sha256": "d95329e3e1ee03b9d98bf1b6de9f06ae7932c2ad315daedc719b00f46a672c06",
+  "numeric_cases_sha256": "5d7407e68c8e90e1194f588272cd18af6ef2fd160729baa48f9cba1673eeff8a",
+  "training_pilot_sha256": "3b5e4aaf46c8e89f1f10c313a562d1e2aa3508a0af3a29fe17fe0728fadae625",
+  "codec_counts": {
+    "h264": 2,
+    "h265": 2,
+    "h266": 2,
+    "av1": 2
+  },
+  "validation_groups": [
+    "av1-film-grain-parameter-reuse-family",
+    "avc-luma-fractional-interpolation-family",
+    "hevc-ctb-tile-address-family",
+    "vvc-subpicture-boundary-family"
+  ],
+  "locked_locators_checked": 8,
+  "numeric_answers": {
+    "validation-v1-h264-02": {
+      "half_b": 255,
+      "quarter_a": 248
+    },
+    "validation-v1-h265-02": {
+      "ts_for_rs": 7,
+      "rs_for_ts": 9
+    },
+    "validation-v1-h266-02": {
+      "treated_as_pic": 1,
+      "cross_loop_filter": 0
+    },
+    "validation-v1-av1-02": {
+      "grain_seed": 321
+    }
+  },
+  "training_or_development_overlaps": 0,
+  "approved": 0
+}
