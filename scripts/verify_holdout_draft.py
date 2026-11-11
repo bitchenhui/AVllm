@@ -45,7 +45,8 @@ def check():
         raise ValueError("Holdout questions and answer key do not match")
     registry = read_split_registry()
     exclusions = load_dev_exclusions(registry)
-    for path in ("datasets/pilot-v1/candidates.jsonl", "datasets/validation-v1/candidates.jsonl"):
+    for path in ("datasets/pilot-v1/candidates.jsonl", "datasets/validation-v1/candidates.jsonl",
+                 "datasets/boundary-v1/candidates.jsonl"):
         for row in read_jsonl(ROOT / path):
             exclusions["ids"].add(row["id"])
             exclusions["groups"].add(row["split_group"])

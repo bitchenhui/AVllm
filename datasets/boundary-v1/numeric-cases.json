@@ -1,0 +1,262 @@
+{
+  "batch": "boundary-v1",
+  "cases": {
+    "boundary-v1-h264-01": {
+      "codec": "h264",
+      "inputs": {
+        "width": 1920,
+        "height": 1088,
+        "subsampling": [
+          2,
+          2
+        ],
+        "frame_only": 1,
+        "enabled": 1,
+        "offsets": [
+          0,
+          0,
+          0,
+          4
+        ]
+      },
+      "expected": {
+        "width": 1920,
+        "height": 1080,
+        "last_y": 1079
+      },
+      "prompt_sha256": "d1f3cbca938f7b3f60c46b0ab0b4d21289b63f0d0e00c6deef595da48999b776"
+    },
+    "boundary-v1-h264-02": {
+      "codec": "h264",
+      "inputs": {
+        "width": 720,
+        "height": 576,
+        "subsampling": [
+          2,
+          2
+        ],
+        "frame_only": 0,
+        "enabled": 1,
+        "offsets": [
+          2,
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": {
+        "width": 714,
+        "height": 564,
+        "first_x": 4,
+        "last_x": 717,
+        "first_y": 4,
+        "last_y": 567
+      },
+      "prompt_sha256": "7030325a26380eaee03c1e831f8e9a9968b8345bc87eab56893d7e38931bcb4b"
+    },
+    "boundary-v1-h264-03": {
+      "codec": "h264",
+      "inputs": {
+        "width": 128,
+        "height": 64,
+        "subsampling": null,
+        "frame_only": 0,
+        "pair_offsets": [
+          null,
+          [
+            1,
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "a_width": 128,
+        "a_height": 64,
+        "b_width": 124,
+        "b_height": 58
+      },
+      "prompt_sha256": "055a087bd432c9377e2d841e110df5ed394bc8104c8b7f7c822ffda118339820"
+    },
+    "boundary-v1-h265-01": {
+      "codec": "h265",
+      "inputs": {
+        "bit_depth": 10,
+        "pcm_minus1": 7,
+        "sample": 255
+      },
+      "expected": {
+        "pcm_depth": 8,
+        "shift": 2,
+        "sample": 1020
+      },
+      "prompt_sha256": "9040f1df2fbd9c28ad6aa22d6c8cd22b028d42540ebd618447ba6f528d3deb9a"
+    },
+    "boundary-v1-h265-02": {
+      "codec": "h265",
+      "inputs": {
+        "bit_depth": 10,
+        "pcm_minus1": 9,
+        "samples": [
+          511,
+          1023
+        ]
+      },
+      "expected": {
+        "shift": 0,
+        "first": 511,
+        "second": 1023
+      },
+      "prompt_sha256": "246992a652dab4ae4f81908a7f2f5d745f5868cd25bf5c7f8e142390c0b1ca5a"
+    },
+    "boundary-v1-h265-03": {
+      "codec": "h265",
+      "inputs": {
+        "bit_depth": 10,
+        "pair_pcm_minus1": [
+          9,
+          10
+        ]
+      },
+      "expected": {
+        "a_depth": 10,
+        "a_pass": 1,
+        "b_depth": 11,
+        "b_pass": 0
+      },
+      "prompt_sha256": "8bd7b6f2c4a241d6ddf262bdb461d292d99314b2c020a1b85e4672f16594c9c6"
+    },
+    "boundary-v1-h266-01": {
+      "codec": "h266",
+      "inputs": {
+        "slice": "B",
+        "entries": [
+          2,
+          4
+        ],
+        "defaults_minus1": [
+          4,
+          1
+        ],
+        "override": 0,
+        "active_minus1": [
+          null,
+          null
+        ]
+      },
+      "expected": {
+        "l0": 2,
+        "l1": 2
+      },
+      "prompt_sha256": "85a4fde4f865ea03419b29c662fef81c53362f9d6a16be11c05b7dea1440a4cb"
+    },
+    "boundary-v1-h266-02": {
+      "codec": "h266",
+      "inputs": {
+        "slice": "P",
+        "entries": [
+          1,
+          3
+        ],
+        "defaults_minus1": [
+          0,
+          0
+        ],
+        "override": null,
+        "active_minus1": [
+          null,
+          null
+        ]
+      },
+      "expected": {
+        "override": 1,
+        "l0": 1,
+        "l1": 0
+      },
+      "prompt_sha256": "5523289de0cf2f5516f104d5e85762758e012d8218fd20413669cba54edb7f59"
+    },
+    "boundary-v1-h266-03": {
+      "codec": "h266",
+      "inputs": {
+        "slice": "B",
+        "entries": [
+          1,
+          4
+        ],
+        "defaults_minus1": [
+          0,
+          0
+        ],
+        "override": 1,
+        "active_minus1": [
+          null,
+          2
+        ]
+      },
+      "expected": {
+        "l0_field_present": 0,
+        "l0": 1,
+        "l1": 3
+      },
+      "prompt_sha256": "40e861316d4c0a028d9aa34da4e5a05749393131fb02d4c4b5415518570152a2"
+    },
+    "boundary-v1-av1-01": {
+      "codec": "av1",
+      "inputs": {
+        "enabled": 1,
+        "bits": 3,
+        "pairs": [
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": {
+        "distance": 2
+      },
+      "prompt_sha256": "902d70411d01c3e1cb8b4d3abc685fda8459ec1f38d4f2e583afd915908c15b4"
+    },
+    "boundary-v1-av1-02": {
+      "codec": "av1",
+      "inputs": {
+        "enabled": 1,
+        "bits": 4,
+        "pairs": [
+          [
+            12,
+            4
+          ],
+          [
+            4,
+            12
+          ]
+        ]
+      },
+      "expected": {
+        "forward": -8,
+        "reverse": -8
+      },
+      "prompt_sha256": "cec291882129043b55fac4583c7c75bcd9161ed7d7f90a877df380e96b6ece0c"
+    },
+    "boundary-v1-av1-03": {
+      "codec": "av1",
+      "inputs": {
+        "enabled": 0,
+        "bits": 0,
+        "pairs": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": {
+        "distance": 0,
+        "computes_mask": 0
+      },
+      "prompt_sha256": "c9ac579bf83ccbba155d7899e818f5d40a0dff47785d5b8cfdd7a9600c5fc0f0"
+    }
+  }
+}

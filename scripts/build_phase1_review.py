@@ -10,6 +10,7 @@ from urllib.parse import quote
 
 from avllm_data import ROOT, evidence_text, read_jsonl, read_split_registry, registered_split, sha
 from dev_benchmark import file_sha, write_json
+from verify_boundary_batch import verify as verify_boundary
 from verify_pilot_batch import verify as verify_training
 from verify_validation_batch import verify as verify_validation
 
@@ -21,6 +22,7 @@ def link(path, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--include-boundary', action='store_true', help='Include the newer arithmetic boundary candidates')
     args = parser.parse_args()
     output = args.output.resolve()
     if ROOT / 'work' not in output.parents or output.exists():
@@ -29,7 +31,10 @@ def main():
     sources = {s['id']: s for s in json.loads(lock.read_text())['sources']}
     registry = read_split_registry()
     queue, evidence, batch_hashes = [], {}, {}
-    for batch, verify in [('pilot-v1', verify_training), ('validation-v1', verify_validation)]:
+    batches = [('pilot-v1', verify_training), ('validation-v1', verify_validation)]
+    if args.include_boundary:
+        batches.append(('boundary-v1', verify_boundary))
+    for batch, verify in batches:
         directory = ROOT / 'datasets' / batch
         report_path = directory / 'verification-report.json'
         report = verify()
@@ -88,7 +93,8 @@ def main():
                 summary.append(f'  - [许可或通知文件 {j}]({license_link})')
         if row['numeric_check'] is not None:
             summary.append(f'- 独立复算：`{json.dumps(row["numeric_check"]["independent_result"], ensure_ascii=False)}`；输入见 `queue.jsonl`。')
-        summary.append('- 已有核验：' + '、'.join(f'[{c["kind"]}]({c["local_link"]})' for c in row['prior_checks']))
+        if row['prior_checks']:
+            summary.append('- 已有核验：' + '、'.join(f'[{c["kind"]}]({c["local_link"]})' for c in row['prior_checks']))
         summary.extend(['', '待填写：技术结论、适用条件或修订点、使用条件结论、审核人和日期。', ''])
     (output / 'review.md').write_text('\n'.join(summary), encoding='utf-8')
     manifest = {'version': 1, 'status': 'review_pending', 'candidates': len(queue),

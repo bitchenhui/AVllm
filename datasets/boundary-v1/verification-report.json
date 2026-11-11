@@ -1,0 +1,86 @@
+{
+  "batch": "boundary-v1",
+  "status": "checked_pending_domain_review",
+  "approved": 0,
+  "candidates_sha256": "e035d5c60f6b0585a74c9190e49f29675f63f369ceac8db60ce0bb7190233576",
+  "numeric_cases_sha256": "2aa40a062f351fd80c87234dad585492cebb11e69bea8bab8c561b1d714a5941",
+  "earlier_candidates_sha256": {
+    "datasets/pilot-v1/candidates.jsonl": "3b5e4aaf46c8e89f1f10c313a562d1e2aa3508a0af3a29fe17fe0728fadae625",
+    "datasets/validation-v1/candidates.jsonl": "d95329e3e1ee03b9d98bf1b6de9f06ae7932c2ad315daedc719b00f46a672c06"
+  },
+  "codec_counts": {
+    "h264": 3,
+    "h265": 3,
+    "h266": 3,
+    "av1": 3
+  },
+  "groups": [
+    "av1-signed-order-hint-distance-family",
+    "avc-sps-cropping-family",
+    "hevc-pcm-reconstruction-family",
+    "vvc-rpl-active-count-family"
+  ],
+  "evidence_locators_verified": 8,
+  "numeric_answers": {
+    "boundary-v1-h264-01": {
+      "width": 1920,
+      "height": 1080,
+      "last_y": 1079
+    },
+    "boundary-v1-h264-02": {
+      "width": 714,
+      "height": 564,
+      "first_x": 4,
+      "last_x": 717,
+      "first_y": 4,
+      "last_y": 567
+    },
+    "boundary-v1-h264-03": {
+      "a_width": 128,
+      "a_height": 64,
+      "b_width": 124,
+      "b_height": 58
+    },
+    "boundary-v1-h265-01": {
+      "pcm_depth": 8,
+      "shift": 2,
+      "sample": 1020
+    },
+    "boundary-v1-h265-02": {
+      "shift": 0,
+      "first": 511,
+      "second": 1023
+    },
+    "boundary-v1-h265-03": {
+      "a_depth": 10,
+      "a_pass": 1,
+      "b_depth": 11,
+      "b_pass": 0
+    },
+    "boundary-v1-h266-01": {
+      "l0": 2,
+      "l1": 2
+    },
+    "boundary-v1-h266-02": {
+      "override": 1,
+      "l0": 1,
+      "l1": 0
+    },
+    "boundary-v1-h266-03": {
+      "l0_field_present": 0,
+      "l0": 1,
+      "l1": 3
+    },
+    "boundary-v1-av1-01": {
+      "distance": 2
+    },
+    "boundary-v1-av1-02": {
+      "forward": -8,
+      "reverse": -8
+    },
+    "boundary-v1-av1-03": {
+      "distance": 0,
+      "computes_mask": 0
+    }
+  }
+}

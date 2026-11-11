@@ -62,3 +62,14 @@ python3 scripts/prepare_training.py data/approved/pilot.jsonl --output data/spli
 ## 5. 具体的首批工作
 
 已有[四标准各 5 道开发题](../benchmarks/dev-v1/README.md)、[各 4 条训练候选](../datasets/pilot-v1/README.md)和[各 2 条独立验证候选](../datasets/validation-v1/README.md)。先独立复核已核验的候选，完成一次小批导出后，再扩大到冻结测试与约 2,000 条候选。
+
+首轮 M4 Pro 小跑后补充了 [boundary-v1](../datasets/boundary-v1/candidates.jsonl)，四个标准各 3 道，共 12 道数值题。AVC 覆盖输出裁剪单位及坐标闭区间（物理页 106）；HEVC 覆盖 PCM 位深、样本重建和越界条件（97、144）；VVC 覆盖活跃参考列表的覆盖标志、逐表条件和缺省值（76、171–172）；AV1 覆盖 order hint 的模回绕、半周期和禁用分支（43、55）。
+
+[复算报告](../datasets/boundary-v1/verification-report.json)核对 12 个答案和 8 处锁定来源，[长度报告](../datasets/boundary-v1/token-length-report.json)记录最长模板为 238 token。新机制分到训练候选范围，与首批和开发、验证、冻结测试隔离；仍需逐题复核后才可导出。复查并生成包含这批候选的本地复核包：
+
+```bash
+python3 scripts/verify_boundary_batch.py
+python3 scripts/build_phase1_review.py --include-boundary --output work/phase1-review-boundary-v1
+```
+
+在持有隔离最终测试副本的评测机上，`python3 scripts/verify_holdout_draft.py` 也会检查新批次与冻结测试的重合。
