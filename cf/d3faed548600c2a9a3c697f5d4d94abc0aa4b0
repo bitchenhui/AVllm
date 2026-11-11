@@ -1,0 +1,32 @@
+benchmarks/dev-v1/README.md
+  h_bc262c8ac47a2c 9-10
+benchmarks/dev-v1/records/2026-11-11-concise-ai-review.json
+  h_bc262c8ac47a2c 1-635
+benchmarks/dev-v1/records/2026-11-11-source-assisted.json
+  h_bc262c8ac47a2c 1-604
+datasets/pilot-v1/token-length-report.json
+  h_bc262c8ac47a2c 1-104
+datasets/validation-v1/token-length-report.json
+  h_bc262c8ac47a2c 1-64
+docs/dev-baseline.md
+  h_bc262c8ac47a2c 67-97
+docs/next-steps.md
+  h_bc262c8ac47a2c 20-45
+scripts/build_dev_contexts.py
+  h_bc262c8ac47a2c 1-44
+scripts/check_token_lengths.py
+  h_bc262c8ac47a2c 4,11-22,30-31,41-44,46-48,51-52
+tests/test_token_lengths.py
+  h_bc262c8ac47a2c 1-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cfd3faed548600c2a9a3c697f5d4d94abc0aa4b0",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
