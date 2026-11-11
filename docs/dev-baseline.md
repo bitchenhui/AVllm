@@ -64,3 +64,34 @@ python3 -m unittest discover -s tests -v
 - 仓库 16 项测试通过。首轮 LoRA、最终测试评分和微调收益目前都没有实测结果。
 
 后续每个有意义的实验保留运行编号、唯一改动、环境、输入版本、原始产物哈希和结论。补充人工评分时另记评分状态和版本，保留初次自动评分记录。
+
+## 后续初审与来源辅助对照
+
+对简洁提示运行的 16 道非数值题，已逐评分点完成 [AI 初审记录](../benchmarks/dev-v1/records/2026-11-11-concise-ai-review.json)。每点保存建议分数及理由，另标记缺失条件、虚构字段、计算、代码分支、矛盾和截断等问题。此初审与题目作者并不独立，属于待人工复核的诊断；原始 manual-review 和 scores 未被改写。复合评分点缺失必要部分时不计整点，因此部分正确回答也可能在该点得 0。
+
+随后完成 [来源辅助对照记录](../benchmarks/dev-v1/records/2026-11-11-source-assisted.json)。使用同一模型、简洁系统提示、20 道题、贪心解码和 384 token 输出预算，仅追加资料上下文。资料来自问题中已锁定的 27 处标准页/源码定位，未读取评分键。这是预先知道相关来源的阅读能力对照，不能代表自动检索器的查找能力。
+
+该轮 20 题全部完成，9 题以 length 结束，累计逐题耗时 144.6 秒；最长输入 3979 token。严格格式的 4 道计算题为 0 对、2 个错值、2 个格式不符。逐条查看时，HEVC 的数值正确但采用多行 JSON，VVC 同时存在多行格式和错误数值；H.264 和 AV1 都给了可解析的错误整数。不能把格式未通过简单解释成不会计算。
+
+观察到的局部变化：
+
+- HEVC 变换跳过题从否定缩放改为肯定缩放；x265 代码题的整数商从错误的 5 改为 6。
+- VVC 的依赖量化题给出了正确字段 sh_dep_quant_used_flag；源码题也不再给调用点附加非 skip 限制。
+- AV1 lossless 题从编造开关改为列出 qindex 和五个分量 delta 条件，后续解释仍有不准确之处。
+- VVC 划分题仍把四叉树描述成二分；算术错误、无根据的补充和长篇复述仍存在。与无资料简洁提示相比，截断数从 6 增到 9；AV1 计算题也从正确变为错值。
+
+这些观察说明某些错误能通过提供证据纠正，尚不能得出整体质量改善的结论。后续先把资料从整页缩到完整相关条款，保留条件、公式和可追溯定位，再做同预算对照；同时为有符号整数和分支理解准备不同机制的训练候选。切勿把本次评分或错题改写纳入训练。
+
+复跑命令（输出目录需不存在）：
+
+```bash
+python3 scripts/build_dev_contexts.py --output runs/dev-v1-source-contexts-replay
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv-train/bin/python scripts/dev_benchmark.py run \
+  --model-dir models/qwen3-4b-mlx-4bit \
+  --model-id mlx-community/Qwen3-4B-Instruct-2507-4bit \
+  --revision 50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b \
+  --system-prompt-file prompts/dev-concise-system.txt --max-tokens 384 --seed 42 \
+  --contexts runs/dev-v1-source-contexts-replay/contexts.jsonl \
+  --output runs/dev-v1-qwen3-source-assisted-replay
+python3 scripts/dev_benchmark.py score --run-dir runs/dev-v1-qwen3-source-assisted-replay
+```

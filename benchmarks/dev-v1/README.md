@@ -6,6 +6,8 @@
 
 首轮 M4 Pro 基座实验见 [运行过程和结论](../../docs/dev-baseline.md)与[运行记录](records/2026-11-11-m4pro-qwen3-4b.json)。
 
+后续包含 [16 题的非独立 AI 初审](records/2026-11-11-concise-ai-review.json)与[来源辅助对照](records/2026-11-11-source-assisted.json)。前者保留逐点评语，等待独立复核；后者由已知证据定位提供资料，不用于报告自动检索准确率。
+
 - `questions.jsonl`：题目、任务分类、机制分组、证据页或行号与内容哈希。
 - `answer-key.jsonl`：独立参考答案、评分要点，4 道数值题另含可执行参考输入和期望值。
 - `manifest.json`：两份数据的 SHA-256、题量与审核状态。修改题目或评分口径时升版本，不用新文件回填旧成绩。

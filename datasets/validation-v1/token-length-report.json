@@ -1,0 +1,64 @@
+{
+  "report_version": 2,
+  "transformers_version": "5.22.2",
+  "chat_template_options": {
+    "tokenize": true,
+    "add_generation_prompt": false,
+    "return_dict": false
+  },
+  "dataset": "datasets/validation-v1/candidates.jsonl",
+  "dataset_sha256": "d95329e3e1ee03b9d98bf1b6de9f06ae7932c2ad315daedc719b00f46a672c06",
+  "samples": 8,
+  "total_tokens": 1309,
+  "max_tokens": 208,
+  "configured_limit": 2048,
+  "over_limit": [],
+  "per_sample": [
+    {
+      "line": 1,
+      "id": "validation-v1-h264-01",
+      "tokens": 149
+    },
+    {
+      "line": 2,
+      "id": "validation-v1-h264-02",
+      "tokens": 190
+    },
+    {
+      "line": 3,
+      "id": "validation-v1-h265-01",
+      "tokens": 147
+    },
+    {
+      "line": 4,
+      "id": "validation-v1-h265-02",
+      "tokens": 208
+    },
+    {
+      "line": 5,
+      "id": "validation-v1-h266-01",
+      "tokens": 167
+    },
+    {
+      "line": 6,
+      "id": "validation-v1-h266-02",
+      "tokens": 169
+    },
+    {
+      "line": 7,
+      "id": "validation-v1-av1-01",
+      "tokens": 114
+    },
+    {
+      "line": 8,
+      "id": "validation-v1-av1-02",
+      "tokens": 165
+    }
+  ],
+  "tokenizer_files": {
+    "tokenizer_config.json": "4397cc477eb6d79715ccd2000accd6b3531928f30029665832fa1b255f24d2b9",
+    "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541"
+  }
+}

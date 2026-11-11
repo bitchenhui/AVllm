@@ -1,0 +1,104 @@
+{
+  "report_version": 2,
+  "transformers_version": "5.22.2",
+  "chat_template_options": {
+    "tokenize": true,
+    "add_generation_prompt": false,
+    "return_dict": false
+  },
+  "dataset": "datasets/pilot-v1/candidates.jsonl",
+  "dataset_sha256": "3b5e4aaf46c8e89f1f10c313a562d1e2aa3508a0af3a29fe17fe0728fadae625",
+  "samples": 16,
+  "total_tokens": 2883,
+  "max_tokens": 219,
+  "configured_limit": 2048,
+  "over_limit": [],
+  "per_sample": [
+    {
+      "line": 1,
+      "id": "pilot-v1-h264-01",
+      "tokens": 184
+    },
+    {
+      "line": 2,
+      "id": "pilot-v1-h264-02",
+      "tokens": 150
+    },
+    {
+      "line": 3,
+      "id": "pilot-v1-h264-03",
+      "tokens": 184
+    },
+    {
+      "line": 4,
+      "id": "pilot-v1-h264-04",
+      "tokens": 171
+    },
+    {
+      "line": 5,
+      "id": "pilot-v1-h265-01",
+      "tokens": 165
+    },
+    {
+      "line": 6,
+      "id": "pilot-v1-h265-02",
+      "tokens": 170
+    },
+    {
+      "line": 7,
+      "id": "pilot-v1-h265-03",
+      "tokens": 173
+    },
+    {
+      "line": 8,
+      "id": "pilot-v1-h265-04",
+      "tokens": 192
+    },
+    {
+      "line": 9,
+      "id": "pilot-v1-h266-01",
+      "tokens": 172
+    },
+    {
+      "line": 10,
+      "id": "pilot-v1-h266-02",
+      "tokens": 217
+    },
+    {
+      "line": 11,
+      "id": "pilot-v1-h266-03",
+      "tokens": 168
+    },
+    {
+      "line": 12,
+      "id": "pilot-v1-h266-04",
+      "tokens": 219
+    },
+    {
+      "line": 13,
+      "id": "pilot-v1-av1-01",
+      "tokens": 173
+    },
+    {
+      "line": 14,
+      "id": "pilot-v1-av1-02",
+      "tokens": 185
+    },
+    {
+      "line": 15,
+      "id": "pilot-v1-av1-03",
+      "tokens": 209
+    },
+    {
+      "line": 16,
+      "id": "pilot-v1-av1-04",
+      "tokens": 151
+    }
+  ],
+  "tokenizer_files": {
+    "tokenizer_config.json": "4397cc477eb6d79715ccd2000accd6b3531928f30029665832fa1b255f24d2b9",
+    "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541"
+  }
+}

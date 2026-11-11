@@ -1,0 +1,635 @@
+{
+  "status": "provisional_non_independent_ai_review",
+  "reviewer": {
+    "type": "AI",
+    "model": "gpt-6-astra",
+    "independent": false
+  },
+  "date": "2026-11-11",
+  "run_directory": "runs/dev-v1-qwen3-base-m4pro-concise",
+  "predictions_sha256": "4e4508e82e21ee30096fb009b4df6845e4f485b354e5c4deb0a046a99773d833",
+  "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70",
+  "policy": "Evaluate only visible output. A compound criterion requires all essential parts; semantically equivalent wording may pass. Truncated output is not completed by the reviewer. Extra errors are logged separately. Human review pending; not an overall accuracy score.",
+  "items": [
+    {
+      "id": "h264-01",
+      "answer_sha256": "7d38b0f0e665de80439480c3edba866644e243b4919ec982796e10a361ef6f9e",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "指出逆扫描得到二维系数。"
+        },
+        {
+          "id": "p2",
+          "description": "指出缩放与逆变换得到空间残差。"
+        },
+        {
+          "id": "p3",
+          "description": "说明残差加预测，随后进入去块前重建。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "未说明逆扫描。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "说明反量化、反变换恢复残差。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "说明残差与预测相加得到去块前样本。"
+        }
+      ],
+      "error_tags": [
+        "omission",
+        "length_limit"
+      ]
+    },
+    {
+      "id": "h264-03",
+      "answer_sha256": "c7fdcaadbc4f68131bab3cd7bdd23c3a56f4dfc2663436e8d4d76f139274db60",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "返回 1，并说明非零标志而非计数。"
+        },
+        {
+          "id": "p2",
+          "description": "指出量化后的系数原地保存在 dct。"
+        },
+        {
+          "id": "p3",
+          "description": "解释位或和双重逻辑非的作用。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "给出1并否定计数语义。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "说明结果在dct[i]。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未解释位或与双重逻辑非。"
+        }
+      ],
+      "error_tags": [
+        "omission"
+      ]
+    },
+    {
+      "id": "h264-04",
+      "answer_sha256": "6ee8b04be3837ce0dcd1e93af98f944c7a68c92778a418d5c7ad1ba0da85ea41",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "0 选左侧，并区分 Exp-Golomb/CAVLC。"
+        },
+        {
+          "id": "p2",
+          "description": "1 选右侧 CABAC。"
+        },
+        {
+          "id": "p3",
+          "description": "说明适用范围仅限双描述符语法元素。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "遗漏Exp-Golomb，把左侧统称CAVLC。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确把flag=1对应到CABAC，按语义对应给分。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "在双描述符范围内讨论选择；后文泛化措辞需人工复核。"
+        }
+      ],
+      "error_tags": [
+        "terminology",
+        "scope_ambiguity"
+      ]
+    },
+    {
+      "id": "h264-05",
+      "answer_sha256": "49d23c3df2f62437a29259fc28efee7c40e8a48e689fe2fa0bff1a3c0a516521",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "明确当前证据不足，截图也受输出/显示流程影响。"
+        },
+        {
+          "id": "p2",
+          "description": "提出先对齐并比较原始解码样本。"
+        },
+        {
+          "id": "p3",
+          "description": "指出通过首个差异块分段检查预测、残差和滤波。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "指出证据不足，但遗漏输出/显示流程影响。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "先比较截图，未要求对齐原始解码样本。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未提出从首个差异块分离预测、残差及滤波。"
+        }
+      ],
+      "error_tags": [
+        "missing_conditions",
+        "diagnostic_order"
+      ]
+    },
+    {
+      "id": "h265-01",
+      "answer_sha256": "0c487f036f3d239f41ca831fc724f98157fe7bb60da02298838044c903e639fe",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "说明非 bypass 的题设下仍执行系数缩放。"
+        },
+        {
+          "id": "p2",
+          "description": "说明跳过通常的逆变换。"
+        },
+        {
+          "id": "p3",
+          "description": "指出有专用残差派生规则，区分 transquant bypass。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "错误否定系数缩放。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确否定通常逆变换。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未区分专用残差派生与transquant bypass。"
+        }
+      ],
+      "error_tags": [
+        "algorithm_condition"
+      ]
+    },
+    {
+      "id": "h265-03",
+      "answer_sha256": "f3b7c77dd0b4ec09935449c2eb44ddd87fdd0ee7b6f243429539879e3936e956",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "得到 rem=1、per=6。"
+        },
+        {
+          "id": "p2",
+          "description": "指出重复 qpScaled 命中缓存，跳过重算。"
+        },
+        {
+          "id": "p3",
+          "description": "指出 lambda 索引使用扣除位深偏移并夹紧的 qp，而非 rem。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "per=5错误，应为6。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确给出重复调用不重算。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "仅否定rem，未说明位深偏移和夹紧后的索引。"
+        }
+      ],
+      "error_tags": [
+        "arithmetic",
+        "omission"
+      ]
+    },
+    {
+      "id": "h265-04",
+      "answer_sha256": "f247c62056c4fcc26b2833770e40210332fd656cf1db6b6ec130ea408c94eade",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "区分去块和 SAO，说明并非同义。"
+        },
+        {
+          "id": "p2",
+          "description": "指出两者应用时先去块后 SAO。"
+        },
+        {
+          "id": "p3",
+          "description": "指出去块后重建样本流入 SAO，SAO 执行样本偏移。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "正确区分两种滤波。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "顺序表述反复冲突，截断前无稳定完整说明。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未清楚给出去块后样本进入SAO的关系。"
+        }
+      ],
+      "error_tags": [
+        "contradiction",
+        "length_limit"
+      ]
+    },
+    {
+      "id": "h265-05",
+      "answer_sha256": "af18eb80fd3f90f8f2963fdb3a62414f1b8457f85a5137c6c3f7366ade93d872",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "指出日志 QP 层级未知，不能推广到全部块/分量。"
+        },
+        {
+          "id": "p2",
+          "description": "说明需确认目标块的亮度 QP 派生及位深偏移。"
+        },
+        {
+          "id": "p3",
+          "description": "说明色度要考虑映射与各层有效偏移。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "正确指出QP层级未知。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "未说明位深偏移及目标块QP派生。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未说明色度映射与有效偏移。"
+        }
+      ],
+      "error_tags": [
+        "missing_conditions"
+      ]
+    },
+    {
+      "id": "h266-01",
+      "answer_sha256": "f9e62d6707b34cf263c3bdaa5720c559389e5c766269f98309e5bb5445a0e991",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "说明四叉树叶节点与 MTT 根的关系。"
+        },
+        {
+          "id": "p2",
+          "description": "列出水平/垂直二叉及三叉。"
+        },
+        {
+          "id": "p3",
+          "description": "指出划分取决于允许条件，而非强制再次四叉。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "未说明QT叶节点作为MTT根。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "把块尺寸甚至6x6当成划分类型。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未说明合法划分约束。"
+        }
+      ],
+      "error_tags": [
+        "fabricated_detail",
+        "length_limit"
+      ]
+    },
+    {
+      "id": "h266-03",
+      "answer_sha256": "564050d21254e45e264a8d32ec4fc18f2b765c0e61ffd7dcf93cbe947af7923b",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "描述反量化在先，随后才选择跳过/普通逆变换。"
+        },
+        {
+          "id": "p2",
+          "description": "区分调用 xInvLfnst 与实际应用 LFNST。"
+        },
+        {
+          "id": "p3",
+          "description": "说明 transform skip 不跳过这段代码的 xDeQuant。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "保留先反量化再选skip/普通逆变换的主顺序。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "给调用点添加非skip限制，混淆调用与内部生效。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "正确说明skip不跳过题设中的xDeQuant。"
+        }
+      ],
+      "error_tags": [
+        "control_flow",
+        "length_limit"
+      ]
+    },
+    {
+      "id": "h266-04",
+      "answer_sha256": "75e3bfb9400d33d7cbf55d6d9879be53883fd141a49de60e21fb5e390b7c223c",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "说明 SPS 的 ALF 和 SAO 是独立开关。"
+        },
+        {
+          "id": "p2",
+          "description": "正确解读 CLVS 的两个已给定状态。"
+        },
+        {
+          "id": "p3",
+          "description": "区分序列级启用与每块实际作用。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "正确区分独立开关。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确理解ALF禁用、SAO序列允许。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "正确区分允许与每块实际修改。"
+        }
+      ],
+      "error_tags": [
+        "terminology"
+      ]
+    },
+    {
+      "id": "h266-05",
+      "answer_sha256": "6321d0e63ed568d33ded3324a747f83e7fbe82caf9f421a70df44d9883fe8eef",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "区分 CLVS 启用和 slice 实际使用。"
+        },
+        {
+          "id": "p2",
+          "description": "准确给出 sh_dep_quant_used_flag。"
+        },
+        {
+          "id": "p3",
+          "description": "指出缺省推断为 0。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "正确区分SPS允许和slice使用。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "编造slice_dep_quant_enabled_flag，正确名称是sh_dep_quant_used_flag。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "表达缺省不使用，按行为语义给分；名称错误在p2扣分。"
+        }
+      ],
+      "error_tags": [
+        "fabricated_identifier"
+      ]
+    },
+    {
+      "id": "av1-01",
+      "answer_sha256": "ce5175bcf3ba8a0bf9ae93ea1da58c0a06b4cf3815f2625ceed00e70ce4797fc",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "说明使用 segment 派生 qindex，而非仅 base_q_idx。"
+        },
+        {
+          "id": "p2",
+          "description": "要求 qindex=0 且五个相关 delta 均为 0。"
+        },
+        {
+          "id": "p3",
+          "description": "说明 segment 调整与分量 delta 可改变判定。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "用虚构的segment_lossless_flag替代派生qindex。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "未给出qindex和五个delta条件。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未解释segment调整和分量delta。"
+        }
+      ],
+      "error_tags": [
+        "fabricated_identifier",
+        "fabricated_citation",
+        "length_limit"
+      ]
+    },
+    {
+      "id": "av1-03",
+      "answer_sha256": "f52115d96d1e025d7c111a53bdf06048f96b8592ade35fd6db94929451a294c6",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "生效分支得 255，并说明先加后夹紧。"
+        },
+        {
+          "id": "p2",
+          "description": "不生效分支返回 248。"
+        },
+        {
+          "id": "p3",
+          "description": "说明未在不生效分支再次夹紧。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 0,
+          "reason": "给出255，但未说明先加后夹紧的完整步骤。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确给出248。"
+        },
+        {
+          "id": "p3",
+          "rating": 1,
+          "reason": "正确限定夹紧在feature生效分支。"
+        }
+      ],
+      "error_tags": [
+        "omission"
+      ]
+    },
+    {
+      "id": "av1-04",
+      "answer_sha256": "9a0f6935378835d86e5469de0f0d7dd1814f9c84cdab12cb610e4a913eebab60",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "指出 CDEF 禁用、环路恢复仅被允许。"
+        },
+        {
+          "id": "p2",
+          "description": "否定两工具同开同关。"
+        },
+        {
+          "id": "p3",
+          "description": "说明需看实际 plane 类型或恢复参数，不能推断所有平面均修改。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "序列开关已启用与后文按plane应用结合，按允许语义给分。"
+        },
+        {
+          "id": "p2",
+          "rating": 1,
+          "reason": "正确否定同开同关。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未指出还需实际plane类型或恢复参数。"
+        }
+      ],
+      "error_tags": [
+        "missing_conditions"
+      ]
+    },
+    {
+      "id": "av1-05",
+      "answer_sha256": "5b8f914db8df9c4285d15d76f5090149829f0184019e42599ef3a5ae3b967708",
+      "rubric": [
+        {
+          "id": "p1",
+          "description": "指出两字段不同，不能从同一个数字推断等质量。"
+        },
+        {
+          "id": "p2",
+          "description": "控制同一源、位深、格式、帧对齐等实验条件。"
+        },
+        {
+          "id": "p3",
+          "description": "在多点率失真曲线上按相同质量指标比较码率。"
+        }
+      ],
+      "points": [
+        {
+          "id": "p1",
+          "rating": 1,
+          "reason": "指出字段不同、不能推断等质量。"
+        },
+        {
+          "id": "p2",
+          "rating": 0,
+          "reason": "未完整控制位深、格式及帧对齐。"
+        },
+        {
+          "id": "p3",
+          "rating": 0,
+          "reason": "未说明多点率失真曲线与可比质量区间。"
+        }
+      ],
+      "error_tags": [
+        "missing_conditions",
+        "length_limit"
+      ]
+    }
+  ],
+  "points_awarded": 22,
+  "points_possible": 48
+}

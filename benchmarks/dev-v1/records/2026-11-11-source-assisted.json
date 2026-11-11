@@ -1,0 +1,604 @@
+{
+  "date": "2026-11-11",
+  "experiment": "source_assisted_reading_control",
+  "method": "oracle_evidence_locators_from_dev_questions",
+  "comparison_run": "runs/dev-v1-qwen3-base-m4pro-concise",
+  "run": "runs/dev-v1-qwen3-source-assisted",
+  "run_manifest": {
+    "status": "completed",
+    "benchmark": "dev-v1",
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "condition": "B",
+    "declared_model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "declared_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "model_file_sha256": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "avllm-model-revision.json": "7299a2736d758ac95a58ebb5db6d489c596993a948bc16b1cbab4d0a5c13a7c7",
+      "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+      "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+      "generation_config.json": "835fffe355c9438e7a25be099b3fccaa98350b83451f9fd2d99512e74f1ade48",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+      "model.safetensors.index.json": "388d811b8b7c2608dd04cce1bcb04a8bf715d19b42790894e6d3427ff429a777",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "4397cc477eb6d79715ccd2000accd6b3531928f30029665832fa1b255f24d2b9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "adapter_file_sha256": {},
+    "contexts_sha256": "4c172eec5b95e7578204d729e5008b5904a0799c4814196e7f3d715fc5a2e672",
+    "system_prompt": "你是视频编解码算法助手。按题设回答，区分标准语义与源码实现；证据不足时指出缺少的条件。先给结论，再简要说明关键依据，不复述题面。严格遵守题面要求的输出格式；若要求整数 JSON，填写求值后的整数。",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 384,
+    "mlx_lm_version": "0.32.2",
+    "platform": "macOS-26.0-arm64-arm-64bit",
+    "predictions_sha256": "f93fe23d098f4a2e787edcfd81ecd23b4fbc2bfebec8e12d12ce02faa4046c40"
+  },
+  "source_context_manifest": {
+    "method": "oracle_evidence_locators_from_dev_questions",
+    "note": "Source-assisted reading control; not end-to-end retrieval quality. No answer key loaded.",
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "contexts_sha256": "4c172eec5b95e7578204d729e5008b5904a0799c4814196e7f3d715fc5a2e672",
+    "source_lock_sha256": "1f7294091abc3ae3ebee5f91afea9568622fc53b0c105e42902e64918bd34b36",
+    "source_locators_verified": 27,
+    "items": [
+      {
+        "id": "h264-01",
+        "evidence": [
+          {
+            "source_id": "h264-spec",
+            "source_revision": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+            "locator": {
+              "type": "pdf_page",
+              "page": 203
+            },
+            "snippet_sha256": "ece124214bcb3648c8fd5d87d5cde85513a8321fb543e04fed8d1ec1ff4b3b9d"
+          }
+        ]
+      },
+      {
+        "id": "h264-02",
+        "evidence": [
+          {
+            "source_id": "h264-spec",
+            "source_revision": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+            "locator": {
+              "type": "pdf_page",
+              "page": 119
+            },
+            "snippet_sha256": "1efcf07efb03ee6238176479f5c5f95a23b0caec58432439e35c92fdb6dc3feb"
+          }
+        ]
+      },
+      {
+        "id": "h264-03",
+        "evidence": [
+          {
+            "source_id": "x264-code",
+            "source_revision": "0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee",
+            "locator": {
+              "type": "file_lines",
+              "path": "common/quant.c",
+              "start": 48,
+              "end": 73
+            },
+            "snippet_sha256": "d9e925dc311e1039380682889eda7e38be20fbf156b092d8874916f896237dd6"
+          }
+        ]
+      },
+      {
+        "id": "h264-04",
+        "evidence": [
+          {
+            "source_id": "h264-spec",
+            "source_revision": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+            "locator": {
+              "type": "pdf_page",
+              "page": 109
+            },
+            "snippet_sha256": "7fca8cae9a9d6f524de438a01b9a8324f937adb3af32b0f29ae8d39bdbd64696"
+          }
+        ]
+      },
+      {
+        "id": "h264-05",
+        "evidence": [
+          {
+            "source_id": "h264-spec",
+            "source_revision": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+            "locator": {
+              "type": "pdf_page",
+              "page": 203
+            },
+            "snippet_sha256": "ece124214bcb3648c8fd5d87d5cde85513a8321fb543e04fed8d1ec1ff4b3b9d"
+          },
+          {
+            "source_id": "h264-spec",
+            "source_revision": "028cf2cfefd6083ced98d3acb0b586d9328e1631c13d6f21057ad54c569b1b79",
+            "locator": {
+              "type": "pdf_page",
+              "page": 204
+            },
+            "snippet_sha256": "090fd254c03b1dd7689682fe0b70f723b3bc38cee755faf2ee44efca0824d693"
+          }
+        ]
+      },
+      {
+        "id": "h265-01",
+        "evidence": [
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 194
+            },
+            "snippet_sha256": "eaa2a3a35d863a8ec0bc782b33218af39ae93eb9dabc5574f9b83d3128137e53"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 195
+            },
+            "snippet_sha256": "0c2ec2e3c0a8530d1dc0ffd8487323aa93deabbeb2845b367eb17a294be7590c"
+          }
+        ]
+      },
+      {
+        "id": "h265-02",
+        "evidence": [
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 94
+            },
+            "snippet_sha256": "66e9f0f571f95ab5ceaa715057d9f49ca8096faf99e7a5e3f1a689f1ade0aa39"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 117
+            },
+            "snippet_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778"
+          }
+        ]
+      },
+      {
+        "id": "h265-03",
+        "evidence": [
+          {
+            "source_id": "x265-code",
+            "source_revision": "9bb47b765b438f136364848fd4592fc692a8cf77",
+            "locator": {
+              "type": "file_lines",
+              "path": "source/common/quant.h",
+              "start": 50,
+              "end": 62
+            },
+            "snippet_sha256": "eec175af173730d45f6916899d8986f6eae25c03642e3299c889b8961e36f58d"
+          }
+        ]
+      },
+      {
+        "id": "h265-04",
+        "evidence": [
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 202
+            },
+            "snippet_sha256": "5fd774eb4ae906255d806de3ce36162b3ddafc0935eadae0cf71b1fe5a9f2919"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 216
+            },
+            "snippet_sha256": "42c04432b61126cff731636f917ded22e07ea0b0d18acfe030ccde31757a2b97"
+          }
+        ]
+      },
+      {
+        "id": "h265-05",
+        "evidence": [
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 117
+            },
+            "snippet_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 193
+            },
+            "snippet_sha256": "5e09b2d5ee94ec006a68fcfa0a11e1bce1f5e84dc914d6ed28e60a6c3598c597"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 194
+            },
+            "snippet_sha256": "eaa2a3a35d863a8ec0bc782b33218af39ae93eb9dabc5574f9b83d3128137e53"
+          }
+        ]
+      },
+      {
+        "id": "h266-01",
+        "evidence": [
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 38
+            },
+            "snippet_sha256": "c7dac3161c2183951a1bd930615855130f931d60f3363374cd1827b6a1c2f4f9"
+          },
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 39
+            },
+            "snippet_sha256": "0c4d53fc55670a66b15499f2f04593da04f215956b29726e423504251364bccd"
+          }
+        ]
+      },
+      {
+        "id": "h266-02",
+        "evidence": [
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 341
+            },
+            "snippet_sha256": "6adc559a48397665d83170652d856b73278115aa6a3b896287eb8acc072349ad"
+          }
+        ]
+      },
+      {
+        "id": "h266-03",
+        "evidence": [
+          {
+            "source_id": "vtm-code",
+            "source_revision": "010584cf75dd0b61bd6295d7eacf20975094aac4",
+            "locator": {
+              "type": "file_lines",
+              "path": "source/Lib/CommonLib/TrQuant.cpp",
+              "start": 546,
+              "end": 573
+            },
+            "snippet_sha256": "d4629e0bfc8ee8075d5575504ad305ec7d2779f3dfd9d65381bb2fac83323671"
+          }
+        ]
+      },
+      {
+        "id": "h266-04",
+        "evidence": [
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 127
+            },
+            "snippet_sha256": "8807cba5b069c6496d007cc7e3cd7581dcda8929cf6bcafd78aea05e04094553"
+          }
+        ]
+      },
+      {
+        "id": "h266-05",
+        "evidence": [
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 131
+            },
+            "snippet_sha256": "376b59656e780997518b8bd883c2c2d52d66180c31e7c72e3afb6aa74ded5bed"
+          },
+          {
+            "source_id": "h266-spec",
+            "source_revision": "ec728a475ffbf741f530bc9bca2422092dc7cbc60ebac5f72807c202c8740f25",
+            "locator": {
+              "type": "pdf_page",
+              "page": 174
+            },
+            "snippet_sha256": "0f8cdaad469beb18609c043065fdcd123d118b68d0b76b642c27fc62f06ec862"
+          }
+        ]
+      },
+      {
+        "id": "av1-01",
+        "evidence": [
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 54
+            },
+            "snippet_sha256": "6090aa4ad7f7aa0e85a61ed06af9dddd1a4591e338377c5158ac39d3c6068a73"
+          },
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 175
+            },
+            "snippet_sha256": "358bce5ac138bbad54b8b428292fc3d61b80f1438a88a4ed604e23d824226a44"
+          }
+        ]
+      },
+      {
+        "id": "av1-02",
+        "evidence": [
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 63
+            },
+            "snippet_sha256": "3fe9bfc1d84b0682253d07a7480c98ebe0fdb4b5c32e1f2eb54756016d35ec5d"
+          }
+        ]
+      },
+      {
+        "id": "av1-03",
+        "evidence": [
+          {
+            "source_id": "libaom-code",
+            "source_revision": "8a1038536cde81c548341145f40d6dfddc3077d6",
+            "locator": {
+              "type": "file_lines",
+              "path": "av1/common/quant_common.c",
+              "start": 222,
+              "end": 231
+            },
+            "snippet_sha256": "59783f6561fe3db2ce30206141270835d642f5004738bc54bd9966cc7ce8336b"
+          },
+          {
+            "source_id": "libaom-code",
+            "source_revision": "8a1038536cde81c548341145f40d6dfddc3077d6",
+            "locator": {
+              "type": "file_lines",
+              "path": "av1/common/quant_common.h",
+              "start": 24,
+              "end": 28
+            },
+            "snippet_sha256": "e83d67ccf8aee5e4409ff7f50fecef6f589a9f84ef41cd09c3b1acc9ed82170e"
+          }
+        ]
+      },
+      {
+        "id": "av1-04",
+        "evidence": [
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 128
+            },
+            "snippet_sha256": "f6d4a1f5bd651fc0b2bfaa88cd36d135a9fc6c401099fbf5df8eb503f8a066d7"
+          },
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 189
+            },
+            "snippet_sha256": "0a473b5b2796af2598b1fc6ff822817e2e021b1699a26a38f9b98461dc5a9862"
+          }
+        ]
+      },
+      {
+        "id": "av1-05",
+        "evidence": [
+          {
+            "source_id": "av1-spec-pdf",
+            "source_revision": "ec44e9fc42c4e5851faa879a1818dcb9014d834bbdd9420ccca7dcea05a3abe9",
+            "locator": {
+              "type": "pdf_page",
+              "page": 175
+            },
+            "snippet_sha256": "358bce5ac138bbad54b8b428292fc3d61b80f1438a88a4ed604e23d824226a44"
+          },
+          {
+            "source_id": "h265-spec",
+            "source_revision": "78b093480e178a2b99d8cb7499934240f359c50c6d09568f8be651bc1151d4d2",
+            "locator": {
+              "type": "pdf_page",
+              "page": 117
+            },
+            "snippet_sha256": "2d20eb4e64476748add12b5440d5b96daf4d2fba4633fadd79e3e1cccbc5f778"
+          }
+        ]
+      }
+    ]
+  },
+  "scores": {
+    "benchmark": "dev-v1",
+    "questions_sha256": "bcb980b170fffc9651be420fcc956005e93b5b5fd5864e1fd59f79a187524fc2",
+    "predictions_sha256": "f93fe23d098f4a2e787edcfd81ecd23b4fbc2bfebec8e12d12ce02faa4046c40",
+    "answer_key_sha256": "8c670c69db6aeec0179693fc10597b149ae6a2846b0c1ee8979d8a44d673fa70",
+    "by_codec": {
+      "h264": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 12,
+        "hit_generation_limit": 3,
+        "numeric_incorrect": 1
+      },
+      "h265": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 12,
+        "hit_generation_limit": 2,
+        "numeric_unparseable": 1
+      },
+      "h266": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 12,
+        "hit_generation_limit": 2,
+        "numeric_unparseable": 1
+      },
+      "av1": {
+        "manual_points": 0,
+        "manual_points_graded": 0,
+        "manual_points_possible": 12,
+        "hit_generation_limit": 2,
+        "numeric_incorrect": 1
+      }
+    },
+    "overall": {
+      "manual_points": 0,
+      "manual_points_graded": 0,
+      "manual_points_possible": 48,
+      "hit_generation_limit": 9,
+      "numeric_incorrect": 2,
+      "numeric_unparseable": 2
+    },
+    "items": {
+      "h264-01": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h264-02": {
+        "numeric": "incorrect"
+      },
+      "h264-03": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "h264-04": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h264-05": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h265-01": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h265-02": {
+        "numeric": "unparseable"
+      },
+      "h265-03": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "h265-04": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "h265-05": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h266-01": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h266-02": {
+        "numeric": "unparseable"
+      },
+      "h266-03": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "h266-04": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "h266-05": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "av1-01": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      },
+      "av1-02": {
+        "numeric": "incorrect"
+      },
+      "av1-03": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "av1-04": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3
+      },
+      "av1-05": {
+        "manual_points": 0,
+        "points_graded": 0,
+        "points_possible": 3,
+        "hit_generation_limit": true
+      }
+    }
+  },
+  "question_seconds_total": 144.6424,
+  "input_tokens_total": 33550,
+  "input_tokens_max": 3979,
+  "generation_tokens_total": 4623,
+  "human_review_status": "pending",
+  "limitations": [
+    "Question evidence locators select relevant sources; this is not an end-to-end retrieval benchmark.",
+    "Full source pages are used without context length optimization.",
+    "Output budget is fixed to 384 tokens; longer source inputs can increase truncation.",
+    "Non-numeric scores are not yet independently assessed."
+  ]
+}
