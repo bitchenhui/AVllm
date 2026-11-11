@@ -1,0 +1,70 @@
+.gitignore
+  h_bc262c8ac47a2c 15
+README.md
+  h_bc262c8ac47a2c 9,12,26-29,35,37,64,72
+benchmarks/dev-v1/README.md
+  h_bc262c8ac47a2c 7-8,43-44
+benchmarks/dev-v1/records/2026-11-11-m4pro-qwen3-4b-requirements.txt
+  h_bc262c8ac47a2c 1-39
+benchmarks/dev-v1/records/2026-11-11-m4pro-qwen3-4b.json
+  h_bc262c8ac47a2c 1-191
+benchmarks/holdout-v1/README.md
+  h_bc262c8ac47a2c 1-13
+benchmarks/holdout-v1/manifest.json
+  h_bc262c8ac47a2c 1-21
+configs/holdout-groups.json
+  h_bc262c8ac47a2c 3-14,16
+datasets/validation-v1/README.md
+  h_bc262c8ac47a2c 1-18
+datasets/validation-v1/candidates.jsonl
+  h_bc262c8ac47a2c 1-8
+datasets/validation-v1/numeric-cases.json
+  h_bc262c8ac47a2c 1-66
+datasets/validation-v1/verification-report.json
+  h_bc262c8ac47a2c 1-39
+docs/data-pipeline.md
+  h_bc262c8ac47a2c 13,46,54
+docs/dev-baseline.md
+  h_bc262c8ac47a2c 1-66
+docs/evaluation.md
+  h_bc262c8ac47a2c 3
+docs/mac-training.md
+  h_bc262c8ac47a2c 18,24
+docs/next-steps.md
+  h_bc262c8ac47a2c 3,16-18
+docs/standards-watch.md
+  h_bc262c8ac47a2c 1-14
+prompts/dev-concise-system.txt
+  h_bc262c8ac47a2c 1
+prompts/generate.md
+  h_bc262c8ac47a2c 11
+scripts/avllm_data.py
+  h_bc262c8ac47a2c 30-48
+scripts/dev_benchmark.py
+  h_bc262c8ac47a2c 156-158,177,192,318
+scripts/make_packet.py
+  h_bc262c8ac47a2c 6,35,39
+scripts/prepare_training.py
+  h_bc262c8ac47a2c 8,19,29-30,38,65
+scripts/verify_holdout_draft.py
+  h_bc262c8ac47a2c 1-105
+scripts/verify_pilot_batch.py
+  h_bc262c8ac47a2c 10,95,109
+scripts/verify_validation_batch.py
+  h_bc262c8ac47a2c 1-120
+tests/test_data_guards.py
+  h_bc262c8ac47a2c 115-117,124-125,135,138-149
+tests/test_dev_benchmark.py
+  h_bc262c8ac47a2c 40-41,45,58-59,70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e259e2f243e660c76c0954949c9dbe90b651b879",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
