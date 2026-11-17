@@ -1,0 +1,44 @@
+benchmarks/dev-v1/README.md
+  h_bc262c8ac47a2c 11-12
+benchmarks/dev-v1/records/2026-11-17-blind-ai-review.json
+  h_bc262c8ac47a2c 1-670
+benchmarks/holdout-v2/README.md
+  h_bc262c8ac47a2c 1-33
+benchmarks/holdout-v2/manifest.json
+  h_bc262c8ac47a2c 1-25
+configs/holdout-groups.json
+  h_bc262c8ac47a2c 7-11
+docs/acceptance-2026-11-17.md
+  h_bc262c8ac47a2c 1-21
+docs/evaluation.md
+  h_bc262c8ac47a2c 3
+docs/next-steps.md
+  h_bc262c8ac47a2c 5-6
+docs/records/2026-11-17-holdout-v2-acceptance.json
+  h_bc262c8ac47a2c 1-517
+scripts/blind_review.py
+  h_bc262c8ac47a2c 1-100
+scripts/dev_benchmark.py
+  h_bc262c8ac47a2c 139-140,160-162,185-187,198-200,202-225,227-228,341-342
+scripts/local_calculator.py
+  h_bc262c8ac47a2c 1-57
+scripts/retrieve_acceptance_context.py
+  h_bc262c8ac47a2c 1-101
+scripts/score_acceptance.py
+  h_bc262c8ac47a2c 1-127
+scripts/verify_acceptance.py
+  h_bc262c8ac47a2c 1-129
+tests/test_acceptance_tools.py
+  h_bc262c8ac47a2c 1-49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a53908523a9a3944738f66cc9b402bab7d934745",
+  "prompts": {},
+  "humans": {
+    "h_bc262c8ac47a2c": {
+      "author": "bitchenhui <13261281092@163.com>"
+    }
+  }
+}
