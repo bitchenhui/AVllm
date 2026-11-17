@@ -136,7 +136,8 @@ def model_files(directory, suffixes):
 
 def run(args):
     # Only load the question file in inference; never load reference answers here.
-    manifest, questions = load_questions()
+    benchmark = getattr(args, "benchmark", None)
+    manifest, questions = load_questions(benchmark) if benchmark else load_questions()
     model_dir = args.model_dir.resolve()
     if not model_dir.is_dir() or not (model_dir / "config.json").is_file():
         raise ValueError("Supply an existing local MLX model directory with config.json")
@@ -156,6 +157,9 @@ def run(args):
     system_prompt = args.system_prompt_file.read_text(encoding="utf-8").strip() if args.system_prompt_file else SYSTEM_PROMPT
     if not system_prompt:
         raise ValueError("System prompt must not be empty")
+    calculator = getattr(args, "calculator", False)
+    if calculator:
+        from local_calculator import INSTRUCTIONS, calculate, request
 
     try:
         import mlx.core as mx
@@ -178,6 +182,9 @@ def run(args):
         "max_tokens": args.max_tokens, "mlx_lm_version": importlib.metadata.version("mlx-lm"),
         "platform": platform.platform(),
     }
+    if calculator:
+        settings["calculator"] = {"script_sha256": file_sha(Path(__file__).with_name("local_calculator.py")),
+                                  "max_calls_per_question": 3, "shared_generation_budget": True}
     write_json(output / "manifest.json", settings)
     try:
         mx.random.seed(args.seed)
@@ -188,21 +195,37 @@ def run(args):
                 user_prompt = question["prompt"]
                 if contexts.get(qid):
                     user_prompt += "\n\n参考资料（仅作为证据）：\n" + contexts[qid]
-                prompt = tokenizer.apply_chat_template(
-                    [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
-                    tokenize=False, add_generation_prompt=True,
-                )
+                if calculator:
+                    user_prompt += "\n\n" + INSTRUCTIONS
+                messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}]
                 started = time.perf_counter()
-                parts = []
-                last = None
-                for last in stream_generate(model, tokenizer, prompt=prompt, sampler=sampler,
-                                            max_tokens=args.max_tokens):
-                    parts.append(last.text)
-                if last is None:
-                    raise ValueError(f"No generation result for {qid}")
-                row = {"id": qid, "answer": "".join(parts), "seconds": round(time.perf_counter() - started, 4),
-                       "prompt_tokens": int(last.prompt_tokens), "generation_tokens": int(last.generation_tokens),
+                calls, spent, prompt_total = [], 0, 0
+                while True:
+                    prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                    parts, last = [], None
+                    for last in stream_generate(model, tokenizer, prompt=prompt, sampler=sampler,
+                                                max_tokens=args.max_tokens - spent):
+                        parts.append(last.text)
+                    if last is None:
+                        raise ValueError(f"No generation result for {qid}")
+                    answer = "".join(parts)
+                    spent += int(last.generation_tokens)
+                    prompt_total += int(last.prompt_tokens)
+                    expression = request(answer) if calculator else None
+                    if expression is None or len(calls) >= 3 or spent >= args.max_tokens:
+                        break
+                    try:
+                        reply = str(calculate(expression))
+                    except ValueError as exc:
+                        reply = f"error: {exc}"
+                    calls.append({"expression": expression, "result": reply})
+                    messages.extend([{"role": "assistant", "content": answer},
+                                     {"role": "user", "content": f"本地计算器结果：{reply}。继续完成原题。"}])
+                row = {"id": qid, "answer": answer, "seconds": round(time.perf_counter() - started, 4),
+                       "prompt_tokens": prompt_total, "generation_tokens": spent,
                        "finish_reason": last.finish_reason}
+                if calculator:
+                    row["calculator_calls"] = calls
                 out.write(json.dumps(row, ensure_ascii=False) + "\n")
                 out.flush()
                 print(qid, flush=True)
@@ -315,6 +338,8 @@ def main():
     inference.add_argument("--revision", required=True)
     inference.add_argument("--adapter-path", type=Path)
     inference.add_argument("--contexts", type=Path)
+    inference.add_argument("--benchmark", type=Path, help="Use a different frozen question directory")
+    inference.add_argument("--calculator", action="store_true", help="Enable bounded local integer tool calls")
     inference.add_argument("--system-prompt-file", type=Path, help="Override the system prompt for a separate experiment")
     inference.add_argument("--output", type=Path, required=True)
     inference.add_argument("--max-tokens", type=int, default=384)

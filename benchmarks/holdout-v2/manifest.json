@@ -1,0 +1,25 @@
+{
+  "version": "holdout-v2",
+  "status": "frozen_pilot_not_independently_human_reviewed",
+  "question_count": 24,
+  "codec_counts": {
+    "h264": 6,
+    "h265": 6,
+    "h266": 6,
+    "av1": 6
+  },
+  "numeric_count": 16,
+  "source_locators_verified": 20,
+  "groups": [
+    "av1-primary-reference-cdf-family",
+    "av1-tile-group-payload-size-family",
+    "avc-frame-num-gap-dpb-family",
+    "avc-scaling-list-recurrence-family",
+    "hevc-cabac-context-initialization-family",
+    "hevc-weighted-sample-prediction-family",
+    "vvc-amvr-mvd-precision-family",
+    "vvc-virtual-boundary-positions-family"
+  ],
+  "questions_sha256": "6882d0212b676393d3cdda6f57fe187da8da8374ecdb13d920a769b474142af5",
+  "answer_key_sha256": "fc20adff0da35b055ffec35aaf1ae5b17ce041b03c397c0cc4f9f1c2b3280043"
+}

@@ -1,0 +1,517 @@
+{
+  "benchmark": {
+    "version": "holdout-v2",
+    "status": "frozen_pilot_not_independently_human_reviewed",
+    "question_count": 24,
+    "codec_counts": {
+      "h264": 6,
+      "h265": 6,
+      "h266": 6,
+      "av1": 6
+    },
+    "numeric_count": 16,
+    "source_locators_verified": 20,
+    "groups": [
+      "av1-primary-reference-cdf-family",
+      "av1-tile-group-payload-size-family",
+      "avc-frame-num-gap-dpb-family",
+      "avc-scaling-list-recurrence-family",
+      "hevc-cabac-context-initialization-family",
+      "hevc-weighted-sample-prediction-family",
+      "vvc-amvr-mvd-precision-family",
+      "vvc-virtual-boundary-positions-family"
+    ],
+    "questions_sha256": "6882d0212b676393d3cdda6f57fe187da8da8374ecdb13d920a769b474142af5",
+    "answer_key_sha256": "fc20adff0da35b055ffec35aaf1ae5b17ce041b03c397c0cc4f9f1c2b3280043"
+  },
+  "paired_controls": {
+    "status": "completed",
+    "benchmark": "holdout-v2",
+    "questions_sha256": "6882d0212b676393d3cdda6f57fe187da8da8374ecdb13d920a769b474142af5",
+    "declared_model_id": "mlx-community/Qwen3-4B-Instruct-2507-4bit",
+    "declared_revision": "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
+    "model_file_sha256": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "avllm-model-revision.json": "7299a2736d758ac95a58ebb5db6d489c596993a948bc16b1cbab4d0a5c13a7c7",
+      "chat_template.jinja": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+      "config.json": "574349e5a343236546fda55e4744a76e181f534182d7dc60ff1bad7e7a502849",
+      "generation_config.json": "835fffe355c9438e7a25be099b3fccaa98350b83451f9fd2d99512e74f1ade48",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "2a73c6c248601ab904e035548abd8e6abb65ea27dcb5f342fb0a8910eb44173f",
+      "model.safetensors.index.json": "388d811b8b7c2608dd04cce1bcb04a8bf715d19b42790894e6d3427ff429a777",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "4397cc477eb6d79715ccd2000accd6b3531928f30029665832fa1b255f24d2b9",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "system_prompt": "你是视频编解码算法助手。按题设回答，区分标准语义与源码实现；证据不足时指出缺少的条件。先给结论，再简要说明关键依据，不复述题面。严格遵守题面要求的输出格式；若要求整数 JSON，填写求值后的整数。",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 384,
+    "mlx_lm_version": "0.32.2",
+    "platform": "macOS-26.0-arm64-arm-64bit"
+  },
+  "calculator": {
+    "script_sha256": "b109067cf1cc81f557cfccd429d61c7fd8b0b5020c9cf3b3185717419a5d17c9",
+    "max_calls_per_question": 3,
+    "shared_generation_budget": true
+  },
+  "contexts_sha256": "de45525e1d726038ec0be2fa616aa34694173ca2354f9a152f6ddb363082fd16",
+  "retrieval_manifest_sha256": "1fd7bbd49941ed846df9cfc1876c7513fe05690ce75c4cf61fb1853a484d72c5",
+  "retrieval": {
+    "method": "codec-routed BM25 over all locked PDF page text; 27 extracted lines, stride 15, top 4 non-overlapping",
+    "source_lock_sha256": "1f7294091abc3ae3ebee5f91afea9568622fc53b0c105e42902e64918bd34b36",
+    "extraction_sha256": {
+      "h264-spec": "4ab433843e924c9bf28b30450429d6c6645b8f1403657c05aee54fdd32b36bb9",
+      "h265-spec": "57c04a2140487f7b1651d85470919a55e62fa9f6e9fcf19d49903215a3c011cc",
+      "h266-spec": "c192b0c4959cb7e7a395a8267b3a8a39648f217f98674804302e8ca856685f14",
+      "av1-spec-pdf": "118dbbd8bf78864c930a2d91d8ea572e6e42b7fe89849e048eb9e47e90bfd372"
+    }
+  },
+  "retrieval_page_hits": {
+    "any_frozen_reference_page": 21,
+    "all_frozen_reference_pages": 16
+  },
+  "review_hashes": {
+    "queue.jsonl": "2bddb425d31ebad8c571b1b9a7bbd209b3687b6c94115263d73c9dfaee62d686",
+    "private-identities.jsonl": "919a1fa045c0a9e4cfa1672d99dfd317ff38c5cb686bd687ea47c52bdc80935f",
+    "ratings.jsonl": "69b1528d0395584c14c6765b3dff5fbb1a9b156aa5d9c670512ed54071a77efb"
+  },
+  "numeric_pair_transitions": {
+    "A_to_B_strict": {
+      "gain": 1,
+      "loss": 0,
+      "same_correct": 0,
+      "same_not_correct": 15
+    },
+    "A_to_B_content": {
+      "gain": 1,
+      "loss": 0,
+      "same_correct": 0,
+      "same_not_correct": 15
+    },
+    "B_to_D_strict": {
+      "gain": 1,
+      "loss": 1,
+      "same_correct": 0,
+      "same_not_correct": 14
+    },
+    "B_to_D_content": {
+      "gain": 1,
+      "loss": 1,
+      "same_correct": 0,
+      "same_not_correct": 14
+    },
+    "A_to_D_strict": {
+      "gain": 1,
+      "loss": 0,
+      "same_correct": 0,
+      "same_not_correct": 15
+    },
+    "A_to_D_content": {
+      "gain": 1,
+      "loss": 0,
+      "same_correct": 0,
+      "same_not_correct": 15
+    }
+  },
+  "runs": [
+    {
+      "condition": "A",
+      "local_run": "runs/acceptance-v2-base",
+      "manifest_sha256": "ee0372f4feb274f4115d2a520d8c6db4f856933fbcc3ee74c3210a7921032bda",
+      "predictions_sha256": "28f937b99095002304f601f21c9c6ad99ffd0c6c2d6db6ce04c79e92b9bdc664",
+      "adapter_file_sha256": {},
+      "numeric_total": 16,
+      "numeric_items": {
+        "holdout-h264-gap-wrap": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-h265-weight-rounding": {
+          "strict": "unparseable",
+          "content": "incorrect"
+        },
+        "holdout-h266-amvr-shift": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-av1-cdf-indirection": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-first-zero": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-late-zero": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-negative-wrap": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h265-ctx-negative": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-shift": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h265-ctx-clip": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h266-vb-sps": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h266-vb-ph": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h266-vb-spacing": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-two": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-three": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-only-in-group": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        }
+      },
+      "strict_numeric": {
+        "incorrect": 13,
+        "unparseable": 3
+      },
+      "numeric_content": {
+        "incorrect": 14,
+        "unparseable": 2
+      },
+      "by_codec": {
+        "h264": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 1,
+          "review_points_possible": 6
+        },
+        "h265": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 0,
+          "review_points_possible": 6
+        },
+        "h266": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 1,
+          "review_points_possible": 7
+        },
+        "av1": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 1,
+          "review_points_possible": 6
+        }
+      },
+      "truncated": 4,
+      "numeric_truncated": 2,
+      "tool_calls": 0,
+      "questions_with_tool_calls": 0,
+      "tool_errors": 0,
+      "tokens_generated": 3540,
+      "prompt_tokens_including_tool_rounds": 4004,
+      "seconds_excluding_model_load": 52.1199,
+      "non_numeric_ai_review": {
+        "points": 3,
+        "possible": 25,
+        "answers": 8,
+        "all_points": 0
+      }
+    },
+    {
+      "condition": "B",
+      "local_run": "runs/acceptance-v2-base-assisted",
+      "manifest_sha256": "e1e217d2ba84d11027a2f69a56a8bba7435e2aa6e30be5aa63a85f3479b9dd53",
+      "predictions_sha256": "f462fc5f4dbf2738049096170f066337f1da010a5eed7f5163fd12d5cc2991f7",
+      "adapter_file_sha256": {},
+      "numeric_total": 16,
+      "numeric_items": {
+        "holdout-h264-gap-wrap": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "holdout-h265-weight-rounding": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-h266-amvr-shift": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "holdout-av1-cdf-indirection": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h264-sc-first-zero": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-late-zero": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h264-sc-negative-wrap": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-negative": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-shift": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-clip": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h266-vb-sps": {
+          "strict": "correct",
+          "content": "correct"
+        },
+        "acceptance-h266-vb-ph": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h266-vb-spacing": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-av1-tile-two": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-av1-tile-three": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-av1-tile-only-in-group": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        }
+      },
+      "strict_numeric": {
+        "unparseable": 13,
+        "incorrect": 2,
+        "correct": 1
+      },
+      "numeric_content": {
+        "unparseable": 13,
+        "incorrect": 2,
+        "correct": 1
+      },
+      "by_codec": {
+        "h264": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 2,
+          "review_points_possible": 6
+        },
+        "h265": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 2,
+          "review_points_possible": 6
+        },
+        "h266": {
+          "numeric_total": 4,
+          "strict_correct": 1,
+          "content_correct": 1,
+          "review_points": 5,
+          "review_points_possible": 7
+        },
+        "av1": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 5,
+          "review_points_possible": 6
+        }
+      },
+      "truncated": 19,
+      "numeric_truncated": 11,
+      "tool_calls": 4,
+      "questions_with_tool_calls": 3,
+      "tool_errors": 3,
+      "tokens_generated": 7879,
+      "prompt_tokens_including_tool_rounds": 54055,
+      "seconds_excluding_model_load": 200.4906,
+      "non_numeric_ai_review": {
+        "points": 14,
+        "possible": 25,
+        "answers": 8,
+        "all_points": 2
+      }
+    },
+    {
+      "condition": "D",
+      "local_run": "runs/acceptance-v2-tuned-assisted",
+      "manifest_sha256": "7422c683eb9339b70e284ef03a82e8f98760ca619ca68b12d9fc28a24d337c50",
+      "predictions_sha256": "95a896ec9306ca505a1f728b802b36c63a024ff82cf71222c7dadfd1d02a70e4",
+      "adapter_file_sha256": {
+        "0000012_adapters.safetensors": "2880da919e7592bc14ea93b58a22567307c7660f6b10f756bb2f08a79d1236ff",
+        "0000024_adapters.safetensors": "afeba2beb95ef25dff0be3324cc407eefe381ca7397fcc8ce36f5f45f2b665e6",
+        "adapter_config.json": "d7b90066eff188991e4dfc38a5ab05cc278455e02373a2808367d7fc825ab2b4",
+        "adapters.safetensors": "afeba2beb95ef25dff0be3324cc407eefe381ca7397fcc8ce36f5f45f2b665e6"
+      },
+      "numeric_total": 16,
+      "numeric_items": {
+        "holdout-h264-gap-wrap": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-h265-weight-rounding": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-h266-amvr-shift": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "holdout-av1-cdf-indirection": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-first-zero": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h264-sc-late-zero": {
+          "strict": "correct",
+          "content": "correct"
+        },
+        "acceptance-h264-sc-negative-wrap": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h265-ctx-negative": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-shift": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h265-ctx-clip": {
+          "strict": "unparseable",
+          "content": "unparseable"
+        },
+        "acceptance-h266-vb-sps": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h266-vb-ph": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-h266-vb-spacing": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-two": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-three": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        },
+        "acceptance-av1-tile-only-in-group": {
+          "strict": "incorrect",
+          "content": "incorrect"
+        }
+      },
+      "strict_numeric": {
+        "incorrect": 12,
+        "correct": 1,
+        "unparseable": 3
+      },
+      "numeric_content": {
+        "incorrect": 12,
+        "correct": 1,
+        "unparseable": 3
+      },
+      "by_codec": {
+        "h264": {
+          "numeric_total": 4,
+          "strict_correct": 1,
+          "content_correct": 1,
+          "review_points": 3,
+          "review_points_possible": 6
+        },
+        "h265": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 1,
+          "review_points_possible": 6
+        },
+        "h266": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 6,
+          "review_points_possible": 7
+        },
+        "av1": {
+          "numeric_total": 4,
+          "strict_correct": 0,
+          "content_correct": 0,
+          "review_points": 5,
+          "review_points_possible": 6
+        }
+      },
+      "truncated": 9,
+      "numeric_truncated": 3,
+      "tool_calls": 0,
+      "questions_with_tool_calls": 0,
+      "tool_errors": 0,
+      "tokens_generated": 4302,
+      "prompt_tokens_including_tool_rounds": 45140,
+      "seconds_excluding_model_load": 154.6266,
+      "non_numeric_ai_review": {
+        "points": 15,
+        "possible": 25,
+        "answers": 8,
+        "all_points": 3
+      }
+    }
+  ],
+  "date_local": "2026-11-17",
+  "review_scope": "8 acceptance explanation questions, 24 responses, shuffled labels, single AI reviewer. Ratings and source excerpts remain local. No independent human verification.",
+  "release_decision": "no_go; no numeric gain for the adapter compared with its matched assisted base",
+  "limits": [
+    "24 questions in eight mechanism families; not 24 independent mechanisms.",
+    "A→B changes retrieval and calculator availability together; no separate effect estimate.",
+    "The same calculator and passages were available to B and D. Actual call counts differ by model behavior.",
+    "384 generation tokens cover all tool and final-answer turns. No retuning on frozen questions."
+  ],
+  "adapter_training_record": "docs/records/2026-11-11-phase1-domain-m4pro-boundary.json"
+}

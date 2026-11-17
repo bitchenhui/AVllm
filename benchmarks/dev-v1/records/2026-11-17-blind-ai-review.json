@@ -1,0 +1,670 @@
+{
+  "totals": {
+    "dev-v1-qwen3-base-m4pro-concise": {
+      "points": 22,
+      "possible": 48,
+      "answers": 16,
+      "all_points": 1
+    },
+    "dev-v1-qwen3-phase1-domain-m4pro": {
+      "points": 12,
+      "possible": 48,
+      "answers": 16,
+      "all_points": 0
+    },
+    "dev-v1-qwen3-phase1-domain-m4pro-boundary": {
+      "points": 12,
+      "possible": 48,
+      "answers": 16,
+      "all_points": 0
+    }
+  },
+  "items": [
+    {
+      "id": "h264-01",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "反量化/逆变换得到残差，且加预测；漏逆扫描。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "7d38b0f0e665de80439480c3edba866644e243b4919ec982796e10a361ef6f9e"
+    },
+    {
+      "id": "h264-01",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 1
+      },
+      "note": "混入正向变换和量化，未正确描述解码输入；保留加预测。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "41f2d2dc4fab85ba3587f3625b34b0c102b34dc0450f845e50a708c6364c8d7f"
+    },
+    {
+      "id": "h264-01",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 1
+      },
+      "note": "混入正向变换和量化；给出残差加预测，但漏逆扫描与清楚的逆过程。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "531a6117cccb2b49eb7875cd8b74b5ecd8f32b1dccf1647ba1e6c6a4504cd376"
+    },
+    {
+      "id": "h264-03",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "返回 0 错；指出 dct 原地数组，未说明位或和 !!。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "a96f19e528d261c0a5ce5c381e3214645c048df0f63eebca15753835ba14e8f9"
+    },
+    {
+      "id": "h264-03",
+      "label": "B",
+      "points": {
+        "p1": 1,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "返回 1、不是计数，指出 dct；未说明位或和 !!。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "c7fdcaadbc4f68131bab3cd7bdd23c3a56f4dfc2663436e8d4d76f139274db60"
+    },
+    {
+      "id": "h264-03",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "返回 0 错；未给存储位置和归约解释。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "81c9778227045943009c1c6e88d9235f99aaeaf93425d04949e45944d0e5b29d"
+    },
+    {
+      "id": "h264-04",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "识别 1 为 CABAC；漏 Exp-Golomb，且泛化到 slice header。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "01c1533862c348640656a73e8a22305c1877126f7cb11ad52e5d534e149324e9"
+    },
+    {
+      "id": "h264-04",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "识别 1 为 CABAC，并以双描述符说明范围；漏 Exp-Golomb。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "6ee8b04be3837ce0dcd1e93af98f944c7a68c92778a418d5c7ad1ba0da85ea41"
+    },
+    {
+      "id": "h264-04",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "识别 1 为 CABAC，明确讨论双描述符；漏 Exp-Golomb。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "5f633cfd74eab90aac47441178029afdc1480a1297660b582d051ac9bf1c0ac0"
+    },
+    {
+      "id": "h264-05",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "虽否定直接归因，但从截图开始，漏显示路径、对齐原样和首差分层。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "5d9fffe93befeb6f0759a57b0c9d2ed5acbcdd282ff693675c3156f7793238bb"
+    },
+    {
+      "id": "h264-05",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "否定直接归因，但未检查显示转换和对齐原样，未按首差定位。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "49d23c3df2f62437a29259fc28efee7c40e8a48e689fe2fa0bff1a3c0a516521"
+    },
+    {
+      "id": "h264-05",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "否定直接归因，但仍以截图起步，后续疑因也未分离预测、残差和滤波。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "e6f3eaa6bccc48a8edf36f3e4cb51d67ae6b29fc6e2719418cd3bf03f7159b0a"
+    },
+    {
+      "id": "h265-01",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "正确否定通常逆变换；错误否定系数缩放，未说明专用派生。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "d0ecab61c04c2c66dbce2183004e30b08cc3d1a41d78007df8144d3817eb0450"
+    },
+    {
+      "id": "h265-01",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "正确否定通常逆变换；错误否定系数缩放，未说明专用派生。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "d0ecab61c04c2c66dbce2183004e30b08cc3d1a41d78007df8144d3817eb0450"
+    },
+    {
+      "id": "h265-01",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "正确否定通常逆变换；错误否定系数缩放，未说明专用派生。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "0c487f036f3d239f41ca831fc724f98157fe7bb60da02298838044c903e639fe"
+    },
+    {
+      "id": "h265-03",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "余数应为 1；正确识别缓存，没说明实际索引。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "861ca0617f2b9acf646ad77b8dcbf482ba7abc46a50febf5025b65af23def553"
+    },
+    {
+      "id": "h265-03",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "商应为 6；正确识别缓存，没说明实际索引。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "f3b7c77dd0b4ec09935449c2eb44ddd87fdd0ee7b6f243429539879e3936e956"
+    },
+    {
+      "id": "h265-03",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "余数应为 1；正确识别缓存，没说明实际索引。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "861ca0617f2b9acf646ad77b8dcbf482ba7abc46a50febf5025b65af23def553"
+    },
+    {
+      "id": "h265-04",
+      "label": "A",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "区分两种滤波；顺序前后矛盾且截断，未说明正确的重建样本流。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "f247c62056c4fcc26b2833770e40210332fd656cf1db6b6ec130ea408c94eade"
+    },
+    {
+      "id": "h265-04",
+      "label": "B",
+      "points": {
+        "p1": 1,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "区分滤波并给出正确顺序；把环路重建输出误接到位流，未明确重建样本。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "064e49f0b41d9584d09bdd08d7c67a9de9419528d1d0cea5f7e3196339a93fee"
+    },
+    {
+      "id": "h265-04",
+      "label": "C",
+      "points": {
+        "p1": 1,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "区分滤波并给出正确顺序；把重建样本误称预测样本。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "857b77c881b5f2b3701100418bb47aae724a5460edf1d4498c52453ad82718bb"
+    },
+    {
+      "id": "h265-05",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "强认全局 QP；未说明亮度位深偏移及色度 QP 映射/偏移。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "d3345f6103a39f555c0ff6b1b90f93161ab6962527555a6e940ef1795661c217"
+    },
+    {
+      "id": "h265-05",
+      "label": "B",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "识别层级不明；漏亮度位深偏移、色度 QP 映射和各层偏移。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "af18eb80fd3f90f8f2963fdb3a62414f1b8457f85a5137c6c3f7366ade93d872"
+    },
+    {
+      "id": "h265-05",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "断言全局 QP；漏亮度位深偏移、色度 QP 映射和各层偏移。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "ff93407fb21504fe4d6de596509b90a9b5433ff8bd34587f41d9bcbad3af3252"
+    },
+    {
+      "id": "h266-01",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "未给 QT 叶节点关系、二叉/三叉或有效约束，编造块尺寸。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "6c27b73c4fc3d792f1c23261f57991bd3e25b5461effcb80432f4065ae77d036"
+    },
+    {
+      "id": "h266-01",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "未给 QT 叶节点关系、二叉/三叉或有效约束，尺寸陈述不支持。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "f9e62d6707b34cf263c3bdaa5720c559389e5c766269f98309e5bb5445a0e991"
+    },
+    {
+      "id": "h266-01",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "错列划分并否定几何递归，未给叶节点与约束。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "bcadaa1665ea2b6f93ed75748b31020997c780c33a3c8d459d2a1b2611a3aa07"
+    },
+    {
+      "id": "h266-03",
+      "label": "A",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "识别先反量化；后文将其与 skip 相联系且混淆调用和生效。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "6b69428d24aa64e1d7ac773b151600a4b8f7ef5c5f0260dd9225ba932d72ac5c"
+    },
+    {
+      "id": "h266-03",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "反量化表述自相矛盾，误把调用置于非 SKIP 分支。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "341c743379121b422b3619fc10efa4d799587e990045d980653eed1278736534"
+    },
+    {
+      "id": "h266-03",
+      "label": "C",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 1
+      },
+      "note": "先反量化且 skip 仍反量化；误加非 SKIP 调用条件。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "564050d21254e45e264a8d32ec4fc18f2b765c0e61ffd7dcf93cbe947af7923b"
+    },
+    {
+      "id": "h266-04",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "两个判断正确，但未兑现任何解释评分点。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "f0fb83475b2748f2a3f0e39b0d1728653e920408a9e42c3bb83e39cebc830b6f"
+    },
+    {
+      "id": "h266-04",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "两个判断正确，但未兑现任何解释评分点。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "be688c0c747e36283099113c8730b7e8f170def8930f632e5345cb415b65c9da"
+    },
+    {
+      "id": "h266-04",
+      "label": "C",
+      "points": {
+        "p1": 1,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "状态及作用范围解释齐全；把 VVC 称为 HEVC 是额外术语错误。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "75e3bfb9400d33d7cbf55d6d9879be53883fd141a49de60e21fb5e390b7c223c"
+    },
+    {
+      "id": "h266-05",
+      "label": "A",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 1
+      },
+      "note": "区分允许/使用，说明缺省不用；字段名错误。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "6321d0e63ed568d33ded3324a747f83e7fbe82caf9f421a70df44d9883fe8eef"
+    },
+    {
+      "id": "h266-05",
+      "label": "B",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 1
+      },
+      "note": "区分允许/使用，说明缺省不用；字段名错误。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "76732eed3c2734e4519a88aef737160e3852d5dfc2d1831cc0f51749d1451880"
+    },
+    {
+      "id": "h266-05",
+      "label": "C",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "区分允许/使用；误用字段且只说字段为 0，未给缺省推断。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "d2a19bcb6ad0b53813fcdb0dbfb4c8092396f0a3694d127e5528c1943e6d0e26"
+    },
+    {
+      "id": "av1-01",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "把帧级索引当作 segment 字段并虚构无损标识；无派生 qindex 或五个偏差。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "901b51f9c06ca3074dbf506757312e6f06951635817721563083a7b4fa8758e2"
+    },
+    {
+      "id": "av1-01",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "编造无损字段和引文；没有 qindex、五个偏差或真实的条件。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "ce5175bcf3ba8a0bf9ae93ea1da58c0a06b4cf3815f2625ceed00e70ce4797fc"
+    },
+    {
+      "id": "av1-01",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "虚构宏块无损标志及预测/残差限制；漏 qindex 和分量偏差。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "b32687516c4c6ab1f7d2d99ae03d10ab203337c1d559fe163545dffa32bdae25"
+    },
+    {
+      "id": "av1-03",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "两值和夹紧分支正确；未说明先相加再夹紧。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "2d99f24aba523e0c4a2d3bef215f7e798d5773e8aaec004298a0f82d342bd7ce"
+    },
+    {
+      "id": "av1-03",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "两值和夹紧分支正确；未说明先相加再夹紧。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "f52115d96d1e025d7c111a53bdf06048f96b8592ade35fd6db94929451a294c6"
+    },
+    {
+      "id": "av1-03",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 1
+      },
+      "note": "两值和夹紧分支正确；未说明先相加再夹紧。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "f38ddf3f4026f863afb387320aeb23199dcb739fff0a2142d2a26f5eedbe77c4"
+    },
+    {
+      "id": "av1-04",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "否定联动；把允许说成启用并编造按非零系数恢复，漏实际恢复类型。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "3d2512ac48ce2625d68e7791362b31c38dd20577c031086687a2de8f2bbdb276"
+    },
+    {
+      "id": "av1-04",
+      "label": "B",
+      "points": {
+        "p1": 0,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "否定联动；未说清只允许，所述宏块恢复模式不支持。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "7cf4772a7be7764791a860d8cd061b1822dfafd6cf02e3a3854644ffa26eb021"
+    },
+    {
+      "id": "av1-04",
+      "label": "C",
+      "points": {
+        "p1": 1,
+        "p2": 1,
+        "p3": 0
+      },
+      "note": "结合下文将启用理解为有条件允许；否定联动，未给平面实际类型/参数。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "9a0f6935378835d86e5469de0f0d7dd1814f9c84cdab12cb610e4a913eebab60"
+    },
+    {
+      "id": "av1-05",
+      "label": "A",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "结论正确但未辨析字段；漏控制变量与多点曲线。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro-boundary",
+      "answer_sha256": "3f83eeb0b88d1264466c83618616e417d2dd176c3d0115527986d034e2841825"
+    },
+    {
+      "id": "av1-05",
+      "label": "B",
+      "points": {
+        "p1": 1,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "解释变量和映射不同；未说明完整控制及多码率点。",
+      "run": "dev-v1-qwen3-base-m4pro-concise",
+      "answer_sha256": "5b8f914db8df9c4285d15d76f5090149829f0184019e42599ef3a5ae3b967708"
+    },
+    {
+      "id": "av1-05",
+      "label": "C",
+      "points": {
+        "p1": 0,
+        "p2": 0,
+        "p3": 0
+      },
+      "note": "只给结论和一般配对比较；未辨析字段、统一输入条件或多点曲线。",
+      "run": "dev-v1-qwen3-phase1-domain-m4pro",
+      "answer_sha256": "3fd077f04e7a2edade7442d3ef1aa5cbd56ba0f2fb677fd297403b4275b8ef2a"
+    }
+  ],
+  "date": "2026-11-17",
+  "reviewer": "Codex gpt-6.1-sol; masked condition labels, single AI reviewer, not independent human review",
+  "rubric_policy": "Binary per frozen criterion. Missing components or contradictions of a criterion earn zero; an extra unrelated error can be noted separately. Reviewed raw answers shown without run labels, metrics or tool traces. Writing style may still hint at origin.",
+  "artifact_sha256": {
+    "private-identities.jsonl": "0d1fbc2a9baca3b03518999f4a97422c9c1223db88dc3a925f7beb52486768b3",
+    "queue.jsonl": "ba427eac60513e28233bdcae0f356b5d24b42cd148006b6a461d868897ea5b55",
+    "ratings.jsonl": "4ec51ee5f9dbfe0dd3148acb9c925047b3dc5789d03736d19225cc68844fe1de"
+  },
+  "benchmark_manifest_sha256": "620a5b1ca438424fae8211d7ba2c69ef4cacb63a06507a11b9539e1d90b6c4bd",
+  "prediction_sha256_by_run": {
+    "dev-v1-qwen3-base-m4pro-concise": "4e4508e82e21ee30096fb009b4df6845e4f485b354e5c4deb0a046a99773d833",
+    "dev-v1-qwen3-phase1-domain-m4pro": "2315c4e0fd6da1bf94adec85eefebb0a165c971de0f339391a17f48be7a08ca8",
+    "dev-v1-qwen3-phase1-domain-m4pro-boundary": "fef3624e787ead24b078e3de7deb8456a7c4221bd036c4c3cd7b63dbdb072308"
+  },
+  "by_codec": {
+    "dev-v1-qwen3-base-m4pro-concise": {
+      "h264": {
+        "points": 6,
+        "possible": 12
+      },
+      "h265": {
+        "points": 4,
+        "possible": 12
+      },
+      "h266": {
+        "points": 7,
+        "possible": 12
+      },
+      "av1": {
+        "points": 5,
+        "possible": 12
+      }
+    },
+    "dev-v1-qwen3-phase1-domain-m4pro": {
+      "h264": {
+        "points": 3,
+        "possible": 12
+      },
+      "h265": {
+        "points": 4,
+        "possible": 12
+      },
+      "h266": {
+        "points": 2,
+        "possible": 12
+      },
+      "av1": {
+        "points": 3,
+        "possible": 12
+      }
+    },
+    "dev-v1-qwen3-phase1-domain-m4pro-boundary": {
+      "h264": {
+        "points": 3,
+        "possible": 12
+      },
+      "h265": {
+        "points": 4,
+        "possible": 12
+      },
+      "h266": {
+        "points": 2,
+        "possible": 12
+      },
+      "av1": {
+        "points": 3,
+        "possible": 12
+      }
+    }
+  }
+}
